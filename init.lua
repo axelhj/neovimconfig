@@ -319,6 +319,9 @@ end
 local servers = {
   lua_ls = {
     Lua = {
+      diagnostics = {
+        enable = false
+     },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
