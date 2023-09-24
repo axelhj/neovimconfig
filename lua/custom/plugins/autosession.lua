@@ -10,7 +10,7 @@ return {
         vim.loop.cwd() == vim.loop.os_homedir(),
       restore_upcoming_session = true,
       pre_save_cmds = {'Neotree close'},
-      post_restore_cmds = {'Neotree reveal_force_cwd'}
+      post_restore_cmds = {'Neotree show'}
     }
   end
 }
