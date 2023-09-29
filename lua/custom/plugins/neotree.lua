@@ -13,6 +13,9 @@ return {
         width = 40,
       },
       filesystem = {
+        filtered_items = {
+          visible = true
+        },
         window = {
           mappings = {
             -- Disable fuzzy finder
