@@ -2,8 +2,9 @@ vim.o.hlsearch = true
 vim.o.ignorecase = false
 vim.o.smartcase = false
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.wrapscan = false
+vim.o.guifont="Inconsolata Nerd Font Mono:h9"
 
 vim.cmd [[
-  set guifont="Inconsolata Nerd Font Mono":h9
-  set nowrapscan
+  GuiWindowOpacity 0.975
 ]]
