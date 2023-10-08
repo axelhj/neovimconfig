@@ -132,9 +132,17 @@ vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 
+vim.keymap.set('n', '<Leader>gd',function()
+  vim.cmd(':Bdelete')
+end, {
+  desc = 'Close a buffer and delete if not displayed elsewhere'
+})
+
 -- Highlight on yank
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', {
+  clear = true
+})
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
