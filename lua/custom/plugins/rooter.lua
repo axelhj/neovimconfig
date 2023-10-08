@@ -5,6 +5,5 @@ return {
       rooter_patterns = { 'src/', '.git', '.hg', '.svn' },
     })
   end,
-  dependencies = {},
 }
 
