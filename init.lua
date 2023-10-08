@@ -94,7 +94,26 @@ require('lazy').setup({
       show_trailing_blankline_indent = false,
     },
   },
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+  -- "gc" or "Ctrl+," to comment visual regions/lines
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        line = '<C-,>',
+      },
+    },
+    keys = {
+      {
+        'gcc',
+        function() require("Comment.api").toggle.linewise() end,
+        mode = 'n',
+        desc = "Toggle comment with Comment.nvim"
+      },
+    },
+  },
+  -- Shim to help with gui font & transparency commands in nvim.
+  "equalsraf/neovim-gui-shim",
   { import = 'custom.plugins' },
 }, {})
 
