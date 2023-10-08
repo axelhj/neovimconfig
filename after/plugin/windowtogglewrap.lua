@@ -1,5 +1,6 @@
 -- When using <C-w>h, <C-w>j, <C-w>k or <C-w>l to jump to the next
 -- window of the tab, wrap aroud once the edge is reached.
+-- Credit: https://stackoverflow.com/a/73612761
 
 local function try_jump_window(direction, count)
   local prev_win_nr = vim.fn.winnr()
