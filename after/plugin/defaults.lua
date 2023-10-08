@@ -1,6 +1,6 @@
 -- Set highlight on search
-vim.o.hlsearch = false
-vim.o.incsearch = false
+vim.o.hlsearch = true
+vim.o.incsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -56,6 +56,75 @@ vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
 
 -- Deal with transparency - make nvim-qt look more interesting.
 vim.cmd 'GuiWindowOpacity 0.975'
+
+local function feedkeys_replace_termcodes_n(cmd)
+  vim.api.nvim_feedkeys(
+    vim.api.nvim_replace_termcodes(cmd, true, false, true),
+    'n',
+    false
+  )
+end
+
+local function get_relative_focus_buffer_func(direction)
+  return function()
+    if require'neotree-focused'.is_neotree_focused() then
+      feedkeys_replace_termcodes_n('<C-w>l')
+      return
+    end
+    if direction == 1 then
+      vim.api.nvim_exec2('bnext', {})
+    else
+      vim.api.nvim_exec2('bprevious', {})
+    end
+  end
+end
+
+local function get_exec_unescaped_buffer(cmd)
+  return function()
+    if not require'neotree-focused'.is_neotree_focused() then
+      feedkeys_replace_termcodes_n(cmd)
+    end
+    return nil
+  end
+end
+
+-- Switch buffers quickly
+vim.keymap.set('n', '<Tab>',
+  get_relative_focus_buffer_func(1),
+  { desc = 'Switch to next open buffer' }
+)
+vim.keymap.set('n', '<S-Tab>',
+  get_relative_focus_buffer_func(-1),
+  { desc = 'Switch to previous open buffer' }
+)
+vim.keymap.set('n', '<C-Tab>',
+  get_relative_focus_buffer_func(1),
+  { desc = 'Switch to next open buffer' }
+)
+vim.keymap.set('n', '<C-S-Tab>',
+  get_relative_focus_buffer_func(-1),
+  { desc = 'Switch to previous open buffer' }
+)
+vim.keymap.set('n', 'gn',
+  get_relative_focus_buffer_func(1),
+  { desc = 'Switch to next open buffer' }
+)
+vim.keymap.set('n', 'gp',
+  get_relative_focus_buffer_func(-1),
+  {
+  desc = 'Switch to previous open buffer' }
+)
+
+vim.keymap.set( 'i', '<C-Tab>',
+  get_exec_unescaped_buffer('<Esc>:bnext<cr>'),
+  {
+  desc = 'Switch to next open buffer' }
+)
+vim.keymap.set( 'i', '<S-C-Tab>',
+  get_exec_unescaped_buffer('<Esc>:bprevious<cr>'),
+  {
+  desc = 'Switch to previous open buffer' }
+)
 
 -- Quick split/window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h')
