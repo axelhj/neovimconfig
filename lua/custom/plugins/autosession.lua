@@ -3,15 +3,18 @@ return {
   config = function()
     require("auto-session").setup {
       log_level = "error",
-      auto_session_suppress_dirs = {},
+      auto_session_suppress_dirs = nil,
+      auto_save_enabled = true,
       auto_restore_enabled = true,
-      -- auto_session_enable_last_session = false, -- even if not existing
       auto_session_enable_last_session =
-        vim.loop.cwd() == vim.loop.os_homedir(),
-      restore_upcoming_session = true,
+        vim.loop.cwd() == vim.loop.os_homedir() or
+        vim.loop.cwd() == vim.loop.os_homedir() .. '/Desktop',
+      auto_session_create_enabled = true,
       pre_save_cmds = {'Neotree close'},
-      post_restore_cmds = {'Neotree show'}
+      pre_restore_cmds = {'Neotree close'},
+      post_restore_cmds = {'Neotree show'},
     }
-  end
+  end,
+  lazy = false
 }
 
