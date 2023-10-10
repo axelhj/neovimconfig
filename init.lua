@@ -104,6 +104,11 @@ require('lazy').setup({
       },
     },
     keys = {
+      { '<C-,>',
+        function() require("Comment.api").toggle.linewise() end,
+        mode = 'n',
+        desc = "Toggle comment with Comment.nvim"
+      },
       {
         'gcc',
         function() require("Comment.api").toggle.linewise() end,
