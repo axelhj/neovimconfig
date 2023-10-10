@@ -19,6 +19,7 @@ return {
         window = {
           mappings = {
             -- Disable fuzzy finder
+            ["<C-S-l>"] = "open",
             ["/"] = "noop",
             ["?"] = "noop"
           }
