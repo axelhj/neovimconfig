@@ -15,8 +15,8 @@ return {
         -- 'rust',
         'scala',
         -- 'tsx',
-        -- 'javascript',
-        -- 'typescript',
+        'javascript',
+        'typescript',
         -- 'vimdoc',
         -- 'vim'
       },

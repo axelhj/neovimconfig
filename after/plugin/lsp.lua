@@ -1,9 +1,24 @@
+local filetypes = {
+  biome = {},
+  tsserver = {
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  },
+}
+
 local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  -- eslint = {},
+  biome = {},
+  tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   cmake =  {},
   lua_ls = {
@@ -80,14 +95,21 @@ require('neodev').setup({})
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Capabilities required for the visualstudio lsps (css, html, etc)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Add nvim-lspconfig plugin
 local lspconfig = require 'lspconfig'
 
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = servers.lua_ls,
-}
+for lsp, settings in pairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = settings,
+    filetypes = filetypes[lsp],
+  }
+end
 
