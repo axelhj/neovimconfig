@@ -72,7 +72,7 @@ vim.keymap.set( 'i', '<S-C-Tab>',
   desc = 'Switch to previous open buffer' }
 )
 
-vim.keymap.set('n', '<Leader>gd',function()
+vim.keymap.set('n', 'bd',function()
   vim.cmd(':Bdelete')
 end, {
   desc = 'Close a buffer and delete if not displayed elsewhere'
