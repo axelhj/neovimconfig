@@ -10,7 +10,7 @@ return {
         vim.loop.cwd() == vim.loop.os_homedir() or
         vim.loop.cwd() == vim.loop.os_homedir() .. '/Desktop',
       auto_session_create_enabled = true,
-      pre_save_cmds = {'Neotree close'},
+      pre_save_cmds = {'Neotree close', 'TroubleClose'},
       pre_restore_cmds = {'Neotree close'},
       post_restore_cmds = {'Neotree show'},
     }

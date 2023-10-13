@@ -77,3 +77,10 @@ vim.keymap.set('n', 'bd',function()
 end, {
   desc = 'Close a buffer and delete if not displayed elsewhere'
 })
+
+vim.keymap.set('n', 'TT',function()
+  require'trouble'.toggle()
+end, {
+  desc = 'Open/Close the Trouble sidebar'
+})
+
