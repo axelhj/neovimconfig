@@ -25,22 +25,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'tpope/vim-sleuth',
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
-      'folke/neodev.nvim',
-    },
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'rafamadriz/friendly-snippets',
-    },
-  },
   { 'folke/which-key.nvim', opts = {} },
   {
     'lewis6991/gitsigns.nvim',
@@ -94,7 +78,6 @@ require('lazy').setup({
       show_trailing_blankline_indent = false,
     },
   },
-  {
   -- "gc" or "Ctrl+," to comment visual regions/lines
   {
     'numToStr/Comment.nvim',

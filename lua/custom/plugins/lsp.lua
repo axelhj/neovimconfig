@@ -6,4 +6,3 @@ return {
     'folke/neodev.nvim',
   },
 }
-
