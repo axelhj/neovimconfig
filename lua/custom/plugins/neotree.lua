@@ -11,6 +11,9 @@ return {
       window = {
         position = "left",
         width = 40,
+        mappings = {
+          ['<C-S-h>'] = "close_node",
+        },
       },
       filesystem = {
         filtered_items = {
