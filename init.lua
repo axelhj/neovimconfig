@@ -88,15 +88,29 @@ require('lazy').setup({
     },
     keys = {
       { '<C-,>',
-        function() require("Comment.api").toggle.linewise() end,
+        'gc',
         mode = 'n',
         desc = "Toggle comment with Comment.nvim"
       },
       {
         'gcc',
-        function() require("Comment.api").toggle.linewise() end,
-        mode = 'n',
+        mode = 'n', 'v',
         desc = "Toggle comment with Comment.nvim"
+      },
+      {
+        'gbc',
+        mode = 'n',
+        desc = "Toggle block comment with Comment.nvim (motions)"
+      },
+      {
+        'gc',
+        mode = 'n',
+        desc = "Toggle comment with Comment.nvim (motions)"
+      },
+      {
+        'gb',
+        mode = 'n',
+        desc = "Toggle block comment with Comment.nvim (motions)"
       },
     },
   },

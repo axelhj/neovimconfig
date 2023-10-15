@@ -58,3 +58,15 @@ vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
 
 -- Deal with transparency - make nvim-qt look more interesting.
 vim.cmd 'GuiWindowOpacity 0.975'
+
+vim.keymap.set({ 'n', 'v' }, ' gt', ':terminal<CR>', { silent = true, desc = "Open a terminal program in the current buffer" })
+
+vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>', { silent = true, desc = "Leave input mode of the open terminal" })
+
+-- Do not comment line following comment on <Cr>, <C-o>
+vim.opt.formatoptions:remove { "c", "r", "o" }
+
+-- Workaround because some Nvim ftplugin:s messes with the formatoptions-setting.
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end,
+})
