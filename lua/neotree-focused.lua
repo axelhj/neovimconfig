@@ -16,4 +16,3 @@ function M.is_neotree_focused()
 end
 
 return M
-

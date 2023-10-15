@@ -1,15 +1,9 @@
-local function feedkeys_replace_termcodes_n(cmd)
-  vim.api.nvim_feedkeys(
-    vim.api.nvim_replace_termcodes(cmd, true, false, true),
-    'n',
-    false
-  )
-end
+local replace_termcodes = require"feedkeys".replace_termcodes
 
 local function get_relative_focus_buffer_func(direction)
   return function()
     if require'neotree-focused'.is_neotree_focused() then
-      feedkeys_replace_termcodes_n('<C-w>l')
+      replace_termcodes('<C-w>l')
       return
     end
     if direction == 1 then
@@ -23,7 +17,7 @@ end
 local function get_exec_unescaped_buffer(cmd)
   return function()
     if not require'neotree-focused'.is_neotree_focused() then
-      feedkeys_replace_termcodes_n(cmd)
+      replace_termcodes(cmd)
     end
     return nil
   end

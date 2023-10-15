@@ -1,0 +1,43 @@
+local replace_termcodes = require"feedkeys".replace_termcodes
+local replace_termcodes_async = require"feedkeys".replace_termcodes_async
+
+if vim.fn.executable("rg") == 1 then
+  vim.o.grepprg = "rg --path-separator / --vimgrep"
+  vim.o.grepformat = "%f:%l:%c:%m"
+end
+
+vim.keymap.set('v', '<C-S-f>', function()
+  local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
+  replace_termcodes('y:silent grep! <C-r>"<Cr>:copen<Cr>/' .. buf_name .. '<Cr><Cr>')
+  local yank_contents = vim.fn.getreg('"')
+  replace_termcodes('/' .. yank_contents .. '<Cr>')
+end, {
+  desc = 'Go to next quickfix message'
+})
+
+vim.keymap.set('n', '<C-S-f>', function()
+  replace_termcodes_async(':silent grep "')
+end, {
+  desc = 'Go to next quickfix message'
+})
+
+vim.keymap.set('n', '<F4>', ':cnext<Cr>',  {
+  desc = 'Go to next quickfix message'
+})
+
+vim.keymap.set('n', '<S-F4>', ':cprevious<Cr>', {
+  desc = 'Go to previous quickfix message'
+})
+
+local function open_quickfix()
+  local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
+  replace_termcodes(':copen<Cr>/' .. buf_name .. '<Cr>')
+end
+
+vim.keymap.set('n', '<C-S-F4>', open_quickfix, {
+  desc = 'Go to next quickfix message'
+})
+
+vim.keymap.set('n', '<C-S-4>', open_quickfix, {
+  desc = 'Go to next quickfix message'
+})
