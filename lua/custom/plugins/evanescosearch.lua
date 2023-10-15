@@ -1,4 +1,0 @@
-return {
-  'pgdouyon/vim-evanesco',
-}
-
