@@ -63,6 +63,12 @@ vim.keymap.set({ 'n', 'v' }, ' gt', ':terminal<CR>', { silent = true, desc = "Op
 
 vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>', { silent = true, desc = "Leave input mode of the open terminal" })
 
+vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"*p', { silent = true, desc = "Desktop style paste shortcut" })
+
+vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y', { silent = true, desc = "Desktop style copy shortcut" })
+
+vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*d', { silent = true, desc = "Desktop style cut shortcut" })
+
 -- Do not comment line following comment on <Cr>, <C-o>
 vim.opt.formatoptions:remove { "c", "r", "o" }
 
