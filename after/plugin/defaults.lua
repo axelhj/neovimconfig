@@ -59,11 +59,13 @@ vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
 -- Deal with transparency - make nvim-qt look more interesting.
 vim.cmd 'GuiWindowOpacity 0.975'
 
-vim.keymap.set({ 'n', 'v' }, ' gt', ':terminal<CR>', { silent = true, desc = "Open a terminal program in the current buffer" })
+vim.keymap.set({ 'n', 'v' }, '<Leader>gtt', ':terminal<CR>', { silent = true, desc = "Open a terminal program in the current buffer" })
 
 vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>', { silent = true, desc = "Leave input mode of the open terminal" })
 
 vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"*p', { silent = true, desc = "Desktop style paste shortcut" })
+
+vim.keymap.set({ 'i' }, '<C-S-v>', '<Esc>"*pi', { silent = true, desc = "Desktop style paste shortcut" })
 
 vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y', { silent = true, desc = "Desktop style copy shortcut" })
 
