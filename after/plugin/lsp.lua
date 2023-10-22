@@ -18,7 +18,7 @@ local servers = {
   -- rust_analyzer = {},
   -- eslint = {},
   tsserver = {},
-  biome = {},
+  -- biome = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   cmake =  {},
   lua_ls = {
