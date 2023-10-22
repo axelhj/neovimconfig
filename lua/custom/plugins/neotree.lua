@@ -27,6 +27,11 @@ return {
             ["?"] = "noop"
           }
         },
+        bind_to_cwd = true,
+        cwd_target = {
+           sidebar = "tab", -- sidebar is when position = left or right
+           current = "tab" -- current is when position = current
+        },
         follow_current_file = {
           enabled = true,
           leave_dirs_open = true
@@ -34,6 +39,10 @@ return {
       },
       buffers = {
         bind_to_cwd = true,
+        cwd_target = {
+           sidebar = "tab", -- sidebar is when position = left or right
+           current = "tab" -- current is when position = current
+        },
         follow_current_file = {
           enabled = true,
           leave_dirs_open = true
