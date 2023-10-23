@@ -29,18 +29,13 @@ vim.keymap.set('n', '<Leader>lp', ':cprevious<Cr>', {
   desc = 'Go to previous quickfix message'
 })
 
-local function open_quickfix()
-  local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
-  replace_termcodes(':copen<Cr>/' .. buf_name .. '<Cr>')
-end
-
 vim.keymap.set('n', '<Leader>ls', function()
   local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
   replace_termcodes(':copen<Cr>/' .. buf_name .. '<Cr>')
 end, {
-  desc = 'Go to next quickfix message'
+  desc = 'Open the quickfix window'
 })
 
-vim.keymap.set('n', '<Leader>lq', ':silent close<Cr>', {
-  desc = 'Go to next quickfix message'
+vim.keymap.set('n', '<Leader>lq', 'mZ:silent cclose<Cr>`Z', {
+  desc = 'Close quickfix window and return'
 })

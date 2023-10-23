@@ -53,6 +53,16 @@ vim.o.shada = '\'1000,%'
 -- reached in search.
 vim.o.wrapscan = false
 
+-- Softwrap long lines, linebreak by word.
+vim.o.textwidth = 0
+vim.o.wrapmargin = 0
+vim.o.wrap = true
+vim.o.linebreak = true
+
+-- Make the "file open in other session" warning
+-- less intrusive/frequent
+vim.o.shortmess=A
+
 -- Useful font config - installed from nerdfonts.com
 vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
 
@@ -69,7 +79,7 @@ vim.keymap.set({ 'i' }, '<C-S-v>', '<Esc>"*pi', { silent = true, desc = "Desktop
 
 vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y', { silent = true, desc = "Desktop style copy shortcut" })
 
-vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*d', { silent = true, desc = "Desktop style cut shortcut" })
+vim.keymap.set({ 'n', 'v' }, '<C-S-x>', '"*d', { silent = true, desc = "Desktop style cut shortcut" })
 
 -- Do not comment line following comment on <Cr>, <C-o>
 vim.opt.formatoptions:remove { "c", "r", "o" }

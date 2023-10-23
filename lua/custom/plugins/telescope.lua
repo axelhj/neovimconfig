@@ -40,14 +40,13 @@ return {
         previewer = false,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
-
-    vim.keymap.set('n', '<leader>fig', require('telescope.builtin').git_files, { desc = 'Find in [g]it [f]iles' })
+    vim.keymap.set('n', '<leader>fig', require('telescope.builtin').git_files, { desc = '[f]ind in [g]it [f]iles' })
     vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[f]ind [f]iles' })
     vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[f]ind [h]elp' })
     vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[f]ind current [w]ord' })
     vim.keymap.set('n', '<leader>fs', require('telescope.builtin').live_grep, { desc = '[f]ind - [s]earch by grep' })
     vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[f]ind - search by [g]rep' })
     vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[f]ind [d]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[s]earch [r]esume' })
+    vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[s]earch - [r]esume' })
   end
 }
