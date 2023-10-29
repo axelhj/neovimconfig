@@ -66,6 +66,9 @@ vim.o.shortmess=A
 -- Useful font config - installed from nerdfonts.com
 vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
 
+-- Setting that is useful for sending proper path separators to netcoredbg.
+vim.o.shellslash = false
+
 -- Deal with transparency - make nvim-qt look more interesting.
 vim.cmd 'GuiWindowOpacity 0.975'
 
