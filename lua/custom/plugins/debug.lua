@@ -123,5 +123,24 @@ return {
       },
     }
     dap.configurations.c = dap.configurations.cpp
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = 'netcoredbg',
+      args = {'--interpreter=vscode'}
+    }
+    dap.configurations.cs = {
+      {
+        type = "coreclr",
+        name = "launch - netcoredbg",
+        request = "launch",
+        program = function()
+          local dll = io.popen("find bin/Debug/ -maxdepth 4 -name \"*.dll\"")
+          return (vim.fn.getcwd() .. "/" .. dll:lines()()):gsub("/", "\\")
+        end,
+        env = {
+          ASPNETCORE_ENVIRONMENT = 'Development',
+        },
+      },
+    }
   end,
 }
