@@ -77,7 +77,7 @@ end, {
   desc = 'Close a buffer and delete if not displayed elsewhere'
 })
 
-vim.keymap.set('n', '<Leader>gtr',function()
+vim.keymap.set('n', '<Leader>dt',function()
   require'trouble'.toggle()
 end, {
   desc = 'Open/Close the Trouble sidebar'
