@@ -1,5 +1,4 @@
 local filetypes = {
-  biome = {},
   tsserver = {
     "javascript",
     "javascriptreact",
@@ -14,43 +13,63 @@ local filetypes = {
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- eslint = {},
+  tailwindcss = {
+    options = {
+      on_attach = function(_, bufnr)
+        require("tailwindcss-colors").buf_attach(bufnr)
+      end,
+    },
+  },
   tsserver = {},
   -- biome = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   cmake =  {},
+  csharp_ls = {
+    options = {
+      root_dir = function(startpath)
+        local lspconfig = require'lspconfig'
+        return lspconfig.util.root_pattern("*.sln")(startpath)
+          or lspconfig.util.root_pattern("*.csproj")(startpath)
+          or lspconfig.util.root_pattern("*.fsproj")(startpath)
+          or lspconfig.util.root_pattern(".git")(startpath)
+      end,
+    },
+  },
   lua_ls = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {
-          'vim',
-          'require'
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {
+            'vim',
+            'require'
+          },
+          disable = {
+            "required_fields",
+            "missing-fields",
+            "incomplete-signature-doc"
+          },
         },
-        disable = {
-          "required_fields",
-          "missing-fields",
-          "incomplete-signature-doc"
+        runtime = {
+          -- Tell the language server which version of Lua you're using
+          -- (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
         },
-      },
-      runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-      },
-      completion = {
-        callSnippet = 'Replace',
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
+        },
+        completion = {
+          callSnippet = 'Replace',
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
       },
     },
   },
@@ -104,12 +123,29 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- Add nvim-lspconfig plugin
 local lspconfig = require 'lspconfig'
 
-for lsp, settings in pairs(servers) do
-  lspconfig[lsp].setup {
+for lsp, setup in pairs(servers) do
+  local setupOptions = {
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = settings,
+    settings = setup.settings,
     filetypes = filetypes[lsp],
   }
+  if setup.options then
+    if setup.options.root_dir then
+      setupOptions.root_dir = setup.options.root_dir
+    end
+    if setup.options.cmd then
+      setupOptions.cmd = setup.options.cmd
+    end
+    if setup.options.on_attach then
+      local original_on_attach = setupOptions.on_attach
+      setupOptions.on_attach = function(_, bufnr)
+        original_on_attach(_, bufnr)
+        setup.options.on_attach(_, bufnr)
+      end
+    end
+  end
+  lspconfig[lsp].setup(setupOptions)
 end
 
+require("tailwindcss-colors").setup({})

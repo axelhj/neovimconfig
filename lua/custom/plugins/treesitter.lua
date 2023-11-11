@@ -17,6 +17,7 @@ return {
         -- 'tsx',
         'javascript',
         'typescript',
+        'c_sharp',
         -- 'vimdoc',
         -- 'vim'
       },
