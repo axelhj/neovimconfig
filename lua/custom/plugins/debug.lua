@@ -83,15 +83,23 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- dap.defaults.fallback.exception_breakpoints = { "Notice", "Warning", "Error", "Exception" }
+    dap.defaults.cs.exception_breakpoints = { "all", "user-unhandled" }
+
     -- Install golang specific config
     -- require('dap-go').setup()
     dap.adapters.cppdbg = {
       id = 'cppdbg',
       type = 'executable',
-      command = 'C:\\Users\\Axel\\cpptools-win64\\extension\\debugAdapters\\bin\\OpenDebugAD7',
+      command = 'OpenDebugAD7',
       options = {
         detached = false
       }
+    }
+    dap.adapters.netcoredbg = {
+      type = 'executable',
+      command = 'netcoredbg.exe',
+      args = {'--interpreter=vscode'},
     }
     dap.configurations.cpp = {
       {
@@ -99,7 +107,7 @@ return {
         type = "cppdbg",
         request = "launch",
         program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          return vim.fn.input{'Path to executable: ', vim.fn.getcwd() .. '/', 'file'}
         end,
         externalConsole = true,
         cwd = '${workspaceFolder}',
@@ -111,12 +119,11 @@ return {
         name = 'Attach to gdbserver :1234',
         type = 'cppdbg',
         request = 'launch',
-        MIMode = 'gdb',
         miDebuggerServerAddress = 'localhost:1234',
         MIDebuggerPath = vim.fn.exepath('gdb'),
         MIMode = "gdb",
         program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          return vim.fn.input({'Path to executable: ', vim.fn.getcwd() .. '/', 'file'})
         end,
         externalConsole = true,
         cwd = '${workspaceFolder}',
@@ -134,8 +141,12 @@ return {
         name = "launch - netcoredbg",
         request = "launch",
         program = function()
-          local dll = io.popen("find bin/Debug/ -maxdepth 4 -name \"*.dll\"")
+          local dll = io.popen("find . -maxdepth 3 -name \"*.dll\"")
           return (vim.fn.getcwd() .. "/" .. dll:lines()()):gsub("/", "\\")
+        end,
+        cwd = function()
+          local path = io.popen("find . -maxdepth 1 -type d -path \"bin/**/*.dll\" -printf \"%p\\n\"")
+          return (vim.fn.getcwd() .. "/" .. path:lines()()):gsub("/", "\\")
         end,
         env = {
           ASPNETCORE_ENVIRONMENT = 'Development',
