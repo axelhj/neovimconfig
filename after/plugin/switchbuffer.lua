@@ -6,10 +6,15 @@ local function get_relative_focus_buffer_func(direction)
       replace_termcodes('<C-w>l')
       return
     end
-    if direction == 1 then
-      vim.api.nvim_exec2('bnext', {})
-    else
-      vim.api.nvim_exec2('bprevious', {})
+    local is_empty = vim.bo.filetype == ''
+    if is_empty and direction == 1 then
+      vim.api.nvim_command('bnext!')
+    elseif is_empty and direction == -1 then
+      vim.api.nvim_command('bprev!')
+    elseif direction == 1 then
+      vim.api.nvim_command('BufferLineCycleNext')
+    elseif direction == -1 then
+      vim.api.nvim_command('BufferLineCyclePrev')
     end
   end
 end
@@ -55,13 +60,13 @@ vim.keymap.set('n', 'gp',
 )
 
 vim.keymap.set( 'i', '<C-Tab>',
-  get_exec_unescaped_buffer('<Esc>:bnext<cr>'),
+  get_exec_unescaped_buffer('<Esc>:BufferLineCycleNext<cr>'),
   {
   desc = 'Switch to next open buffer' }
 )
 
 vim.keymap.set( 'i', '<S-C-Tab>',
-  get_exec_unescaped_buffer('<Esc>:bprevious<cr>'),
+  get_exec_unescaped_buffer('<Esc>:BufferLineCyclePrev<cr>'),
   {
   desc = 'Switch to previous open buffer' }
 )

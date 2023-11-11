@@ -5,9 +5,25 @@ return {
   config = true,
   opts =  {
     options = {
-      middle_mouse_command = "bdelete %d",
-      right_mouse_command = "bdelete %d",
-      custom_filter = function(buf_number, buf_numbers)
+      middle_mouse_command = function(bufnum)
+        local is_active = vim.fn.getbufinfo(bufnum)[1].loaded == 1
+        local is_hidden = vim.fn.getbufinfo(bufnum)[1].hidden == 1
+        if not is_active or is_hidden then
+          vim.api.nvim_command(":bdelete " .. bufnum)
+        else
+          vim.api.nvim_command(":Bdelete " .. bufnum)
+        end
+      end,
+      right_mouse_command = function(bufnum)
+        local is_active = vim.fn.getbufinfo(bufnum)[1].loaded == 1
+        local is_hidden = vim.fn.getbufinfo(bufnum)[1].hidden == 1
+        if not is_active or is_hidden then
+          vim.api.nvim_command(":bdelete " .. bufnum)
+        else
+          vim.api.nvim_command(":Bdelete " .. bufnum)
+        end
+      end,
+      custom_filter = function(buf_number--[[, buf_numbers]])
         -- filter out filetypes you don't want to see
         return vim.bo[buf_number].filetype ~= "quickfix" and
           vim.bo[buf_number].buftype ~= "terminal" and
@@ -24,7 +40,7 @@ return {
       separator_style = "slant",
       sort_by = function(buffer_a, buffer_b)
         if (buffer_a.extension == buffer_b.extension) then
-          return buffer_a.id < buffer_b.id
+          return buffer_a.name < buffer_b.name
         end
         return buffer_a.extension < buffer_b.extension
       end,

@@ -2,6 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'JoosepAlviste/nvim-ts-context-commentstring',
   },
   build = ':TSUpdate',
   config = function()
@@ -20,6 +21,10 @@ return {
         'c_sharp',
         -- 'vimdoc',
         -- 'vim'
+      },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
       },
 
       auto_install = false,
@@ -79,6 +84,7 @@ return {
         },
       },
     }
+    require('ts_context_commentstring').setup{}
   end
 }
 
