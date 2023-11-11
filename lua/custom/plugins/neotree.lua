@@ -35,7 +35,8 @@ return {
         follow_current_file = {
           enabled = true,
           leave_dirs_open = true
-        }
+        },
+        async_directory_scan = "always"
       },
       buffers = {
         bind_to_cwd = true,
