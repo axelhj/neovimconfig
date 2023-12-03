@@ -67,10 +67,9 @@ require('lazy').setup({
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    tag = "v2.20.8",
+    main = 'ibl',
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      scope = { enabled = false },
     },
   },
   -- "gc" or "Ctrl+," to comment visual regions/lines
