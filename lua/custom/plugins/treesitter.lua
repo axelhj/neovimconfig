@@ -22,10 +22,6 @@ return {
         -- 'vimdoc',
         -- 'vim'
       },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
 
       auto_install = false,
 
