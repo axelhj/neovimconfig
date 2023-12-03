@@ -12,13 +12,13 @@ vim.keymap.set('v', '<Leader>sf', function()
   local yank_contents = vim.fn.getreg('"')
   replace_termcodes('/' .. yank_contents .. '<Cr>')
 end, {
-  desc = 'Go to next quickfix message'
+  desc = 'Search in files with ripgrep in visual'
 })
 
 vim.keymap.set('n', '<Leader>sf', function()
   replace_termcodes_async(':silent grep "')
 end, {
-  desc = 'Go to next quickfix message'
+  desc = 'Search in files with ripgrep'
 })
 
 vim.keymap.set('n', '<Leader>ln', ':cnext<Cr>',  {
