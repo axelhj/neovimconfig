@@ -75,6 +75,34 @@ vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
 -- Setting that is useful for sending proper path separators to netcoredbg.
 vim.o.shellslash = false
 
+-- Keep some context visible at top and bottom. Absolute linecount,
+-- context visible for j/k scrolling.
+vim.o.scrolloff = 4
+
+-- Context visible for jump/search scrolling. Appears to apply for j/k
+-- scrolling too. Absolute number or percentage linecount with -n works too.
+vim.o.scrolljump = 1
+
+-- Horizontal scrolloff if nowrap is set/wrap is disabled. Absolute linecount.
+vim.o.sidescrolloff = 6
+
+-- signcolumn - show breakoint column [auto, auto:[1-9], auto:[1-8:2-9], no, yes, yes:[1-9, number]
+-- Numner/range sets maximum or min-maximum
+vim.o.signcolumn = "auto:1-9"
+
+-- Don't preserve broken indent - stick to multiples rather than incorporate
+-- broken (non-divisible by eg. 4) indentation on following lines:
+vim.o.shiftround = true
+
+-- Use shiftwidth for C-indent if enabled.
+vim.o.cinoptions = "1s"
+
+-- Python ft config really messes up indenting badly - indenting
+-- follow-on indents by multiples.
+vim.g.pyindent_open_paren = '&sw'
+vim.g.pyindent_nested_paren = '&sw'
+vim.g.pyindent_continue = '&sw'
+
 -- Deal with transparency - make nvim-qt look more interesting.
 if vim.v.vim_did_enter == 1 then
   vim.cmd 'GuiWindowOpacity 0.975'
