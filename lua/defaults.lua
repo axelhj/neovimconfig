@@ -86,9 +86,9 @@ vim.o.scrolljump = 1
 -- Horizontal scrolloff if nowrap is set/wrap is disabled. Absolute linecount.
 vim.o.sidescrolloff = 6
 
--- signcolumn - show breakoint column [auto, auto:[1-9], auto:[1-8:2-9], no, yes, yes:[1-9, number]
+-- signcolumn - show breakpoint column [auto, auto:[1-9], auto:[1-8:2-9], no, yes, yes:[1-9, number]
 -- Numner/range sets maximum or min-maximum
-vim.o.signcolumn = "auto:1-9"
+vim.o.signcolumn = "yes:2"
 
 -- Don't preserve broken indent - stick to multiples rather than incorporate
 -- broken (non-divisible by eg. 4) indentation on following lines:
