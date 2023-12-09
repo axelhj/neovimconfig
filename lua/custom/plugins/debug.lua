@@ -17,6 +17,7 @@ return {
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
+    'mfussenegger/nvim-dap-python',
 
     -- Add your own debuggers here
     -- 'leoluz/nvim-dap-go',
@@ -41,6 +42,11 @@ return {
         -- 'delve',
       },
     }
+
+    require('dap-python').setup('python')
+    require('dap-python').resolve_python = function()
+      return 'C:/msys64/usr/bin/python.exe'
+    end
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
