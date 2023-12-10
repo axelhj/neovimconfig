@@ -10,5 +10,14 @@ return {
         vim.cmd('TroubleClose')
       end,
     })
+    require("persisted").setup({
+      autosave = true,
+      -- Autosave means autosave any session IIF autocrate is also set as true.
+      autocreate = true,
+      -- This is documented to be the default value but somehow crashes on branch separator config missing:
+      use_git_branch = false,
+      -- Will crash on SessionSave if this is set as nil, which it is by default.
+      branch_separator = "",
+    })
   end,
 }
