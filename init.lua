@@ -127,7 +127,7 @@ require('lazy').setup({
   },
   -- Shim to help with gui font & transparency commands in nvim.
   "equalsraf/neovim-gui-shim",
-  { import = 'custom.plugins' },
+  { import = 'plugins' },
 }, {
   change_detection = {
     enabled = false,
