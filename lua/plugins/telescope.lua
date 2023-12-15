@@ -48,5 +48,6 @@ return {
     vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[f]ind - search by [g]rep' })
     vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[f]ind [d]iagnostics' })
     vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[s]earch - [r]esume' })
+    vim.keymap.set('v', '<leader>fv', require('telescope.builtin').grep_string, { desc = '[f]ind content of [v]isual selection' })
   end
 }
