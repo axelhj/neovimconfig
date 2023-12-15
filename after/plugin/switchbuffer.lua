@@ -71,16 +71,16 @@ vim.keymap.set( 'i', '<S-C-Tab>',
   desc = 'Switch to previous open buffer' }
 )
 
-vim.keymap.set('n', '<Leader>bb',function()
+vim.keymap.set('n', '<Leader>w',function()
   vim.cmd(':Bdelete')
 end, {
-  desc = 'Close a [b]uffer and delete if not [d]isplayed elsewhere'
+  desc = 'Close a last instance of buffer [w]ithout writing'
 })
 
 vim.keymap.set('n', '<Leader>bd',function()
   vim.cmd(':bdelete!')
 end, {
-  desc = 'Close a [b]uffer and [d]elete the window'
+  desc = 'Close a [b]uffer, [d]iscard changes and delete the window'
 })
 
 vim.keymap.set('n', '<Leader>dt',function()
