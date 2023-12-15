@@ -71,10 +71,16 @@ vim.keymap.set( 'i', '<S-C-Tab>',
   desc = 'Switch to previous open buffer' }
 )
 
-vim.keymap.set('n', '<Leader>bd',function()
+vim.keymap.set('n', '<Leader>bb',function()
   vim.cmd(':Bdelete')
 end, {
-  desc = 'Close a buffer and delete if not displayed elsewhere'
+  desc = 'Close a [b]uffer and delete if not [d]isplayed elsewhere'
+})
+
+vim.keymap.set('n', '<Leader>bd',function()
+  vim.cmd(':bdelete!')
+end, {
+  desc = 'Close a [b]uffer and [d]elete the window'
 })
 
 vim.keymap.set('n', '<Leader>dt',function()
@@ -83,3 +89,6 @@ end, {
   desc = 'Open/Close the Trouble sidebar'
 })
 
+vim.keymap.set("n", "<Leader>q!", ":q!<Cr>", {
+  desc = 'Close the current window and discard changes'
+})

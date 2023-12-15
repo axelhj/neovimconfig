@@ -22,4 +22,3 @@ vim.keymap.set("n", "<C-h>", jump_window_with_wrap("h", "l"), opts)
 vim.keymap.set("n", "<C-l>", jump_window_with_wrap("l", "h"), opts)
 vim.keymap.set("n", "<C-j>", jump_window_with_wrap("j", "k"), opts)
 vim.keymap.set("n", "<C-k>", jump_window_with_wrap("k", "j"), opts)
-
