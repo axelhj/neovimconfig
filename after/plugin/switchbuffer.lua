@@ -3,7 +3,7 @@ local replace_termcodes = require"feedkeys".replace_termcodes
 local function get_relative_focus_buffer_func(direction)
   return function()
     if require'neotree-focused'.is_neotree_focused() then
-      replace_termcodes('<C-w>l')
+      replace_termcodes('<C-w>l', false)
       return
     end
     local is_empty = vim.bo.filetype == ''
@@ -22,7 +22,7 @@ end
 local function get_exec_unescaped_buffer(cmd)
   return function()
     if not require'neotree-focused'.is_neotree_focused() then
-      replace_termcodes(cmd)
+      replace_termcodes(cmd, false)
     end
     return nil
   end
@@ -55,40 +55,15 @@ vim.keymap.set('n', 'gn',
 
 vim.keymap.set('n', 'gp',
   get_relative_focus_buffer_func(-1),
-  {
-  desc = 'Switch to previous open buffer' }
+  { desc = 'Switch to previous open buffer' }
 )
 
 vim.keymap.set( 'i', '<C-Tab>',
   get_exec_unescaped_buffer('<Esc>:BufferLineCycleNext<cr>'),
-  {
-  desc = 'Switch to next open buffer' }
+  { desc = 'Switch to next open buffer' }
 )
 
 vim.keymap.set( 'i', '<S-C-Tab>',
   get_exec_unescaped_buffer('<Esc>:BufferLineCyclePrev<cr>'),
-  {
-  desc = 'Switch to previous open buffer' }
+  { desc = 'Switch to previous open buffer' }
 )
-
-vim.keymap.set('n', '<Leader>w',function()
-  vim.cmd(':Bdelete')
-end, {
-  desc = 'Close a last instance of buffer [w]ithout writing'
-})
-
-vim.keymap.set('n', '<Leader>bd',function()
-  vim.cmd(':bdelete!')
-end, {
-  desc = 'Close a [b]uffer, [d]iscard changes and delete the window'
-})
-
-vim.keymap.set('n', '<Leader>dt',function()
-  require'trouble'.toggle()
-end, {
-  desc = 'Open/Close the Trouble sidebar'
-})
-
-vim.keymap.set("n", "<Leader>q!", ":q!<Cr>", {
-  desc = 'Close the current window and discard changes'
-})

@@ -10,9 +10,9 @@ end
 
 vim.keymap.set('v', '<Leader>sf', function()
   local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
-  replace_termcodes('y:silent grep! <C-r>"<Cr>:copen<Cr>/' .. buf_name .. '<Cr>')
+  replace_termcodes('y:silent grep! <C-r>"<Cr>:copen<Cr>/' .. buf_name .. '<Cr>', false)
   local yank_contents = vim.fn.getreg('"')
-  replace_termcodes('/' .. yank_contents .. '<Cr>')
+  replace_termcodes('/' .. yank_contents .. '<Cr>', false)
 end, {
   desc = 'Search in files with ripgrep in visual'
 })
@@ -48,7 +48,7 @@ vim.keymap.set('n', '<Leader>qq', 'mZ:silent cclose<Cr>`Z', {
 
 vim.keymap.set('n', '<Leader>l', function()
   local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
-  replace_termcodes(':lopen<Cr>/' .. buf_name .. '<Cr>')
+  replace_termcodes(':lopen<Cr>/' .. buf_name .. '<Cr>', false)
 end, {
   desc = 'Open the [l]ocation list (:lopen/bufname)'
 })
