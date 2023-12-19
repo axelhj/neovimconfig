@@ -31,9 +31,12 @@ vim.o.smartcase = false
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+-- Set updatetime - swapfile writing
+-- and CursorHold events timeout (ms).
+vim.o.updatetime = 2500
+
+-- Timeout after waiting for certain inputs.
+vim.o.timeoutlen = 600
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
