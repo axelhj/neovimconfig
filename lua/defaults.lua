@@ -131,4 +131,6 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end,
 })
 
+vim.o.title = true
+
 return M
