@@ -42,7 +42,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 vim.go.termguicolors = true
 
--- Keymaps for better default experience - kickstart.nivim
+-- Keymaps for better default experience - kickstart.nvim
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
