@@ -9,7 +9,7 @@ function M.replace_termcodes(cmd, remap)
   end
   vim.api.nvim_feedkeys(
     vim.api.nvim_replace_termcodes(cmd, true, false, true),
-    opts,
+    opts, -- n for noremap, m for remap existing/builtin
     false
   )
 end
@@ -17,7 +17,7 @@ end
 function M.replace_termcodes_async(cmd)
   vim.api.nvim_feedkeys(
     vim.api.nvim_replace_termcodes(cmd, true, false, true),
-    'n',
+    'n', -- n for noremap, m for remap existing/builtin
     false
   )
 end

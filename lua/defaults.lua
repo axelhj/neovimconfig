@@ -15,11 +15,28 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 vim.o.clipboard = ''
 
--- Enable break-indent - indent autowrapped lines continuations.
+-- Enable break-indent - indent autowrapped line-continuations.
 vim.o.breakindent = true
 
 -- Auto indent when a new line is opened.
 vim.o.autoindent = true
+
+-- Don't preserve broken indent - stick to multiples rather than incorporate
+-- broken (non-divisible by eg. 4) indentation on following lines:
+vim.o.shiftround = true
+
+-- Use shiftwidth for C-indent if enabled.
+vim.o.cinoptions = "1s"
+
+-- Disable wonky Neovim indent. Double-indents following {
+-- if using "cc" (change line)
+vim.o.indentexpr = ""
+
+-- Python ft config really messes up indenting badly - indenting
+-- follow-on indents by multiples.
+vim.g.pyindent_open_paren = '&sw'
+vim.g.pyindent_nested_paren = '&sw'
+vim.g.pyindent_continue = '&sw'
 
 -- Save undo history
 vim.o.undofile = true
@@ -30,6 +47,8 @@ vim.o.smartcase = false
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
+vim.go.signcolumn = 'yes'
+vim.o.signcolumn = 'yes'
 
 -- Set updatetime - swapfile writing
 -- and CursorHold events timeout (ms).
@@ -92,19 +111,6 @@ vim.o.sidescrolloff = 6
 -- signcolumn - show breakpoint column [auto, auto:[1-9], auto:[1-8:2-9], no, yes, yes:[1-9, number]
 -- Numner/range sets maximum or min-maximum
 vim.o.signcolumn = "yes:2"
-
--- Don't preserve broken indent - stick to multiples rather than incorporate
--- broken (non-divisible by eg. 4) indentation on following lines:
-vim.o.shiftround = true
-
--- Use shiftwidth for C-indent if enabled.
-vim.o.cinoptions = "1s"
-
--- Python ft config really messes up indenting badly - indenting
--- follow-on indents by multiples.
-vim.g.pyindent_open_paren = '&sw'
-vim.g.pyindent_nested_paren = '&sw'
-vim.g.pyindent_continue = '&sw'
 
 -- Deal with transparency - make nvim-qt look more interesting.
 if vim.v.vim_did_enter == 1 then

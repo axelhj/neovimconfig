@@ -14,7 +14,7 @@ vim.keymap.set('n', '<Cr>',
   }
 )
 
-vim.keymap.set('n', '<Leader>w', ':Bdelete<Cr>',
+vim.keymap.set('n', '<Leader>w', ':Bunlink<Cr>',
   { desc = 'Close a last instance of buffer [w]ithout writing' }
 )
 
@@ -29,4 +29,8 @@ vim.keymap.set('n', '<Leader>dt',
 
 vim.keymap.set("n", "<Leader>q!", ":q!<Cr>",
   { desc = 'Close the current window and discard changes' }
+)
+
+vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
+  { desc = 'Execute LspRestart', silent = true }
 )

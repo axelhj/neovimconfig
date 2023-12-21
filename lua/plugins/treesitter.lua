@@ -19,8 +19,12 @@ return {
         'javascript',
         'typescript',
         'c_sharp',
-        -- 'vimdoc',
+        'vimdoc',
         -- 'vim'
+      },
+      ts_context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
       },
 
       auto_install = false,
