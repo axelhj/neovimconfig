@@ -2,7 +2,7 @@ local replace_termcodes = require"feedkeys".replace_termcodes
 
 local function get_relative_focus_buffer_func(direction)
   return function()
-    if require'neotree-focused'.is_neotree_focused() then
+    if require'neotreefocused'.is_neotree_focused() then
       replace_termcodes('<C-w>l', false)
       return
     end
@@ -21,7 +21,7 @@ end
 
 local function get_exec_unescaped_buffer(cmd)
   return function()
-    if not require'neotree-focused'.is_neotree_focused() then
+    if not require'neotreefocused'.is_neotree_focused() then
       replace_termcodes(cmd, false)
     end
     return nil
