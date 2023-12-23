@@ -83,11 +83,19 @@ return {
     }
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
+    vim.keymap.set('n', '<F7>',
+      function()
+        dapui.toggle()
+        require'neotreenormalized'.resize()
+      end,
+      { desc = 'Debug: See last session result [F7]' }
+    )
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    dap.listeners.after.event_terminated['dapui_config'] = require'neotreenormalized'.resize
+    dap.listeners.after.event_exited['dapui_config'] = require'neotreenormalized'.resize
 
     -- dap.defaults.fallback.exception_breakpoints = { "Notice", "Warning", "Error", "Exception" }
     dap.defaults.cs.exception_breakpoints = { "all", "user-unhandled" }
