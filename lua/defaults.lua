@@ -87,9 +87,11 @@ vim.o.wrapmargin = 0
 vim.o.wrap = true
 vim.o.linebreak = true
 
--- Make the "file open in other session" warning
--- less intrusive/frequent
-vim.o.shortmess=A
+-- Messages:
+-- A: Make the "file open in other session" warning
+--   less intrusive/frequent
+-- I: Eliminate vim startup wall of text
+vim.o.shortmess="AI"
 
 -- Useful font config - installed from nerdfonts.com
 vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
