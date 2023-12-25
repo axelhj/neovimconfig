@@ -34,3 +34,11 @@ vim.keymap.set("n", "<Leader>q!", ":q!<Cr>",
 vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
   { desc = 'Execute LspRestart', silent = true }
 )
+
+vim.keymap.set("n", "<C-Up>", ":tabnew<Cr>",
+  { desc = 'Add tab', silent = true }
+)
+
+vim.keymap.set("n", "<C-Down>", ":tabclose<Cr>",
+  { desc = 'Close tab', silent = true }
+)
