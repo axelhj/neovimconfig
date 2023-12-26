@@ -55,7 +55,7 @@ vim.o.signcolumn = 'yes'
 vim.o.updatetime = 2500
 
 -- Timeout after waiting for certain inputs.
-vim.o.timeoutlen = 600
+vim.o.timeoutlen = 2500
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -123,9 +123,9 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>gtt', ':terminal<CR>', { silent = true, de
 
 vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>', { silent = true, desc = "Leave input mode of the open terminal" })
 
-vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"*p', { silent = true, desc = "Desktop style paste shortcut" })
+vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"*P', { silent = true, desc = "Desktop style paste shortcut" })
 
-vim.keymap.set({ 'i' }, '<C-S-v>', '<Esc>"*pi', { silent = true, desc = "Desktop style paste shortcut" })
+vim.keymap.set({ 'i' }, '<C-S-v>', '<Esc>"*Pi', { silent = true, desc = "Desktop style paste shortcut" })
 
 vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y', { silent = true, desc = "Desktop style copy shortcut" })
 
@@ -139,6 +139,7 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end,
 })
 
+-- Display buffername in terminal title
 vim.o.title = true
 
 return M
