@@ -16,7 +16,7 @@ local function jump_window_with_wrap(direction, opposite)
   end
 end
 
-local opts = { silent = true, noremap = true }
+local opts = { silent = true, noremap = true, desc = "Switch window/split" }
 
 vim.keymap.set("n", "<C-h>", jump_window_with_wrap("h", "l"), opts)
 vim.keymap.set("n", "<C-l>", jump_window_with_wrap("l", "h"), opts)

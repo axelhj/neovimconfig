@@ -5,7 +5,7 @@ vim.keymap.set('n', '<Cr>',
     if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
       replace_termcodes('<Cr>', false)
     else
-      replace_termcodes(':Neotree reveal<Cr><C-W>h<Down><Cr>', true)
+      replace_termcodes(':Neotree reveal<Cr><Down><Cr>', true)
     end
   end,
   {
@@ -14,12 +14,24 @@ vim.keymap.set('n', '<Cr>',
   }
 )
 
+vim.keymap.set('n', '<Leader>gbn', ":enew<Cr>",
+  { desc = 'Edit new buffer [gbn]', silent = true }
+)
+
+vim.keymap.set('n', '<Leader>gtn', ":tabnew<Cr>",
+  { desc = 'Add tab [gtn]', silent = true }
+)
+
 vim.keymap.set('n', '<Leader>w', ':Bunlink<Cr>',
-  { desc = 'Close a last instance of buffer [w]ithout writing' }
+  { desc = 'Close buffer, open next and keep [w]indow' }
+)
+
+vim.keymap.set('n', '<Leader>W', ':tabclose<Cr>',
+  { desc = 'Close current tab (window/split-setup) [W]' }
 )
 
 vim.keymap.set('n', '<Leader>bd', ':bdelete!<Cr>',
-  { desc = 'Close a [b]uffer, [d]iscard changes and delete the window' }
+  { desc = 'Close a [b]uffer, [d]iscard changes and close the window' }
 )
 
 vim.keymap.set('n', '<Leader>dt',
