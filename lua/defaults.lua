@@ -52,10 +52,10 @@ vim.o.signcolumn = 'yes'
 
 -- Set updatetime - swapfile writing
 -- and CursorHold events timeout (ms).
-vim.o.updatetime = 2500
+vim.o.updatetime = 75
 
 -- Timeout after waiting for certain inputs.
-vim.o.timeoutlen = 2500
+vim.o.timeoutlen = 7500
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
