@@ -2,13 +2,17 @@ return {
   'lukas-reineke/indent-blankline.nvim',
   main = "ibl",
   config = function()
-    vim.api.nvim_set_hl(0, "IndentGuideBg", {
-      bg = "#24202e",
-      fg = "#221e2b",
+    vim.api.nvim_set_hl(0, "IndentGuideBgAlt1", {
+      bg = "#282433", -- Match Normal-bg
+      fg = "#24202e", -- Darker fg
+    })
+    vim.api.nvim_set_hl(0, "IndentGuideBgAlt2", {
+      bg = "#24202e", -- Slightly darker Normmal-bg
+      fg = "#24202e", -- Invisible fg
     })
     local highlight = {
-      "Normal",
-      "IndentGuideBg",
+      "IndentGuideBgAlt1",
+      "IndentGuideBgAlt2",
     }
     require("ibl").setup({
       scope = {
@@ -16,7 +20,7 @@ return {
       },
       indent = {
         highlight = highlight,
-        char = "",
+        char = "|",
       },
       whitespace = {
         highlight = highlight,
