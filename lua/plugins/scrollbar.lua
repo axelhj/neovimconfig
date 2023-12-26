@@ -2,8 +2,12 @@ return {
   "petertriho/nvim-scrollbar",
   config = function()
     require"scrollbar".setup({
+      -- Avoid shrinking handle at end of buffer
+      -- on overscrolling.
+      hide_if_all_visible = true,
       handle = {
-        color = "#938aad" -- dcolors.bg_highlight,
+        color = "#8C83A4", -- dcolors.bg_highlight,
+        blend = 0,
       },
       marks = {
         Search = { color = "#de8f76" }, -- colors.orange },
@@ -12,6 +16,10 @@ return {
         Info = { color = "#e1ece4" }, -- colors.info },
         Hint = { color = "#b1baf4" }, -- colors.hint },
         Misc = { color = "#e192ef" }, -- colors.purple },
+        Cursor = {
+          color = "#948CAE", -- colors.bg_highlight
+          text = "█",
+        },
     }})
   end,
 }
