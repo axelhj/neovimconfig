@@ -7,7 +7,7 @@ function M.resize()
   for _, window_handle in ipairs(vim.api.nvim_tabpage_list_wins(tn)) do
     local buffer_handle = vim.api.nvim_win_get_buf(window_handle)
     local buf_name = vim.fn.bufname(buffer_handle)
-    if buf_name == "neo-tree filesystem [1]" then
+    if buf_name:match("^neo%-tree %w+ %[%d+%]$") then
       tree_win_handle = window_handle
       break
     end
