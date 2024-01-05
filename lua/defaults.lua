@@ -25,6 +25,9 @@ vim.o.autoindent = true
 -- broken (non-divisible by eg. 4) indentation on following lines:
 vim.o.shiftround = true
 
+-- Do NOT mix tabs and spaces in a weird flurry.
+vim.o.expandtab = true
+
 -- Use shiftwidth for C-indent if enabled.
 vim.o.cinoptions = "1s"
 
