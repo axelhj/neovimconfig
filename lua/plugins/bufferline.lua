@@ -11,7 +11,7 @@ return {
         if not is_active or is_hidden then
           vim.api.nvim_command(":bdelete " .. bufnum)
         else
-          vim.api.nvim_command(":Bunlink " .. bufnum)
+          vim.api.nvim_command(":Bunlink")
         end
       end,
       right_mouse_command = function(bufnum)
@@ -20,7 +20,7 @@ return {
         if not is_active or is_hidden then
           vim.api.nvim_command(":bdelete " .. bufnum)
         else
-          vim.api.nvim_command(":Bunlink " .. bufnum)
+          vim.api.nvim_command(":Bunlink")
         end
       end,
       custom_filter = function(buf_number--[[, buf_numbers]])
