@@ -1,5 +1,6 @@
 local replace_termcodes = require"feedkeys".replace_termcodes
 
+-- Open next file in neotree.
 vim.keymap.set('n', '<Cr>',
   function()
     if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
@@ -14,6 +15,7 @@ vim.keymap.set('n', '<Cr>',
   }
 )
 
+-- Tab, buffer & window-management related shortcuts.
 vim.keymap.set('n', '<Leader>gbn', ":enew<Cr>",
   { desc = 'Edit new buffer [gbn]', silent = true }
 )
@@ -34,17 +36,8 @@ vim.keymap.set('n', '<Leader>bd', ':bdelete!<Cr>',
   { desc = 'Close a [b]uffer, [d]iscard changes and close the window' }
 )
 
-vim.keymap.set('n', '<Leader>dt',
-  function() require'trouble'.toggle() end,
-  { desc = 'Open/Close the Trouble sidebar' }
-)
-
 vim.keymap.set("n", "<Leader>q!", ":q!<Cr>",
   { desc = 'Close the current window and discard changes' }
-)
-
-vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
-  { desc = 'Execute LspRestart', silent = true }
 )
 
 vim.keymap.set("n", "<C-Up>", ":tabnew<Cr>",
@@ -53,4 +46,53 @@ vim.keymap.set("n", "<C-Up>", ":tabnew<Cr>",
 
 vim.keymap.set("n", "<C-Down>", ":tabclose<Cr>",
   { desc = 'Close tab', silent = true }
+)
+
+-- Toggle trouble.
+vim.keymap.set('n', '<Leader>dt',
+  function() require'trouble'.toggle() end,
+  { desc = 'Open/Close the Trouble sidebar' }
+)
+
+-- Lsp management.
+vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
+  { desc = 'Execute LspRestart', silent = true }
+)
+
+-- Remaps for dealing with word wrap - kickstart.nvim.
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'",
+  { expr = true, silent = true }
+)
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'",
+  { expr = true, silent = true }
+)
+
+-- Toggle terminal in current buffer.
+vim.keymap.set({ 'n', 'v' }, '<Leader>gtt', ':terminal<CR>',
+  { silent = true, desc = "Open a terminal program in the current buffer" })
+
+-- Be able to leave input mode of terminal - applies with toggleterm too.
+vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>',
+  { silent = true, desc = "Leave input mode of the open terminal" }
+)
+
+-- Copy/paste related keymaps - * register.
+vim.keymap.set({ 'n', 'v' }, '<C-v>', '"*p',
+  { silent = true, desc = "Desktop style paste shortcut at location" }
+)
+
+vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"*P',
+  { silent = true, desc = "Desktop style paste shortcut after location" }
+)
+
+vim.keymap.set({ 'i' }, '<C-S-v>', '<Esc>"*pi',
+  { silent = true, desc = "Desktop style paste shortcut at location" }
+)
+
+vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y',
+  { silent = true, desc = "Desktop style copy/yank shortcut" }
+)
+
+vim.keymap.set({ 'n', 'v' }, '<C-S-x>', '"*d',
+  { silent = true, desc = "Desktop style cut/delete shortcut" }
 )

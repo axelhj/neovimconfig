@@ -71,10 +71,6 @@ vim.go.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
--- Remap for dealing with word wrap - kickstart.nvim
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
 -- Help auto-session do its thing
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
@@ -121,18 +117,6 @@ vim.o.signcolumn = "yes:2"
 if vim.v.vim_did_enter == 1 then
   vim.cmd 'GuiWindowOpacity 0.975'
 end
-
-vim.keymap.set({ 'n', 'v' }, '<Leader>gtt', ':terminal<CR>', { silent = true, desc = "Open a terminal program in the current buffer" })
-
-vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>', { silent = true, desc = "Leave input mode of the open terminal" })
-
-vim.keymap.set({ 'n', 'v' }, '<C-S-v>', '"*P', { silent = true, desc = "Desktop style paste shortcut" })
-
-vim.keymap.set({ 'i' }, '<C-S-v>', '<Esc>"*Pi', { silent = true, desc = "Desktop style paste shortcut" })
-
-vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y', { silent = true, desc = "Desktop style copy shortcut" })
-
-vim.keymap.set({ 'n', 'v' }, '<C-S-x>', '"*d', { silent = true, desc = "Desktop style cut shortcut" })
 
 -- Do not comment line following comment on <Cr>, <C-o>
 vim.opt.formatoptions:remove { "c", "r", "o" }
