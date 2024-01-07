@@ -1,21 +1,24 @@
 local replace_termcodes = require"feedkeys".replace_termcodes
 
+local neotree_state = "NEOTREE_LAST_OPENED"
+
 local function split(value, separator)
   local result = {}
   value:gsub(
     "([^"..separator.."]*)"..separator,
     function(part) table.insert(result, part) end
   )
+  return result
 end
 
 local function neotree_toggle()
-  if vim.g.NEOTREE_LAST_OPENED then
+  if vim.g[neotree_state] then
     require("neo-tree.command")
       .execute {
         action = 'show',
         reveal = true,
       }
-    -- The termcode has No effect unless preceded by a wait.
+    -- The termcode has no effect unless preceded by a wait.
     vim.wait(0)
     replace_termcodes("<C-w>=", false)
   end
@@ -29,9 +32,7 @@ local function restore(file_path)
   local cmd = "silent source " .. file_path
   local success, result = pcall(vim.cmd, cmd)
   if not success then
-    print("Saving session "..file_path.." failed. "..vim.inspect(result))
-  else
-    print("Did save session "..file_path)
+    print("Restoring session "..file_path.." failed. "..vim.inspect(result))
   end
 end
 
@@ -39,15 +40,16 @@ local function pre_save()
   -- Store as a global variable such that neotree will open on
   -- restore if it was open at end of last session.
   vim.api.nvim_set_var(
-    "NEOTREE_LAST_OPENED",
+    neotree_state,
     require('neotreeopened').is_neotree_open()
   )
-  -- The global variable is not saved on Neovim exit, or saved
-  -- before the autosave is triggered. Write shada explicitly.
-  --        vim.cmd(":wshada")
-  if vim.g.NEOTREE_LAST_OPENED then
-    vim.cmd(':Neotree close')
-    require"toggleterm".toggle_all("close")
+  -- Doesn't autosave after VimLeave.
+  vim.cmd(":wshada")
+  -- Close the Neo-tree window for each tab.
+  vim.cmd ':tabdo Neotree close'
+  -- Close any open Toggleterm-terminals.
+  if require "toggleterm.ui".find_open_windows()[0] then
+    require "toggleterm".toggle_all()
   end
 end
 
@@ -57,11 +59,10 @@ end
 
 local function init()
   local session_file_path = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/session.vim")
---  options = split(vim.o.sessionoptions, ","),
   vim.api.nvim_create_autocmd(
     'VimLeave',
     {
-      callback = function() 
+      callback = function()
         pre_save()
         save(session_file_path)
       end

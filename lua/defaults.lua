@@ -77,7 +77,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 -- Use shada default opts. ' is marks for previously edited
 -- files (1000). % saves and restores the bufferlist. !
 -- means GLOBAL_OPTIONS are persisted.
--- vim.o.shada = '!,\'1000,%'
+vim.o.shada = '!,\'1000'
 
 -- Don't wrap around to the start/end once end/start is
 -- reached in search.
