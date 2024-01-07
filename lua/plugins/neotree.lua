@@ -6,6 +6,14 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
+  lazy = true,
+  keys = {
+    {
+      "\\",
+      mode = 'n',
+      desc = "Toggle neotree (reveal cwd)"
+    },
+  },
   config = function()
     require("neo-tree").setup({
       window = {
@@ -50,7 +58,7 @@ return {
         }
       }
     })
-    vim.cmd([[nnoremap \ :Neotree reveal_force_cwd toggle<cr>]])
+    vim.keymap.set("n", "\\", ":Neotree reveal_force_cwd toggle<cr>")
   end
 }
 
