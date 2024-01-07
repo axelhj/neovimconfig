@@ -16,7 +16,7 @@ local function neotree_toggle()
     require("neo-tree.command")
       .execute {
         action = 'show',
-        reveal = true,
+        reveal_force_cwd = true,
       }
     -- The termcode has no effect unless preceded by a wait.
     vim.wait(0)
