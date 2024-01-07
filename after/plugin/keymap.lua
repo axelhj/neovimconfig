@@ -24,12 +24,16 @@ vim.keymap.set('n', '<Leader>gtn', ":tabnew<Cr>",
   { desc = 'Add tab [gtn]', silent = true }
 )
 
+vim.keymap.set('n', '<Leader>gtd', ":tabclose<Cr>",
+  { desc = 'Close tab [gtn]', silent = true }
+)
+
 vim.keymap.set('n', '<Leader>w', ':Bunlink<Cr>',
   { desc = 'Close buffer, open next and keep [w]indow' }
 )
 
 vim.keymap.set('n', '<Leader>W', ':tabclose<Cr>',
-  { desc = 'Close current tab (window/split-setup) [W]' }
+  { desc = 'Close current tab [W]' }
 )
 
 vim.keymap.set('n', '<Leader>bd', ':bdelete!<Cr>',
@@ -56,7 +60,7 @@ vim.keymap.set('n', '<Leader>dt',
 
 -- Lsp management.
 vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
-  { desc = 'Execute LspRestart', silent = true }
+  { desc = 'Run LspRestart', silent = true }
 )
 
 -- Remaps for dealing with word wrap - kickstart.nvim.

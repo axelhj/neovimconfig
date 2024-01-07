@@ -46,7 +46,7 @@ vim.keymap.set('n', '<Leader>qq', 'mZ:silent cclose<Cr>`Z', {
 
 -- Location list
 
-vim.keymap.set('n', '<Leader>l', function()
+vim.keymap.set('n', '<Leader>ll', function()
   local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
   replace_termcodes(':lopen<Cr>/' .. buf_name .. '<Cr>', false)
 end, {

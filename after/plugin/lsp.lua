@@ -103,9 +103,9 @@ local on_attach = function(_, bufnr)
   nmap('K', vim.lsp.buf.hover, '[K] Hover Documentation')
   nmap('<M-k>', vim.lsp.buf.signature_help, 'Alt-[k] Signature Documentation')
 
-  nmap('<leader>Wa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
-  nmap('<leader>Wr', vim.lsp.buf.remove_workspace_folder, '[w]orkspace [r]emove Folder')
-  nmap('<leader>Wl', function()
+  nmap('<leader>dwa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
+  nmap('<leader>dwr', vim.lsp.buf.remove_workspace_folder, '[w]orkspace [r]emove Folder')
+  nmap('<leader>dwl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[w]orkspace [l]ist Folders')
 

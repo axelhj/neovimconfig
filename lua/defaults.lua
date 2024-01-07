@@ -58,7 +58,7 @@ vim.o.signcolumn = 'yes'
 vim.o.updatetime = 75
 
 -- Timeout after waiting for certain inputs.
-vim.o.timeoutlen = 7500
+vim.o.timeoutlen = 1750
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
