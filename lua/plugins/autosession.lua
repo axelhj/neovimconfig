@@ -43,14 +43,16 @@ local function pre_save()
     neotree_state,
     require('neotreeopened').is_neotree_open()
   )
-  -- Doesn't autosave after VimLeave.
-  vim.cmd(":wshada")
   -- Close the Neo-tree window for each tab.
+  replace_termcodes('mO')
   vim.cmd ':tabdo Neotree close'
   -- Close any open Toggleterm-terminals.
   if require "toggleterm.ui".find_open_windows() then
     require "toggleterm".toggle_all()
   end
+  replace_termcodes('`O')
+  -- Doesn't autosave after VimLeave.
+  vim.cmd(":wshada")
 end
 
 local function post_restore()
