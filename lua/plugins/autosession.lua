@@ -48,7 +48,7 @@ local function pre_save()
   -- Close the Neo-tree window for each tab.
   vim.cmd ':tabdo Neotree close'
   -- Close any open Toggleterm-terminals.
-  if require "toggleterm.ui".find_open_windows()[0] then
+  if require "toggleterm.ui".find_open_windows() then
     require "toggleterm".toggle_all()
   end
 end
