@@ -18,7 +18,7 @@ return {
     require("neo-tree").setup({
       window = {
         position = "left",
-        width = 40,
+        width = 50,
         mappings = {
           ['<C-S-h>'] = "close_node",
         },
