@@ -100,3 +100,11 @@ vim.keymap.set({ 'n', 'v' }, '<C-S-c>', '"*y',
 vim.keymap.set({ 'n', 'v' }, '<C-S-x>', '"*d',
   { silent = true, desc = "Desktop style cut/delete shortcut" }
 )
+
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-1>', '5<C-y>',
+  { silent = true, desc = "Scroll -5" }
+)
+
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-2>', '5<C-e>',
+  { silent = true, desc = "Scroll +5" }
+)
