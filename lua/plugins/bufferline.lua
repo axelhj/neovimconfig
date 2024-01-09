@@ -44,6 +44,9 @@ return {
         end
         return buffer_a.extension < buffer_b.extension
       end,
+      tab_size = 11,
+      truncate_names = true,
+      max_name_length = 36,
     },
   },
 }
