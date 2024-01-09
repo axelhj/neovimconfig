@@ -76,13 +76,15 @@ local servers = {
 }
 
 local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
+  local modemap = function(mode, keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
   end
+  local nmap = function(keys, func, desc) modemap('n', keys, func, desc) end
+  local imap = function(keys, func, desc) modemap('i', keys, func, desc) end
+  local vmap = function(keys, func, desc) modemap('v', keys, func, desc) end
 
   nmap('gd', vim.lsp.buf.definition, '[g]oto [d]efinition')
   nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
@@ -102,6 +104,8 @@ local on_attach = function(_, bufnr)
 
   nmap('K', vim.lsp.buf.hover, '[K] Hover Documentation')
   nmap('<M-k>', vim.lsp.buf.signature_help, 'Alt-[k] Signature Documentation')
+  imap('<M-k>', vim.lsp.buf.signature_help, 'Alt-[k] Signature Documentation')
+  vmap('<M-k>', vim.lsp.buf.signature_help, 'Alt-[k] Signature Documentation')
 
   nmap('<leader>dwa', vim.lsp.buf.add_workspace_folder, '[w]orkspace [a]dd Folder')
   nmap('<leader>dwr', vim.lsp.buf.remove_workspace_folder, '[w]orkspace [r]emove Folder')
