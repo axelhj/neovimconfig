@@ -32,33 +32,33 @@ end, {
   desc = 'Open the quickfix list (:copen/bufname)'
 })
 
-vim.keymap.set('n', '<Leader>n', ':cnext<Cr>',  {
+vim.keymap.set('n', '<Leader>j', ':cnext<Cr>',  {
   desc = 'Go to [n]ext quickfix list item (:cnext)'
 })
 
-vim.keymap.set('n', '<Leader>p', ':cprevious<Cr>', {
+vim.keymap.set('n', '<Leader>k', ':cprevious<Cr>', {
   desc = 'Go to [p]revious quickfix list item (:cprev)'
 })
 
-vim.keymap.set('n', '<Leader>qq', 'mZ:silent cclose<Cr>`Z', {
-  desc = 'Close quickfix list [qq] (mZ:cclose´Z)'
+vim.keymap.set('n', '<Leader>qc', 'mZ:silent cclose<Cr>`Z', {
+  desc = 'Close quickfix list [qc] (mZ:cclose´Z)'
 })
 
 -- Location list
 
-vim.keymap.set('n', '<Leader>ll', function()
-  local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
+vim.keymap.set('n', '<Leader>l', function()
+local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
   replace_termcodes(':lopen<Cr>/' .. buf_name .. '<Cr>', false)
 end, {
   desc = 'Open the [l]ocation list (:lopen/bufname)'
 })
 
-vim.keymap.set('n', '<Leader>ln', ':lnext<Cr>',  {
-  desc = 'Go to next [l]ocation list [n] item (:lnext)'
+vim.keymap.set('n', '<Leader>n', ':lnext<Cr>',  {
+  desc = 'Go to [n]ext location list item (:lnext)'
 })
 
-vim.keymap.set('n', '<Leader>lp', ':lprevious<Cr>', {
-  desc = 'Go to previous [l]ocation list [p] item (:lprev)'
+vim.keymap.set('n', '<Leader>p', ':lprevious<Cr>', {
+  desc = 'Go to [p]revious location list item (:lprev)'
 })
 
 vim.keymap.set('n', '<Leader>ql', 'mZ:silent lclose<Cr>`Z', {
