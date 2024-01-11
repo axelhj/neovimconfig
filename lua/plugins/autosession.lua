@@ -60,18 +60,37 @@ local function post_restore()
   neotree_toggle()
 end
 
+local function is_plugin_blocked(block_filetypes, block_filenames)
+  if vim.call("argc") ~= 0 then return true end
+  for filetype in ipairs(block_filetypes) do
+    if filetype == vim.o.filetype then
+      return true
+    end
+  end
+  for filename in ipairs(block_filenames) do
+    local buf_filename = vim.fn.fnamemodify(vim.fn.bufname(), ":t")
+    if filename == buf_filename then
+      return true
+    end
+  end
+  return false
+end
+
 local function init()
   local session_file_path = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/session.vim")
+  local block_filetypes = { "netrw" }
+  local block_filenames = { "GIT_COMMIT" }
   vim.api.nvim_create_autocmd(
     'VimLeave',
     {
       callback = function()
+        if is_plugin_blocked(block_filetypes, block_filenames) then return end
         pre_save()
         save(session_file_path)
       end
     }
   )
-  if vim.call("argc") == 0 then
+  if not is_plugin_blocked(block_filetypes, block_filenames) then
     vim.api.nvim_create_autocmd(
       'UIEnter',
       {
