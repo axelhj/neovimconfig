@@ -15,6 +15,23 @@ vim.keymap.set('n', '<Cr>',
   }
 )
 
+-- Toggleterm without switching tabs if already open.
+vim.keymap.set('n', '<Leader>t', function()
+    print ("Count "..vim.v.count)
+    local should_restore_mark = require "toggleterm.ui".find_open_windows() and
+      vim.o.buftype ~= 'terminal'
+    if should_restore_mark then replace_termcodes("mT") end
+    local tabpagenr = vim.call("tabpagenr")
+    if vim.v.count > 0 then
+      vim.cmd(":ToggleTerm "..vim.v.count)
+    else
+      vim.cmd(":ToggleTerm")
+    end
+    if should_restore_mark then replace_termcodes(tabpagenr.."gt`T") end
+  end,
+  { desc = 'Toggle [t]erm', silent = true }
+)
+
 -- Tab, buffer & window-management related shortcuts.
 vim.keymap.set('n', '<Leader>gbn', ":enew<Cr>",
   { desc = 'Edit new buffer [gbn]', silent = true }
