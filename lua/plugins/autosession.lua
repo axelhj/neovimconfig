@@ -43,15 +43,19 @@ local function pre_save()
     neotree_state,
     require('neotreeopened').is_neotree_open()
   )
+  -- Remember current tab and set mark in case
+  -- closing tree or terminal switches tab.
+  local tabpagenr = vim.fn.tabpagenr()
+  local should_restore_mark = require "toggleterm.ui".find_open_windows() and
+    vim.o.buftype ~= 'terminal'
+  replace_termcodes('mT')
   -- Close the Neo-tree window for each tab.
-  replace_termcodes('mO')
   vim.cmd ':tabdo Neotree close'
-  replace_termcodes('`O')
   -- Close any open Toggleterm-terminals.
   if require "toggleterm.ui".find_open_windows() then
     require "toggleterm".toggle_all()
   end
-  replace_termcodes('`O')
+  if should_restore_mark then replace_termcodes(tabpagenr.."gt`T") end
   -- Doesn't autosave after VimLeave.
   vim.cmd(":wshada")
 end

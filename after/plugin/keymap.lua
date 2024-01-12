@@ -21,7 +21,7 @@ vim.keymap.set('n', '<Leader>t', function()
     local should_restore_mark = require "toggleterm.ui".find_open_windows() and
       vim.o.buftype ~= 'terminal'
     if should_restore_mark then replace_termcodes("mT") end
-    local tabpagenr = vim.call("tabpagenr")
+    local tabpagenr = vim.fn.tabpagenr()
     if vim.v.count > 0 then
       vim.cmd(":ToggleTerm "..vim.v.count)
     else
