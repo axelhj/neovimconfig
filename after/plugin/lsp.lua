@@ -80,7 +80,7 @@ local on_attach = function(_, bufnr)
     if desc then
       desc = 'LSP: ' .. desc
     end
-    vim.keymap.set(m, keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
   end
   local nmap = function(keys, func, desc) modemap('n', keys, func, desc) end
   local imap = function(keys, func, desc) modemap('i', keys, func, desc) end

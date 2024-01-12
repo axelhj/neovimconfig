@@ -61,13 +61,13 @@ local function post_restore()
 end
 
 local function is_plugin_blocked(block_filetypes, block_filenames)
-  if vim.call("argc") ~= 0 then return true end
-  for filetype in ipairs(block_filetypes) do
+  if vim.fn.argc() > 1 then return true end
+  for _, filetype in ipairs(block_filetypes) do
     if filetype == vim.o.filetype then
       return true
     end
   end
-  for filename in ipairs(block_filenames) do
+  for _, filename in ipairs(block_filenames) do
     local buf_filename = vim.fn.fnamemodify(vim.fn.bufname(), ":t")
     if filename == buf_filename then
       return true
@@ -78,8 +78,8 @@ end
 
 local function init()
   local session_file_path = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/session.vim")
-  local block_filetypes = { "netrw" }
-  local block_filenames = { "GIT_COMMIT" }
+  local block_filetypes = { "netrw", "gitcommit" }
+  local block_filenames = { "GIT_COMMIT", "COMMIT_EDITMSG" }
   vim.api.nvim_create_autocmd(
     'VimLeave',
     {
@@ -90,17 +90,16 @@ local function init()
       end
     }
   )
-  if not is_plugin_blocked(block_filetypes, block_filenames) then
-    vim.api.nvim_create_autocmd(
-      'UIEnter',
-      {
-        callback = function()
-          restore(session_file_path)
-          post_restore()
-        end
-      }
-    )
-  end
+  vim.api.nvim_create_autocmd(
+    'UIEnter',
+    {
+      callback = function()
+        if is_plugin_blocked(block_filetypes, block_filenames) then return end
+        restore(session_file_path)
+        post_restore()
+      end
+    }
+  )
 end
 
 init()
