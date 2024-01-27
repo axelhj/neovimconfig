@@ -40,9 +40,17 @@ vim.keymap.set('n', '<Leader>k', ':cprevious<Cr>', {
   desc = 'Go to [p]revious quickfix list item (:cprev)'
 })
 
-vim.keymap.set('n', '<Leader>qc', 'mZ:silent cclose<Cr>`Z', {
-  desc = 'Close quickfix list [qc] (mZ:cclose´Z)'
-})
+vim.keymap.set('n', '<Leader>qc', function()
+    if vim.bo.buftype == 'quickfix' then
+      replace_termcodes(':silent cclose<Cr>')
+    else
+      replace_termcodes('mZ:silent cclose<Cr>`Z')
+    end
+  end,
+  {
+    desc = 'Close quickfix list [qc] (mZ:cclose´Z)'
+  }
+)
 
 -- Location list
 
