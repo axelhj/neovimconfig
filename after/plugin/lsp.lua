@@ -11,8 +11,28 @@ local filetypes = {
 }
 
 local servers = {
-  -- clangd = {},
+  -- clangd = {
+  --   options = {
+  --     cmd = { 'clangd', '--query-driver=C:\\msys64\\mingw64\\bin\\g++.exe' },
+  --   },
+  -- },
   -- gopls = {},
+  ccls = {
+    init_options = {
+      compilationDatabaseDirectory = "build";
+      index = {
+        threads = 0;
+      },
+      clang = {
+        excludeArgs = {
+          "-frounding-math",
+          "-finput-charset=UTF-8",
+          "-fexec-charset=850",
+        },
+        extraArgs = { "--gcc-toolchain=C:\\msys64\\mingw64" },
+      },
+    }
+  },
   pyright = {},
   -- rust_analyzer = {},
   -- eslint = {},
