@@ -8,6 +8,7 @@ local filetypes = {
     "typescriptreact",
     "typescript.tsx"
   },
+  cmake = { "txt", "cmake" },
 }
 
 local servers = {
@@ -46,7 +47,12 @@ local servers = {
   tsserver = {},
   -- biome = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-  cmake =  {},
+  cmake =  {
+    command = "cmake-language-server",
+    filetypes = { "cmake" },
+    rootPatterns = { "build/" },
+    initializationOptions = { buildDirectory = "build" }
+  },
   csharp_ls = {
     options = {
       root_dir = function(startpath)
