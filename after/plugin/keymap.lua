@@ -11,25 +11,46 @@ vim.keymap.set('n', '<Cr>',
   end,
   {
     remap = true,
-    desc = 'Go to neotree and reveal next file [<Cr>]'
+    desc = 'Reveal the next file in Neotree [<Cr>]'
   }
 )
 
--- Toggleterm without switching tabs if already open.
-vim.keymap.set('n', '<Leader>t', function()
-    print ("Count "..vim.v.count)
-    local should_restore_mark = require "toggleterm.ui".find_open_windows() and
-      vim.o.buftype ~= 'terminal'
-    if should_restore_mark then replace_termcodes("mT") end
-    local tabpagenr = vim.fn.tabpagenr()
-    if vim.v.count > 0 then
-      vim.cmd(":ToggleTerm "..vim.v.count)
+-- Open previous file in neotree.
+vim.keymap.set('n', '<S-Cr>',
+  function()
+    if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
+      replace_termcodes('<S-Cr>', false)
     else
-      vim.cmd(":ToggleTerm")
+      replace_termcodes(':Neotree reveal<Cr><Up><Cr>', true)
     end
-    if should_restore_mark then replace_termcodes(tabpagenr.."gt`T") end
   end,
-  { desc = 'Toggle [t]erm', silent = true }
+  {
+    remap = true,
+    desc = 'Reveal the previous file in Neotree [<Cr>]'
+  }
+)
+
+local function toggle_term()
+  local should_restore_mark = require "toggleterm.ui".find_open_windows() and
+    vim.o.buftype ~= 'terminal'
+  if should_restore_mark then replace_termcodes("mT") end
+  local tabpagenr = vim.fn.tabpagenr()
+  if vim.v.count > 0 then
+    vim.cmd(":ToggleTerm "..vim.v.count)
+  else
+    vim.cmd(":ToggleTerm")
+  end
+  if should_restore_mark then replace_termcodes(tabpagenr.."gt`T") end
+end
+
+-- Toggleterm without switching tabs if already open.
+vim.keymap.set('n', '<Leader>t', toggle_term,
+  { desc = 'Toggle [ t]erm', silent = true }
+)
+
+-- Toggleterm without switching tabs if already open, secondary mapping.
+vim.keymap.set({ 'n', 't' }, '<C-Cr>', toggle_term,
+  { desc = 'Toggle term [<C-Cr>]', silent = true }
 )
 
 -- Tab, buffer & window-management related shortcuts.
