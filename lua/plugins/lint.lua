@@ -8,10 +8,16 @@ return {
       typescriptreact = { 'eslint_d' },
       ["typescript.tsx"] = { 'eslint_d' },
     }
-    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-      callback = function()
-        lint.try_lint()
-      end,
-    })
+    vim.api.nvim_create_autocmd(
+      {
+        "BufWritePost",
+        "InsertLeave",
+        "TextChanged"
+      }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      }
+    )
   end
 }

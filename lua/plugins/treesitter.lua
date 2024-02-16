@@ -15,7 +15,7 @@ return {
         -- 'python',
         -- 'rust',
         'scala',
-        -- 'tsx',
+        'tsx',
         'javascript',
         'typescript',
         'c_sharp',
@@ -24,7 +24,7 @@ return {
       },
       ts_context_commentstring = {
         enable = true,
-        enable_autocmd = false,
+        enable_autocmd = true,
       },
 
       auto_install = false,
@@ -84,7 +84,6 @@ return {
         },
       },
     }
-    require('ts_context_commentstring').setup{}
   end
 }
 

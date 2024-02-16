@@ -1,4 +1,6 @@
-  return {
+vim.g.skip_ts_context_commentstring_module = true
+
+return {
   -- "gc" or "Ctrl+," to comment visual regions/lines
   'numToStr/Comment.nvim',
   dependencies = {
@@ -8,7 +10,10 @@
   },
   lazy = true,
   config = function()
-    require('Comment').setup{
+    require('ts_context_commentstring').setup {
+      enable_autocmd = false,
+    }
+    require('Comment').setup {
       toggler = {
         line = '<C-,>',
       },

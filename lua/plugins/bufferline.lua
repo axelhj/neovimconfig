@@ -26,6 +26,7 @@ return {
       custom_filter = function(buf_number--[[, buf_numbers]])
         -- filter out filetypes you don't want to see
         return vim.bo[buf_number].filetype ~= "quickfix" and
+          vim.bo[buf_number].filetype ~= "neo-tree" and
           vim.bo[buf_number].buftype ~= "terminal" and
           vim.fn.bufname(buf_number) ~= ""
       end,

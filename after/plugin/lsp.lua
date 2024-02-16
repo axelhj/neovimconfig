@@ -96,6 +96,9 @@ local servers = {
         telemetry = {
           enable = false,
         },
+        format = {
+          enable = false,
+        },
       },
     },
   },

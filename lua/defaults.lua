@@ -129,6 +129,11 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end,
 })
 
+-- Workaround because the session file will sometimes record a setting of 0.
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  callback = function() vim.opt.scrolloff = 4 end,
+})
+
 -- Display buffername in terminal title
 vim.o.title = true
 
