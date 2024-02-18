@@ -15,8 +15,6 @@ return {
     'rcarriga/nvim-dap-ui',
 
     -- Installs the debug adapters for you
-    'williamboman/mason.nvim',
-    'jay-babu/mason-nvim-dap.nvim',
     'mfussenegger/nvim-dap-python',
 
     -- Add your own debuggers here
@@ -25,23 +23,6 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-
-    require('mason-nvim-dap').setup {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
-      automatic_setup = false,
-
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
-      handlers = {},
-
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
-      ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
-        -- 'delve',
-      },
-    }
 
     require('dap-python').setup('python')
     require('dap-python').resolve_python = function()
