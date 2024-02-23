@@ -96,7 +96,14 @@ vim.o.linebreak = true
 vim.o.shortmess="AI"
 
 -- Useful font config - installed from nerdfonts.com
-vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
+
+if vim.g.neovide then
+  vim.g.neovide_scroll_animation_length=0.05
+  vim.g.neovide_cursor_trail_size = 0
+  vim.g.neovide_cursor_animation_length = 0
+else
+  vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
+end
 
 -- Setting that is useful for sending proper path separators to netcoredbg.
 vim.o.shellslash = false
