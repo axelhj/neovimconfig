@@ -2,7 +2,8 @@ local replace_termcodes = require"feedkeys".replace_termcodes
 local replace_termcodes_async = require"feedkeys".replace_termcodes_async
 
 if vim.fn.executable("rg") == 1 then
-  vim.o.grepprg = "rg --path-separator / --vimgrep"
+  local ignore = "--glob !**/node_modules/**/* --glob=!**/.git/**/*"
+  vim.o.grepprg = "rg -u -u "..ignore.." -F --path-separator \\ --vimgrep"
   vim.o.grepformat = "%f:%l:%c:%m"
 end
 
