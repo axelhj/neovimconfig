@@ -10,34 +10,32 @@ return {
       ensure_installed = {
         'c',
         'cpp',
-        -- 'go',
         'lua',
-        -- 'python',
-        -- 'rust',
+        'python',
         'scala',
         'tsx',
         'javascript',
         'typescript',
         'c_sharp',
         'vimdoc',
+        -- 'go',
+        -- 'rust',
         -- 'vim'
       },
       ts_context_commentstring = {
         enable = true,
         enable_autocmd = true,
       },
-
       auto_install = false,
-
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<c-space>',
-          node_incremental = '<c-space>',
-          scope_incremental = '<c-s>',
-          node_decremental = '<M-space>',
+          init_selection = '<C-Space>',
+          node_incremental = '<C-Space>',
+          scope_incremental = '<C-s>',
+          node_decremental = '<C-M-Space>',
         },
       },
       textobjects = {
@@ -86,4 +84,3 @@ return {
     }
   end
 }
-
