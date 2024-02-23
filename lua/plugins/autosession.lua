@@ -30,7 +30,7 @@ end
 
 local function restore(file_path)
   local cmd = "silent source " .. file_path
-  local success, result = pcall(vim.cmd, cmd)
+  local success, result = pcall(function(arg) vim.cmd(arg) end, cmd)
   if not success then
     print("Restoring session "..file_path.." failed. "..vim.inspect(result))
   end
@@ -65,7 +65,7 @@ local function post_restore()
 end
 
 local function is_plugin_blocked(block_filetypes, block_filenames)
-  if vim.fn.argc() > 1 then return true end
+  if vim.fn.argc() ~= 0 then return true end
   for _, filetype in ipairs(block_filetypes) do
     if filetype == vim.o.filetype then
       return true
