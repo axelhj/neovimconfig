@@ -102,7 +102,9 @@ return {
         type = "cppdbg",
         request = "launch",
         program = function()
-          return vim.fn.input{'Path to executable: ', vim.fn.getcwd() .. '/', 'file'}
+          local exe = io.popen("find . -maxdepth 2 -path \"*build*\" -name *.exe")
+          if not exe then return end
+          return (vim.fn.getcwd() .. "\\" .. exe:lines()()):gsub("/", "\\")
         end,
         externalConsole = true,
         cwd = '${workspaceFolder}',
@@ -118,7 +120,9 @@ return {
         MIDebuggerPath = vim.fn.exepath('gdb'),
         MIMode = "gdb",
         program = function()
-          return vim.fn.input({'Path to executable: ', vim.fn.getcwd() .. '/', 'file'})
+          local exe = io.popen("find . -maxdepth 1 -type d -path \"build/**/*.exe\" -printf \"%p\\n\"")
+          if not exe then return end
+          return (vim.fn.getcwd() .. "/" .. exe:lines()()):gsub("/", "\\")
         end,
         externalConsole = true,
         cwd = '${workspaceFolder}',
@@ -137,10 +141,12 @@ return {
         request = "launch",
         program = function()
           local dll = io.popen("find . -maxdepth 3 -name \"*.dll\"")
+          if not dll then return end
           return (vim.fn.getcwd() .. "/" .. dll:lines()()):gsub("/", "\\")
         end,
         cwd = function()
           local path = io.popen("find . -maxdepth 1 -type d -path \"bin/**/*.dll\" -printf \"%p\\n\"")
+          if not path then return end
           return (vim.fn.getcwd() .. "/" .. path:lines()()):gsub("/", "\\")
         end,
         env = {
