@@ -19,7 +19,7 @@ function OpenDiagnosticIfNoFloat()
       "InsertCharPre",
       "WinLeave",
     },
-    synax = "on"
+    syntax = "on"
   })
 end
 

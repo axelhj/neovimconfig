@@ -44,7 +44,9 @@ local servers = {
       end,
     },
   },
-  tsserver = {},
+  tsserver = {
+    single_file_support = false
+  },
   -- biome = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   cmake =  {

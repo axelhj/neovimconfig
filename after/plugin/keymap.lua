@@ -114,6 +114,11 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>gtt', ':terminal<CR>',
   { silent = true, desc = "Open a terminal program in the current buffer" })
 
 -- Be able to leave input mode of terminal - applies with toggleterm too.
+vim.keymap.set({ 't' }, '<M-x>', '<C-\\><C-n>',
+  { silent = true, desc = "Leave input mode of the open terminal" }
+)
+
+-- Be able to leave input mode of terminal - applies with toggleterm too.
 vim.keymap.set({ 't' }, '<C-x>', '<C-\\><C-n>',
   { silent = true, desc = "Leave input mode of the open terminal" }
 )
