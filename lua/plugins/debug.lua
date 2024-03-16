@@ -107,8 +107,8 @@ return {
           return (vim.fn.getcwd() .. "\\" .. exe:lines()()):gsub("/", "\\")
         end,
         externalConsole = true,
-        cwd = '${workspaceFolder}',
-        stopAtEntry = true,
+        cwd = '${workspaceFolder}/build',
+        stopAtEntry = false,
         MIMode = "gdb",
         MIDebuggerPath = vim.fn.exepath('gdb'),
       },
