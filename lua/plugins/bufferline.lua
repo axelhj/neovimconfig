@@ -1,3 +1,19 @@
+local function order_cpp_ext(a, b)
+  local a_base_name = vim.fn.fnamemodify(a.name, ":r")
+  local b_base_name = vim.fn.fnamemodify(b.name, ":r")
+  if (
+    (a.extension == 'cpp' or a.extension == 'h') and
+    (b.extension == 'cpp' or b.extension == 'h')
+  ) then
+    if a_base_name == b_base_name then
+      return a.extension < b.extension
+    else
+      return a_base_name < b_base_name
+    end
+  end
+  return nil
+end
+
 return {
   'akinsho/bufferline.nvim',
   version = "*",
@@ -40,7 +56,10 @@ return {
       },
       separator_style = "slant",
       sort_by = function(buffer_a, buffer_b)
-        if (buffer_a.extension == buffer_b.extension) then
+        local cpp_ord = order_cpp_ext(buffer_a, buffer_b)
+        if cpp_ord ~= nil then
+          return cpp_ord
+        elseif (buffer_a.extension == buffer_b.extension) then
           return buffer_a.name < buffer_b.name
         end
         return buffer_a.extension < buffer_b.extension
