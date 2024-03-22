@@ -17,6 +17,9 @@ return {
     -- Installs the debug adapters for you
     'mfussenegger/nvim-dap-python',
 
+    -- New dependency for the UI
+    'nvim-neotest/nvim-nio',
+
     -- Add your own debuggers here
     -- 'leoluz/nvim-dap-go',
   },

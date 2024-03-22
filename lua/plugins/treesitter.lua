@@ -18,9 +18,10 @@ return {
         'typescript',
         'c_sharp',
         'vimdoc',
+        'vim',
+        'lua',
         -- 'go',
         -- 'rust',
-        -- 'vim'
       },
       ts_context_commentstring = {
         enable = true,
