@@ -54,6 +54,14 @@ vim.keymap.set({ 'n', 't' }, '<C-Cr>', toggle_term,
 )
 
 -- Tab, buffer & window-management related shortcuts.
+vim.keymap.set('n', '<C-S-w>', ":w<Cr>",
+  { desc = '[W]rite buffer content', silent = true }
+)
+
+vim.keymap.set('v', '<C-S-w>', ":w<Cr>",
+  { desc = '[W]rite buffer content', silent = true }
+)
+
 vim.keymap.set('n', '<Leader>gbn', ":enew<Cr>",
   { desc = 'Edit new buffer [gbn]', silent = true }
 )
