@@ -159,3 +159,11 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<C-1>', '5<C-y>',
 vim.keymap.set({ 'n', 'v', 'i' }, '<C-2>', '5<C-e>',
   { silent = true, desc = "Scroll +5" }
 )
+
+-- Quickly open init.lua. Find more config with treesitter thanks
+-- to vim-rooter.
+local lua_init_location = vim.fn.stdpath("config") .. "/init.lua"
+
+vim.keymap.set({ 'n' }, '<C-S-i>', ':e ' .. lua_init_location .. '<Cr>', {
+  silent = true, desc = "Edit init.lua"
+})
