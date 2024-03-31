@@ -14,5 +14,12 @@ return {
       set         t_Co=256
       colorscheme hardhacker
     ]]
+    -- Used by listchars + list
+    vim.api.nvim_set_hl(0, "NonText", {
+      fg = "#404040",
+    })
+    vim.api.nvim_set_hl(0, "SpecialText", {
+      fg = "#404040",
+    })
   end,
 }
