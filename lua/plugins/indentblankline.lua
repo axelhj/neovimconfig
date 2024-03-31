@@ -8,7 +8,7 @@ return {
       fg = "#24202e", -- Darker fg
     })
     vim.api.nvim_set_hl(0, "IndentGuideBgAlt2", {
-      bg = "#24202e", -- Slightly darker Normmal-bg
+      bg = "#24202e", -- Slightly darker Normal-bg
       fg = "#24202e", -- Invisible fg
     })
     local highlight = {

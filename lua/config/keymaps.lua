@@ -86,6 +86,10 @@ function M.set_keymaps()
     { desc = "Close buffer, open next and keep window [ w]" }
   )
 
+  vim.keymap.set("n", "<Leader><S-w>", ":Bd<Cr>",
+    { desc = "Write buffer [ W]" }
+  )
+
   vim.keymap.set("n", "<Leader>T", ":tabclose<Cr>",
     { desc = "Close current [ T]tab" }
   )
