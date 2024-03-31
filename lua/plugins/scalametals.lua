@@ -1,9 +1,9 @@
 return {
-  'scalameta/nvim-metals',
+  "scalameta/nvim-metals",
   dependencies = {
-    'neovim/nvim-lspconfig',
-    'nvim-lua/plenary.nvim',
-    'mfussenegger/nvim-dap',
+    "neovim/nvim-lspconfig",
+    "nvim-lua/plenary.nvim",
+    "mfussenegger/nvim-dap",
   },
   config = function()
     ----------------------------------

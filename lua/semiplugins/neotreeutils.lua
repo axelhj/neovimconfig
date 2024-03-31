@@ -20,18 +20,18 @@ end
 function M.bind_focus_next_buffer_for_direction(direction)
   return function()
     if require("semiplugins.neotreeutils").is_neotree_focused() then
-      replace_termcodes('<C-w>l', false)
+      replace_termcodes("<C-w>l", false)
       return
     end
-    local is_empty = vim.bo.filetype == ''
+    local is_empty = vim.bo.filetype == ""
     if is_empty and direction == 1 then
-      vim.api.nvim_command('bnext!')
+      vim.api.nvim_command("bnext!")
     elseif is_empty and direction == -1 then
-      vim.api.nvim_command('bprev!')
+      vim.api.nvim_command("bprev!")
     elseif direction == 1 then
-      vim.api.nvim_command('BufferLineCycleNext')
+      vim.api.nvim_command("BufferLineCycleNext")
     elseif direction == -1 then
-      vim.api.nvim_command('BufferLineCyclePrev')
+      vim.api.nvim_command("BufferLineCyclePrev")
     end
   end
 end

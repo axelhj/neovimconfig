@@ -2,8 +2,8 @@ local function order_cpp_ext(a, b)
   local a_base_name = vim.fn.fnamemodify(a.name, ":r")
   local b_base_name = vim.fn.fnamemodify(b.name, ":r")
   if (
-    (a.extension == 'cpp' or a.extension == 'h') and
-    (b.extension == 'cpp' or b.extension == 'h')
+    (a.extension == "cpp" or a.extension == "h") and
+    (b.extension == "cpp" or b.extension == "h")
   ) then
     if a_base_name == b_base_name then
       return a.extension < b.extension
@@ -15,9 +15,9 @@ local function order_cpp_ext(a, b)
 end
 
 return {
-  'akinsho/bufferline.nvim',
+  "akinsho/bufferline.nvim",
   version = "*",
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  dependencies = "nvim-tree/nvim-web-devicons",
   config = true,
   opts =  {
     options = {

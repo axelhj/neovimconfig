@@ -1,6 +1,7 @@
 return {
-  'lukas-reineke/indent-blankline.nvim',
+  "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
+  event = "VeryLazy",
   config = function()
     vim.api.nvim_set_hl(0, "IndentGuideBgAlt1", {
       bg = "#282433", -- Match Normal-bg

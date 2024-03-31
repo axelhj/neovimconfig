@@ -10,7 +10,7 @@ return {
       javascript = { { "prettierd", "prettier" } },
       typescript = { { "prettierd", "prettier" } },
       typescriptreact = { { "prettierd", "prettier" } },
-      ['typescript.jsx'] = { { "prettierd", "prettier" } },
+      ["typescript.jsx"] = { { "prettierd", "prettier" } },
     },
     format_on_save = {
       -- I recommend these options. See :help conform.format for details.

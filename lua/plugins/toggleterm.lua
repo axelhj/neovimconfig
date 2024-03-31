@@ -1,5 +1,5 @@
 return {
-  'akinsho/toggleterm.nvim',
+  "akinsho/toggleterm.nvim",
   version = "*",
   opts = {
     open_mapping = false,
@@ -8,6 +8,6 @@ return {
     start_in_insert = false,
     auto_scroll = false,
     autochdir = true,
-    direction = 'horizontal',
+    direction = "horizontal",
   }
 }

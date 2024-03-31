@@ -1,5 +1,6 @@
 return {
-  'brenoprata10/nvim-highlight-colors',
+  "brenoprata10/nvim-highlight-colors",
+  event = "VeryLazy",
   config = function()
     --[[
     local options = {
@@ -15,15 +16,15 @@ return {
       css_fn = true;
     }
     ]]--
-    require 'nvim-highlight-colors'.setup {
+    require "nvim-highlight-colors".setup {
      -- also foreground or first_column
-      render = 'background';
+      render = "background";
       enable_named_colors = true;
       enable_tailwind = true;
       -- css = options;
       -- scss = options;
       -- html = {
-        -- mode = 'foreground';
+        -- mode = "foreground";
       -- },
     }
   end,

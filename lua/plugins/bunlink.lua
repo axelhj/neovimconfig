@@ -1,4 +1,4 @@
 return {
-  'orlp/vim-bunlink',
+  "orlp/vim-bunlink",
 }
 

@@ -2,56 +2,55 @@ vim.g.skip_ts_context_commentstring_module = true
 
 return {
   -- "gc" or "Ctrl+," to comment visual regions/lines
-  'numToStr/Comment.nvim',
+  "numToStr/Comment.nvim",
   dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    'JoosepAlviste/nvim-ts-context-commentstring',
+    "nvim-treesitter/nvim-treesitter",
+    "JoosepAlviste/nvim-ts-context-commentstring",
   },
   lazy = true,
   config = function()
-    require('ts_context_commentstring').setup {
+    require("ts_context_commentstring").setup {
       enable_autocmd = false,
     }
-    require('Comment').setup {
+    require("Comment").setup {
       toggler = {
-        line = '<C-,>',
+        line = "<C-,>",
       },
       pre_hook =
-        require('ts_context_commentstring.integrations.comment_nvim')
+        require("ts_context_commentstring.integrations.comment_nvim")
           .create_pre_hook(),
     }
   end,
   keys = {
     {
-      '<C-,>',
-      'gc',
-      mode = 'n',
+      "<C-,>",
+      "gc",
+      mode = "n",
       desc = "Toggle comment with Comment.nvim"
     },
     {
-      'gcc',
-      mode = 'n',
+      "gcc",
+      mode = "n",
       desc = "Toggle comment with Comment.nvim"
     },
     {
-      'gc',
-      mode = 'v',
+      "gc",
+      mode = "v",
       desc = "Toggle comment with Comment.nvim (visual)"
     },
     {
-      'gc',
-      mode = 'n',
+      "gc",
+      mode = "n",
       desc = "Toggle comment with Comment.nvim (motions)"
     },
     {
-      'gbc',
-      mode = 'n',
+      "gbc",
+      mode = "n",
       desc = "Toggle block comment with Comment.nvim (motions)"
     },
     {
-      'gb',
-      mode = 'n',
+      "gb",
+      mode = "n",
       desc = "Toggle block comment with Comment.nvim (motions)"
     },
   },

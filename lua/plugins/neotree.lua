@@ -6,11 +6,10 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  lazy = true,
   keys = {
     {
       "\\",
-      mode = 'n',
+      mode = "n",
       desc = "Toggle neotree (reveal cwd)"
     },
   },
@@ -20,7 +19,7 @@ return {
         position = "left",
         width = 50,
         mappings = {
-          ['<C-S-h>'] = "close_node",
+          ["<C-S-h>"] = "close_node",
         },
       },
       filesystem = {

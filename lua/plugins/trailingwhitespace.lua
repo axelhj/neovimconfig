@@ -1,5 +1,5 @@
 return {
-  'johnfrankmorgan/whitespace.nvim',
+  "johnfrankmorgan/whitespace.nvim",
   config = function()
     vim.api.nvim_set_hl(0, "IndentGuideWs", {
       bg="#221e2b",

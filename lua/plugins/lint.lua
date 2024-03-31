@@ -1,12 +1,13 @@
 return {
-  'mfussenegger/nvim-lint',
+  "mfussenegger/nvim-lint",
+  event = "VeryLazy",
   config = function()
-    local lint = require('lint')
+    local lint = require("lint")
     lint.linters_by_ft = {
-      markdown = { 'vale' },
-      typescript = { 'eslint_d' },
-      typescriptreact = { 'eslint_d' },
-      ["typescript.tsx"] = { 'eslint_d' },
+      markdown = { "vale" },
+      typescript = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
+      ["typescript.tsx"] = { "eslint_d" },
     }
     vim.api.nvim_create_autocmd(
       {

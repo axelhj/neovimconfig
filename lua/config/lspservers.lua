@@ -16,7 +16,7 @@ M.filetypes = {
 M.servers = {
   clangd = {
     options = {
-      cmd = { 'clangd', '--query-driver=C:\\msys64\\mingw64\\bin\\g++.exe' },
+      cmd = { "clangd", "--query-driver=C:\\msys64\\mingw64\\bin\\g++.exe" },
     },
   },
   -- ccls = {
@@ -55,7 +55,7 @@ M.servers = {
   csharp_ls = {
     options = {
       root_dir = function(startpath)
-        local lspconfig = require'lspconfig'
+        local lspconfig = require"lspconfig"
         return lspconfig.util.root_pattern("*.sln")(startpath)
           or lspconfig.util.root_pattern("*.csproj")(startpath)
           or lspconfig.util.root_pattern("*.fsproj")(startpath)
@@ -69,8 +69,8 @@ M.servers = {
         diagnostics = {
           -- Get the language server to recognize the `vim` global
           globals = {
-            'vim',
-            'require'
+            "vim",
+            "require"
           },
           disable = {
             "required_fields",
@@ -81,7 +81,7 @@ M.servers = {
         runtime = {
           -- Tell the language server which version of Lua you're using
           -- (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
+          version = "LuaJIT",
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -89,7 +89,7 @@ M.servers = {
           checkThirdParty = false,
         },
         completion = {
-          callSnippet = 'Replace',
+          callSnippet = "Replace",
         },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {
@@ -105,7 +105,7 @@ M.servers = {
   -- rust_analyzer = {},
   -- eslint = {},
   -- biome = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  -- html = { filetypes = { "html", "twig", "hbs"} },
 }
 
 return M

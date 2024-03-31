@@ -1,7 +1,7 @@
 return {
-  'nvimdev/hlsearch.nvim',
-  event = 'BufRead',
+  "nvimdev/hlsearch.nvim",
+  event = "BufRead",
   config = function()
-    require('hlsearch').setup()
+    require("hlsearch").setup()
   end,
 }

@@ -2,8 +2,8 @@ M = {}
 
 function M.set_options()
   -- Setup leader key. Invoke before plugins are loaded.
-  vim.g.mapleader = ' '
-  vim.g.maplocalleader = ' '
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
 
   -- Set highlight on search
   vim.o.hlsearch = true
@@ -13,12 +13,12 @@ function M.set_options()
   vim.wo.number = true
 
   -- Enable mouse mode
-  vim.o.mouse = 'a'
+  vim.o.mouse = "a"
 
   -- Sync clipboard between OS and Neovim.
   --  Remove this option if you want your OS clipboard to remain independent.
-  --  See `:help 'clipboard'`
-  vim.o.clipboard = ''
+  --  See `:help "clipboard"`
+  vim.o.clipboard = ""
 
   -- Enable break-indent - indent autowrapped line-continuations.
   vim.o.breakindent = true
@@ -42,9 +42,9 @@ function M.set_options()
 
   -- Python ft config really messes up indenting badly - indenting
   -- follow-on indents by multiples.
-  vim.g.pyindent_open_paren = '&sw'
-  vim.g.pyindent_nested_paren = '&sw'
-  vim.g.pyindent_continue = '&sw'
+  vim.g.pyindent_open_paren = "&sw"
+  vim.g.pyindent_nested_paren = "&sw"
+  vim.g.pyindent_continue = "&sw"
 
   -- Save undo history
   vim.o.undofile = true
@@ -54,9 +54,9 @@ function M.set_options()
   vim.o.smartcase = false
 
   -- Keep signcolumn on by default
-  vim.wo.signcolumn = 'yes'
-  vim.go.signcolumn = 'yes'
-  vim.o.signcolumn = 'yes'
+  vim.wo.signcolumn = "yes"
+  vim.go.signcolumn = "yes"
+  vim.o.signcolumn = "yes"
 
   -- Set updatetime - swapfile writing
   -- and CursorHold events timeout (ms).
@@ -66,7 +66,7 @@ function M.set_options()
   vim.o.timeoutlen = 1750
 
   -- Set completeopt to have a better completion experience
-  vim.o.completeopt = 'menuone,noselect'
+  vim.o.completeopt = "menuone,noselect"
 
   -- NOTE: You should make sure your terminal supports this
   vim.o.termguicolors = true
@@ -74,7 +74,7 @@ function M.set_options()
 
   -- Keymaps for better default experience - kickstart.nvim
   -- See `:help vim.keymap.set()`
-  vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+  vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
   -- Don't wrap around to the start/end once end/start is
   -- reached in search.
@@ -125,7 +125,7 @@ function M.set_options()
 
   -- Deal with transparency - make nvim-qt look more interesting.
   if vim.v.vim_did_enter == 1 then
-    vim.cmd 'GuiWindowOpacity 0.975'
+    vim.cmd "GuiWindowOpacity 0.975"
   end
 
   -- Do not comment line following comment on <Cr>, <C-o>

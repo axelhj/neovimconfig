@@ -7,29 +7,28 @@ return {
   },
   keys = {
     {
-      '<Leader>etd', function() require("neotest").run.run({strategy = "dap"}) end,
-      mode = 'n',
+      "<Leader>etd", function() require("neotest").run.run({strategy = "dap"}) end,
+      mode = "n",
       desc = "[e]exec [t]ests, [d]ebug with neotest"
     }, {
-      '<Leader>ete', function() require("neotest").run.run() end,
-      mode = 'n',
+      "<Leader>ete", function() require("neotest").run.run() end,
+      mode = "n",
       desc = "[e]xec [t][e]sts with neotest"
     }, {
-      '<Leader>eft', function() require("neotest").run.run(vim.fn.expand("%")) end,
-      mode = 'n',
+      "<Leader>eft", function() require("neotest").run.run(vim.fn.expand("%")) end,
+      mode = "n",
       desc = "for [e]ach test in [f]ile, [t]test with neotest"
     }, {
-      '<Leader>efd', function()
+      "<Leader>efd", function()
         require("neotest").run.run({
           vim.fn.expand("%"),
           strategy = "dap"
         })
       end,
-      mode = 'n',
+      mode = "n",
       desc = "for [e]ach test in [f]ile, [d]ebug with neotest"
     },
   },
-  lazy = true,
   config = function()
     require("neotest").setup({
       adapters = {
