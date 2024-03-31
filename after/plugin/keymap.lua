@@ -1,4 +1,8 @@
-local replace_termcodes = require"feedkeys".replace_termcodes
+local replace_termcodes = require"semiplugins.feedkeys".replace_termcodes
+local jump_window_with_wrap = require"semiplugins.windowjumpwrap".jump_window_with_wrap
+local bind_focus_next_buffer_for_direction = require("semiplugins.neotreeutils").bind_focus_next_buffer_for_direction
+local bind_for_non_neotree_buffer = require("semiplugins.neotreeutils").bind_for_non_neotree_buffer
+local toggle_term = require("semiplugins.toggletermutils").toggle_term
 
 -- Open next file in neotree.
 vim.keymap.set('n', '<Cr>',
@@ -6,7 +10,14 @@ vim.keymap.set('n', '<Cr>',
     if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
       replace_termcodes('<Cr>', false)
     else
-      replace_termcodes(':Neotree reveal<Cr><Down><Cr>', true)
+      replace_termcodes(':Neotree reveal<Cr>', false)
+      local timer = vim.loop.new_timer()
+      -- Timer is necessary because the maps are added after the popup is created
+      timer:start(100, 0, vim.schedule_wrap(
+        function()
+          replace_termcodes('<Down><Cr>', true)
+        end
+      ))
     end
   end,
   {
@@ -21,7 +32,14 @@ vim.keymap.set('n', '<S-Cr>',
     if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
       replace_termcodes('<S-Cr>', false)
     else
-      replace_termcodes(':Neotree reveal<Cr><Up><Cr>', true)
+      replace_termcodes(':Neotree reveal<Cr>', false)
+      local timer = vim.loop.new_timer()
+      -- Timer is necessary because the maps are added after the popup is created
+      timer:start(100, 0, vim.schedule_wrap(
+        function()
+          replace_termcodes('<Up><Cr>', true)
+        end
+      ))
     end
   end,
   {
@@ -29,19 +47,6 @@ vim.keymap.set('n', '<S-Cr>',
     desc = 'Reveal the previous file in Neotree [<Cr>]'
   }
 )
-
-local function toggle_term()
-  local should_restore_mark = require "toggleterm.ui".find_open_windows() and
-    vim.o.buftype ~= 'terminal'
-  if should_restore_mark then replace_termcodes("mT") end
-  local tabpagenr = vim.fn.tabpagenr()
-  if vim.v.count > 0 then
-    vim.cmd(":ToggleTerm "..vim.v.count)
-  else
-    vim.cmd(":ToggleTerm")
-  end
-  if should_restore_mark then replace_termcodes(tabpagenr.."gt`T") end
-end
 
 -- Toggleterm without switching tabs if already open.
 vim.keymap.set('n', '<Leader>t', toggle_term,
@@ -63,39 +68,27 @@ vim.keymap.set('v', '<C-S-w>', ":w<Cr>",
 )
 
 vim.keymap.set('n', '<Leader>gbn', ":enew<Cr>",
-  { desc = 'Edit new buffer [gbn]', silent = true }
+  { desc = 'Edit new buffer [ gbn]', silent = true }
 )
 
 vim.keymap.set('n', '<Leader>gtn', ":tabnew<Cr>",
-  { desc = 'Add tab [gtn]', silent = true }
+  { desc = 'Add tab [ gtn]', silent = true }
 )
 
 vim.keymap.set('n', '<Leader>gtd', ":tabclose<Cr>",
-  { desc = 'Close tab [gtn]', silent = true }
+  { desc = 'Close tab [ gtd]', silent = true }
 )
 
-vim.keymap.set('n', '<Leader>w', ':Bunlink<Cr>',
-  { desc = 'Close buffer, open next and keep [w]indow' }
+vim.keymap.set('n', '<Leader>w', ':Bd<Cr>',
+  { desc = 'Close buffer, open next and keep window [ w]' }
 )
 
-vim.keymap.set('n', '<Leader>W', ':tabclose<Cr>',
-  { desc = 'Close current tab [W]' }
+vim.keymap.set('n', '<Leader>T', ':tabclose<Cr>',
+  { desc = 'Close current [ T]tab' }
 )
 
-vim.keymap.set('n', '<Leader>bd', ':bdelete!<Cr>',
-  { desc = 'Close a [b]uffer, [d]iscard changes and close the window' }
-)
-
-vim.keymap.set("n", "<Leader>q!", ":q!<Cr>",
-  { desc = 'Close the current window and discard changes' }
-)
-
-vim.keymap.set("n", "<C-Up>", ":tabnew<Cr>",
-  { desc = 'Add tab', silent = true }
-)
-
-vim.keymap.set("n", "<C-Down>", ":tabclose<Cr>",
-  { desc = 'Close tab', silent = true }
+vim.keymap.set("n", "<Leader>q", ":qa<Cr>",
+  { desc = 'Close all current windows and discard changes [ q]' }
 )
 
 -- Toggle trouble.
@@ -167,3 +160,51 @@ local lua_init_location = vim.fn.stdpath("config") .. "/init.lua"
 vim.keymap.set({ 'n' }, '<C-S-i>', ':e ' .. lua_init_location .. '<Cr>', {
   silent = true, desc = "Edit init.lua"
 })
+
+-- Switch active windows by [C-h/j/k/l]. Wrap around the edges.
+local opts = { silent = true, noremap = true, desc = "Switch window/split" }
+
+vim.keymap.set("n", "<C-h>", jump_window_with_wrap("h", "l"), opts)
+vim.keymap.set("n", "<C-l>", jump_window_with_wrap("l", "h"), opts)
+vim.keymap.set("n", "<C-j>", jump_window_with_wrap("j", "k"), opts)
+vim.keymap.set("n", "<C-k>", jump_window_with_wrap("k", "j"), opts)
+
+-- Switch buffers quickly
+vim.keymap.set('n', '<Tab>',
+  bind_focus_next_buffer_for_direction(1),
+  { desc = 'Switch to next open buffer' }
+)
+
+vim.keymap.set('n', '<S-Tab>',
+  bind_focus_next_buffer_for_direction(-1),
+  { desc = 'Switch to previous open buffer' }
+)
+
+vim.keymap.set('n', '<C-Tab>',
+  bind_focus_next_buffer_for_direction(1),
+  { desc = 'Switch to next open buffer' }
+)
+vim.keymap.set('n', '<C-S-Tab>',
+  bind_focus_next_buffer_for_direction(-1),
+  { desc = 'Switch to previous open buffer' }
+)
+
+vim.keymap.set('n', 'gn',
+  bind_focus_next_buffer_for_direction(1),
+  { desc = 'Switch to next open buffer' }
+)
+
+vim.keymap.set('n', 'gp',
+  bind_focus_next_buffer_for_direction(-1),
+  { desc = 'Switch to previous open buffer' }
+)
+
+vim.keymap.set( 'i', '<C-Tab>',
+  bind_for_non_neotree_buffer('<Esc>:BufferLineCycleNext<cr>'),
+  { desc = 'Switch to next open buffer' }
+)
+
+vim.keymap.set( 'i', '<S-C-Tab>',
+  bind_for_non_neotree_buffer('<Esc>:BufferLineCyclePrev<cr>'),
+  { desc = 'Switch to previous open buffer' }
+)

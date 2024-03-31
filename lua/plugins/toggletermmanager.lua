@@ -11,19 +11,19 @@ return {
         ["<Cr>"] = {
           action = function(prompt_bufnr)
             require('toggleterm-manager').actions.toggle_term(prompt_bufnr, false)
-            require"feedkeys".replace_termcodes_async('<C-\\><C-n>i')
+            require"semiplugins.feedkeys".replace_termcodes_async('<C-\\><C-n>i')
           end,
         },
         ["<S-Cr>"] = {
           action = function(prompt_bufnr)
             require('toggleterm-manager').actions.toggle_term(prompt_bufnr, true)
-            require"feedkeys".replace_termcodes_async('<C-\\><C-n><Esc>')
+            require"semiplugins.feedkeys".replace_termcodes_async('<C-\\><C-n><Esc>')
           end,
         },
         ["<C-i>"] = {
           action = function(prompt_bufnr)
             require('toggleterm-manager').actions.create_term(prompt_bufnr, false)
-            require"feedkeys".replace_termcodes_async('<C-\\><C-n>')
+            require"semiplugins.feedkeys".replace_termcodes_async('<C-\\><C-n>')
           end,
         },
         ["<C-d>"] = {

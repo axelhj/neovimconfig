@@ -1,6 +1,9 @@
-local replace_termcodes = require"feedkeys".replace_termcodes
-local replace_termcodes_async = require"feedkeys".replace_termcodes_async
+local replace_termcodes = require"semiplugins.feedkeys".replace_termcodes
+local replace_termcodes_async = require"semiplugins.feedkeys".replace_termcodes_async
 
+-- Configure ripgrep to ignore node-modules & .git-folders but
+-- not to interpret .gitignore. Use for grep-prg and configure
+-- for quickfix-compat.
 if vim.fn.executable("rg") == 1 then
   local ignore = "--glob !**/node_modules/**/* --glob=!**/.git/**/*"
   vim.o.grepprg = "rg -u -u "..ignore.." -F --path-separator \\ --vimgrep"
@@ -8,7 +11,6 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- Vimgrep - Ripgrep
-
 vim.keymap.set('v', '<Leader>sf', function()
   local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
   replace_termcodes('y:silent grep! <C-r>"<Cr>:copen<Cr>/' .. buf_name .. '<Cr>', false)
@@ -25,7 +27,6 @@ end, {
 })
 
 -- Quickfix list
-
 vim.keymap.set('n', '<Leader>c', function()
   local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
   replace_termcodes(':copen<Cr>/' .. buf_name .. '<Cr>')
@@ -54,7 +55,6 @@ vim.keymap.set('n', '<Leader>qc', function()
 )
 
 -- Location list
-
 vim.keymap.set('n', '<Leader>l', function()
 local buf_name = vim.fn.expand('%'):gsub('%\\', '.'):gsub('%/', '.')
   replace_termcodes(':lopen<Cr>/' .. buf_name .. '<Cr>', false)

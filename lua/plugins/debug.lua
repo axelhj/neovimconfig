@@ -70,7 +70,7 @@ return {
     vim.keymap.set('n', '<F7>',
       function()
         dapui.toggle()
-        require'neotreenormalized'.resize()
+        require"semiplugins.neotreeutils".resize()
       end,
       { desc = 'Debug: See last session result [F7]' }
     )
@@ -78,8 +78,8 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
-    dap.listeners.after.event_terminated['dapui_config'] = require'neotreenormalized'.resize
-    dap.listeners.after.event_exited['dapui_config'] = require'neotreenormalized'.resize
+    dap.listeners.after.event_terminated['dapui_config'] = require'semiplugins.neotreeutils'.resize
+    dap.listeners.after.event_exited['dapui_config'] = require'semiplugins.neotreeutils'.resize
 
     -- dap.defaults.fallback.exception_breakpoints = { "Notice", "Warning", "Error", "Exception" }
     dap.defaults.cs.exception_breakpoints = { "all", "user-unhandled" }

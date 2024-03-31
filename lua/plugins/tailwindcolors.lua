@@ -3,6 +3,6 @@ return {
   dependencies = {
     "neovim/nvim-lspconfig",
   },
+  opts = {},
   module = "tailwindcss-colors",
-  config = false
 }

@@ -1,6 +1,7 @@
 return {
   'brenoprata10/nvim-highlight-colors',
   config = function()
+    --[[
     local options = {
       -- hex codes
       RRGGBBAA = false;
@@ -13,6 +14,7 @@ return {
       -- CSS "function features"
       css_fn = true;
     }
+    ]]--
     require 'nvim-highlight-colors'.setup {
      -- also foreground or first_column
       render = 'background';
