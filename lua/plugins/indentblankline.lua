@@ -5,11 +5,11 @@ return {
   config = function()
     vim.api.nvim_set_hl(0, "IndentGuideBgAlt1", {
       bg = "#282433", -- Match Normal-bg
-      fg = "#24202e", -- Darker fg
+      fg = "#303030", -- Regular fg
     })
     vim.api.nvim_set_hl(0, "IndentGuideBgAlt2", {
       bg = "#24202e", -- Slightly darker Normal-bg
-      fg = "#24202e", -- Invisible fg
+      fg = "#303030", -- Alternate fg
     })
     local highlight = {
       "IndentGuideBgAlt1",
@@ -21,7 +21,7 @@ return {
       },
       indent = {
         highlight = highlight,
-        char = "|",
+        char = " ",
       },
       whitespace = {
         highlight = highlight,
