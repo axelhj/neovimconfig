@@ -6,6 +6,7 @@ I hope you enjoy your Neovim journey,
 --]]
 
 require"config.options".set_options()
+require"config.quickfix".set_options()
 
 require"config.lazyinit".init_lazy()
 
