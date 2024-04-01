@@ -5,6 +5,7 @@ return {
     "nvim-lua/plenary.nvim",
     "mfussenegger/nvim-dap",
   },
+  ft = { "scala", "sbt", "java" },
   config = function()
     ----------------------------------
     -- LSP Setup ---------------------
@@ -66,6 +67,7 @@ return {
       end,
       group = nvim_metals_group,
     })
+    require("metals").initialize_or_attach(metals_config)
   end
 }
 

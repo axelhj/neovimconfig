@@ -15,7 +15,7 @@ local options = {
 
 return {
   "brenoprata10/nvim-highlight-colors",
-  event = "VeryLazy",
+  event = { "VeryLazy", },
   opts = {
     -- also foreground or first_column
     render = "background";

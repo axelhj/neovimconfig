@@ -1,5 +1,5 @@
 return {
   "nvimdev/hlsearch.nvim",
   module = "hlsearch",
-  config = true,
+  event = { "UIEnter", },
 }

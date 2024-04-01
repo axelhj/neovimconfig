@@ -17,8 +17,10 @@ end
 return {
   "akinsho/bufferline.nvim",
   version = "*",
-  dependencies = "nvim-tree/nvim-web-devicons",
-  config = true,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  lazy = true,
   opts =  {
     options = {
       middle_mouse_command = function(bufnum)
@@ -27,7 +29,7 @@ return {
         if not is_active or is_hidden then
           vim.api.nvim_command(":bdelete " .. bufnum)
         else
-          vim.api.nvim_command(":Bd")
+          vim.api.nvim_command(":Bunlink")
         end
       end,
       right_mouse_command = function(bufnum)
@@ -36,7 +38,7 @@ return {
         if not is_active or is_hidden then
           vim.api.nvim_command(":bdelete " .. bufnum)
         else
-          vim.api.nvim_command(":Bd")
+          vim.api.nvim_command(":Bunlink")
         end
       end,
       custom_filter = function(buf_number--[[, buf_numbers]])

@@ -1,5 +1,6 @@
 return {
   "airblade/vim-rooter",
+  event = { "VeryLazy" },
   config = function()
     vim.g.rooter_patterns = { "dap.log", "src/", ".git", ".hg", ".svn" }
     vim.g.rooter_change_directory_for_non_project_files = "current"

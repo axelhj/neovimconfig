@@ -1,6 +1,11 @@
 return {
   "mfussenegger/nvim-lint",
-  event = "VeryLazy",
+  ft = {
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
   config = function()
     local lint = require("lint")
     lint.linters_by_ft = {
@@ -13,12 +18,9 @@ return {
       {
         "BufWritePost",
         "InsertLeave",
-        "TextChanged"
-      }, {
-        callback = function()
-          lint.try_lint()
-        end,
-      }
+        "TextChanged",
+      },
+      { callback = function() lint.try_lint() end, }
     )
   end
 }

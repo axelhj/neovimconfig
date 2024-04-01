@@ -1,5 +1,6 @@
 return {
   "petertriho/nvim-scrollbar",
+  event = { "VeryLazy" },
   opts = {
     -- Avoid shrinking handle at end of buffer
     -- on overscrolling.

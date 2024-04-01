@@ -11,31 +11,46 @@ return {
       end,
     },
   },
-  config = function()
-    require("telescope").setup {
-      defaults = {
-        vimgrep_arguments = {
-          "rg",
-          "-F",
-          "-u",
-          "-u",
-          "--glob=!**/node_modules/**/*",
-          "--glob=!**/.git/**/*",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--case-sensitive"
-        },
-        mappings = {
-          i = {
-            ["<C-u>"] = false,
-            ["<C-d>"] = false,
-          },
+  keys = {
+    { "<Leader>fr", mode = "n", },
+    { "<Leader>fb", mode = "n", },
+    { "<Leader>/", mode = "n", },
+    { "<Leader>fig", mode = "n", },
+    { "<Leader>ff", mode = "n", },
+    { "<Leader>fh", mode = "n", },
+    { "<Leader>fw", mode = "n", },
+    { "<Leader>fs", mode = "n", },
+    { "<Leader>fg", mode = "n", },
+    { "<Leader>fd", mode = "n", },
+    { "<Leader>r", mode = "n", },
+    { "<Leader>sr", mode = "n", }
+  },
+  opts = {
+    defaults = {
+      vimgrep_arguments = {
+        "rg",
+        "-F",
+        "-u",
+        "-u",
+        "--glob=!**/node_modules/**/*",
+        "--glob=!**/.git/**/*",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--case-sensitive"
+      },
+      mappings = {
+        i = {
+          ["<C-u>"] = false,
+          ["<C-d>"] = false,
         },
       },
-    }
+    },
+  },
+  config = function(spec)
+    require("telescope").setup(spec.opts)
     pcall(require("telescope").load_extension, "fzf")
     vim.keymap.set("n", "<Leader>fr", require("telescope.builtin").oldfiles, { desc = "[f]ind [r]ecently opened files" })
     vim.keymap.set("n", "<Leader>fb", require("telescope.builtin").buffers, { desc = "[f]ind existing [b]uffers" })

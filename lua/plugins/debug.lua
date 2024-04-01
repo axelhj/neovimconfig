@@ -1,27 +1,19 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
-
 return {
-  -- NOTE: Yes, you can install new plugins here!
   "mfussenegger/nvim-dap",
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
-    -- Creates a beautiful debugger UI
     "rcarriga/nvim-dap-ui",
-
-    -- Installs the debug adapters for you
     "mfussenegger/nvim-dap-python",
-
-    -- New dependency for the UI
     "nvim-neotest/nvim-nio",
-
     -- Add your own debuggers here
     -- "leoluz/nvim-dap-go",
+  },
+  -- Lazy-init
+  keys = {
+    { "F5", mode = "n" },
+    { "F7", mode = "n" },
+    { "F9", mode = "n" },
+    { "<Leader>bb", mode = "n" },
+    { "<Leader>B", mode = "n" },
   },
   config = function()
     local dap = require "dap"
@@ -32,7 +24,7 @@ return {
       return "C:/msys64/usr/bin/python.exe"
     end
 
-    -- Basic debugging keymaps, feel free to change to your liking!
+    -- Basic debugging keymaps.
     vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
     vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: Step Into" })
     vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: Step Over" })
@@ -45,7 +37,6 @@ return {
     end, { desc = "Debug: Set Breakpoint" })
 
     -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
       -- Set icons to characters that are more likely to work in every terminal.
       --    Feel free to remove or use ones that you like more! :)

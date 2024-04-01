@@ -4,6 +4,7 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   build = ":TSUpdate",
+  event = { "VeryLazy", },
   config = function()
     require("nvim-treesitter.configs").setup {
       ensure_installed = {

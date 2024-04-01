@@ -3,6 +3,7 @@ local servers = require("config.lspservers").servers
 
 return {
   "neovim/nvim-lspconfig",
+  event = { "VeryLazy", },
   dependencies = {
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
     "folke/neodev.nvim",

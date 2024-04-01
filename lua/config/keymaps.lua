@@ -3,9 +3,8 @@ local M = {}
 function M.set_keymaps()
   local replace_termcodes = require"semiplugins.feedkeys".replace_termcodes
   local jump_window_with_wrap = require"semiplugins.windowjumpwrap".jump_window_with_wrap
-  local bind_focus_next_buffer_for_direction = require("semiplugins.neotreeutils").bind_focus_next_buffer_for_direction
-  local bind_for_non_neotree_buffer = require("semiplugins.neotreeutils").bind_for_non_neotree_buffer
-  local toggle_term = require("semiplugins.toggletermutils").toggle_term
+  local bind_focus_next_buffer_for_direction = require"semiplugins.neotreeutils".bind_focus_next_buffer_for_direction
+  local bind_for_non_neotree_buffer = require"semiplugins.neotreeutils".bind_for_non_neotree_buffer
 
   -- Open next file in neotree.
   vim.keymap.set("n", "<Cr>",
@@ -51,16 +50,6 @@ function M.set_keymaps()
     }
   )
 
-  -- Toggleterm without switching tabs if already open.
-  vim.keymap.set("n", "<Leader>t", toggle_term,
-    { desc = "Toggle [ t]erm", silent = true }
-  )
-
-  -- Toggleterm without switching tabs if already open, secondary mapping.
-  vim.keymap.set({ "n", "t" }, "<C-Cr>", toggle_term,
-    { desc = "Toggle term [<C-Cr>]", silent = true }
-  )
-
   -- Tab, buffer & window-management related shortcuts.
   vim.keymap.set("n", "<C-S-w>", ":w<Cr>",
     { desc = "[W]rite buffer content", silent = true }
@@ -82,12 +71,12 @@ function M.set_keymaps()
     { desc = "Close tab [ gtd]", silent = true }
   )
 
-  vim.keymap.set("n", "<Leader>w", ":Bd<Cr>",
-    { desc = "Close buffer, open next and keep window [ w]" }
+  vim.keymap.set("n", "<Leader>w", ":Bunlink<Cr>",
+    { desc = "Close buffer, open next and keep window (Bd) [ w]" }
   )
 
-  vim.keymap.set("n", "<Leader><S-w>", ":Bd<Cr>",
-    { desc = "Write buffer [ W]" }
+  vim.keymap.set("n", "<Leader>W", ":bd!<Cr>",
+    { desc = "Write buffer and quit (bd!) [ W]" }
   )
 
   vim.keymap.set("n", "<Leader>T", ":tabclose<Cr>",
