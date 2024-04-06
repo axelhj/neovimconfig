@@ -60,14 +60,14 @@ local function get_mouse_scroll_binding_action(direction, event_unique_id)
       "Decreasing font-size"
     )
     local info = pane:get_foreground_process_info()
-    local is_cmd = basename(info.executable) == "cmd.exe"
-    if is_cmd then
-      window:perform_action(action.ScrollByCurrentEventWheelDelta, pane)
-    else -- probably is nvim.exe ie. alt-mode
+    local is_alt_screen_mode = pane:is_alt_screen_active()
+    if is_alt_screen_mode then
       window:perform_action(direction > 0 and
         action.IncreaseFontSize or action.DecreaseFontSize,
         pane
       )
+    else -- probably is nvim.exe ie. alt-mode
+      window:perform_action(action.ScrollByCurrentEventWheelDelta, pane)
     end
   end)
   return action.EmitEvent(event_name)
@@ -83,6 +83,16 @@ config.mouse_bindings = {
     event = { Down = { streak = 1, button = { WheelDown = 1 } } },
     mods = "NONE",
     action = get_mouse_scroll_binding_action(-1, "user_defined")
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+    mods = "CTRL",
+    action = action.DecreaseFontSize,
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+    mods = "CTRL",
+    action = action.IncreaseFontSize
   },
 }
 
