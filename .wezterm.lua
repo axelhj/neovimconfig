@@ -43,26 +43,44 @@ config.bypass_mouse_reporting_modifiers = "CTRL"
 
 config.adjust_window_size_when_changing_font_size = false
 
--- wezterm.on("dec-font-size", function()
---   wezterm.window:perform_action(action.DecreaseFontSize)
--- end)
+-- Equivalent to POSIX basename(3)
+-- Given "/foo/bar" returns "bar"
+-- Given "c:\\foo\\bar" returns "bar"
+local function basename(s)
+  return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
 
--- wezterm.on("inc-font-size", function()
---   wezterm.window:perform_action(action.IncreaseFontSize)
--- end)
+local function get_mouse_scroll_binding_action(direction, event_unique_id)
+  local event_name = "alter-font-size"..tostring(direction)..event_unique_id
+  wezterm.on(event_name, function(window, pane)
+    wezterm.log_info(direction > 0 and
+      "Increasing font-size" or
+      "Decreasing font-size"
+    )
+    local info = pane:get_foreground_process_info()
+    local is_cmd = basename(info.executable) == "cmd.exe"
+    if is_cmd then
+      window:perform_action(action.ScrollByCurrentEventWheelDelta, pane)
+    else -- probably is nvim.exe ie. alt-mode
+      window:perform_action(direction > 0 and
+        action.IncreaseFontSize or action.DecreaseFontSize,
+        pane
+      )
+    end
+  end)
+  return action.EmitEvent(event_name)
+end
 
 config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = { WheelUp = 1 } } },
     mods = "NONE",
-    -- action = action.EmitEvent "dec-font-size"
-    action = action.DecreaseFontSize,
+    action = get_mouse_scroll_binding_action(-1, "user_defined")
   },
   {
     event = { Down = { streak = 1, button = { WheelDown = 1 } } },
     mods = "NONE",
-    -- action = action.EmitEvent "inc-font-size"
-    action = action.IncreaseFontSize,
+    action = get_mouse_scroll_binding_action(1, "user_defined")
   },
 }
 
@@ -173,7 +191,8 @@ config.keys = {
   },
 }
 
--- stat or exists doesn't exist inside of LUA io, use workaround.
+-- stat or exists does not exist inside of LUA io,
+-- use workaround.
 local function exists(file)
    local ok, err, code = os.rename(file, file)
    if not ok then
