@@ -33,6 +33,8 @@ config.freetype_load_target = "Light"
 
 config.freetype_render_target = "HorizontalLcd"
 
+config.warn_about_missing_glyphs = false
+
 config.hide_tab_bar_if_only_one_tab = true
 
 config.window_close_confirmation = "NeverPrompt"
@@ -47,6 +49,7 @@ config.swallow_mouse_click_on_window_focus = true
 
 config.bypass_mouse_reporting_modifiers = "CTRL"
 
+--- Set necessary value to restore window size initially.
 config.adjust_window_size_when_changing_font_size = true
 
 -- Equivalent to POSIX basename(3)
@@ -229,6 +232,11 @@ config.keys = {
   },
   {
     key = "Enter",
+    mods = "CTRL",
+    action = action.SendKey { key = "Enter", mods = "CTRL" },
+  },
+  {
+    key = "Enter",
     mods = "SHIFT",
     action = action.SendKey { key = "Enter", mods = "SHIFT" },
   },
@@ -281,7 +289,9 @@ wezterm.on("gui-startup", function(cmd)
     end
     -- adjust_window_size_when_changing_font_size needs to have a different initial value
     -- compared with key/mousebinds in order to get the expected window dimensions.
-    window:gui_window():set_config_overrides{adjust_window_size_when_changing_font_size = false}
+    window:gui_window():set_config_overrides{
+      adjust_window_size_when_changing_font_size = false
+    }
     window_size_cache_file:close()
   end
 end)
