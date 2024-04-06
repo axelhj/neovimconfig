@@ -11,7 +11,9 @@ local default_font_size = 9
 
 local cache_dir = os.getenv("HOME") .. "/.cache/wezterm/"
 
-local window_size_cache_path = cache_dir .. "window_size_opt.txt"
+local function get_window_size_cache_path(pane_exe)
+  return cache_dir..pane_exe.."window_size_opt.txt"
+end
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -210,7 +212,11 @@ wezterm.on("gui-startup", function(cmd)
   if not exists(cache_dir) then
     os.execute("mkdir " .. cache_dir)
   end
-  local window_size_cache_file = io.open(window_size_cache_path, "r")
+  local pane_exe = basename(cmd.args[1])
+  local window_size_cache_file = io.open(
+    get_window_size_cache_path(pane_exe),
+    "r"
+  )
   if window_size_cache_file ~= nil then
     local _, _, width, height = string.find(window_size_cache_file:read(), "(%d+),(%d+)")
     if cmd == nil then
@@ -239,7 +245,12 @@ wezterm.on("window-resized", function(window, pane)
   local tab_size = pane:tab():get_size()
   local cols = tab_size["cols"]
   local rows = tab_size["rows"]
-  local window_size_cache_file = io.open(window_size_cache_path, "w")
+  local info = pane:get_foreground_process_info()
+  local pane_exe = basename(info.executable)
+  local window_size_cache_file = io.open(
+    get_window_size_cache_path(pane_exe),
+    "w"
+  )
   if window_size_cache_file ~= nil then
     local contents = string.format("%d,%d", cols, rows)
     window_size_cache_file:write(contents)
