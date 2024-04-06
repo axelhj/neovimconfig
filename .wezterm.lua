@@ -77,12 +77,12 @@ config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = { WheelUp = 1 } } },
     mods = "NONE",
-    action = get_mouse_scroll_binding_action(-1, "user_defined")
+    action = get_mouse_scroll_binding_action(1, "user_defined")
   },
   {
     event = { Down = { streak = 1, button = { WheelDown = 1 } } },
     mods = "NONE",
-    action = get_mouse_scroll_binding_action(1, "user_defined")
+    action = get_mouse_scroll_binding_action(-1, "user_defined")
   },
 }
 
