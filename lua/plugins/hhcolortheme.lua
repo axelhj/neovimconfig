@@ -3,10 +3,13 @@ return {
   name = "hardhacker",
   event = { "UIEnter" },
   config = function()
+    -- Colors does not get applied if loaded after hardhacker
     vim.cmd[[
       " mask tilde and use italics
       let g:hardhacker_hide_tilde = 1
       let g:hardhacker_keyword_italic = 1
+      " skip monochrome bufferline theme colors
+      let g:skip_bufferline_theme = 0
       " custom highlights
       let g:hardhacker_custom_highlights = []
       " enable plugin

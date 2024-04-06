@@ -20,7 +20,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  lazy = true,
+  event = { "VeryLazy" },
   opts =  {
     options = {
       middle_mouse_command = function(bufnum)
