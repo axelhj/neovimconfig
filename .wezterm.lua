@@ -9,6 +9,8 @@ local mux = wezterm.mux
 
 local default_font_size = 9
 
+local font_adjustments = 0
+
 local cache_dir = os.getenv("HOME") .. "/.cache/wezterm/"
 
 local function get_window_size_cache_path(pane_exe)
@@ -41,15 +43,40 @@ config.font_size = default_font_size
 
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0, }
 
+config.swallow_mouse_click_on_window_focus = true
+
 config.bypass_mouse_reporting_modifiers = "CTRL"
 
-config.adjust_window_size_when_changing_font_size = false
+config.adjust_window_size_when_changing_font_size = true
 
 -- Equivalent to POSIX basename(3)
 -- Given "/foo/bar" returns "bar"
 -- Given "c:\\foo\\bar" returns "bar"
 local function basename(s)
   return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+local function get_font_adjust_action(direction, event_unique_id)
+  local event_name = "alter-font-size-nomod"..tostring(direction)..event_unique_id
+  wezterm.on(event_name, function(window, pane)
+    local is_alt_screen_mode = pane:is_alt_screen_active()
+    if is_alt_screen_mode then
+      wezterm.log_info(direction > 0 and
+        "Increasing font-size nomod" or
+        "Decreasing font-size nomod"
+      )
+    end
+    if is_alt_screen_mode then
+      wezterm.log_error("Font adjustment triggered in alt-screen")
+      return
+    end
+    font_adjustments = font_adjustments + direction
+    window:perform_action(direction > 0 and
+      action.IncreaseFontSize or action.DecreaseFontSize,
+      pane
+    )
+  end)
+  return action.EmitEvent(event_name)
 end
 
 local function get_mouse_scroll_binding_action(direction, event_unique_id)
@@ -65,6 +92,7 @@ local function get_mouse_scroll_binding_action(direction, event_unique_id)
       wezterm.log_info("Scrolling by current event wheel delta")
     end
     if is_alt_screen_mode then
+      font_adjustments = font_adjustments + direction
       window:perform_action(direction > 0 and
         action.IncreaseFontSize or action.DecreaseFontSize,
         pane
@@ -90,12 +118,12 @@ config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = { WheelUp = 1 } } },
     mods = "CTRL",
-    action = action.DecreaseFontSize,
+    action = get_font_adjust_action(1, "user_defined")
   },
   {
     event = { Down = { streak = 1, button = { WheelDown = 1 } } },
     mods = "CTRL",
-    action = action.IncreaseFontSize
+    action = get_font_adjust_action(-1, "user_defined")
   },
 }
 
@@ -226,19 +254,34 @@ wezterm.on("gui-startup", function(cmd)
     os.execute("mkdir " .. cache_dir)
   end
   local pane_exe = basename(cmd and cmd.args[1] or "cmd.exe")
+  local is_alt_screen_mode = pane_exe ~= "cmd.exe"
   local window_size_cache_file = io.open(
-    get_window_size_cache_path(pane_exe),
+    get_window_size_cache_path(is_alt_screen_mode and "alt" or "normal"),
     "r"
   )
   if window_size_cache_file ~= nil then
-    local _, _, width, height = string.find(window_size_cache_file:read(), "(%d+),(%d+)")
-    if cmd == nil then
-      cmd = {width = tonumber(width), height = tonumber(height)}
-    else
-      cmd.width = tonumber(width)
-      cmd.height = tonumber(height)
+    local _, _, cols, rows, adjustments = string.find(window_size_cache_file:read(), "(%d+),(%d+),(%d+)")
+    if cols == 0 or rows == 0 then
+      window_size_cache_file:close()
+      return
     end
-    mux.spawn_window(cmd)
+    font_adjustments = math.floor(tonumber(adjustments) or 0)
+    if cmd == nil then
+      cmd = {width = tonumber(cols), height = tonumber(rows)}
+    else
+      cmd.width = tonumber(cols)
+      cmd.height = tonumber(rows)
+    end
+    local _, pane, window = mux.spawn_window(cmd)
+    for _=0,math.abs(font_adjustments),1 do
+      (window:gui_window()):perform_action(font_adjustments > 0 and
+        action.IncreaseFontSize or action.DecreaseFontSize,
+        pane
+      )
+    end
+    -- adjust_window_size_when_changing_font_size needs to have a different initial value
+    -- compared with key/mousebinds in order to get the expected window dimensions.
+    window:gui_window():set_config_overrides{adjust_window_size_when_changing_font_size = false}
     window_size_cache_file:close()
   end
 end)
@@ -255,17 +298,18 @@ wezterm.on("window-resized", function(window, pane)
   then
     return
   end
-  local tab_size = pane:tab():get_size()
+  local tab_size = pane:get_dimensions()
   local cols = tab_size["cols"]
-  local rows = tab_size["rows"]
+  local rows = tab_size["viewport_rows"]
   local info = pane:get_foreground_process_info()
   local pane_exe = basename(info.executable)
+  local is_alt_screen_mode = pane:is_alt_screen_active()
   local window_size_cache_file = io.open(
-    get_window_size_cache_path(pane_exe),
+    get_window_size_cache_path(is_alt_screen_mode and "alt" or "normal"),
     "w"
   )
   if window_size_cache_file ~= nil then
-    local contents = string.format("%d,%d", cols, rows)
+    local contents = string.format("%d,%d,%d", cols, rows, font_adjustments)
     window_size_cache_file:write(contents)
     window_size_cache_file:close()
   end
