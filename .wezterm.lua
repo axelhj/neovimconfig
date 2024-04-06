@@ -55,12 +55,15 @@ end
 local function get_mouse_scroll_binding_action(direction, event_unique_id)
   local event_name = "alter-font-size"..tostring(direction)..event_unique_id
   wezterm.on(event_name, function(window, pane)
-    wezterm.log_info(direction > 0 and
-      "Increasing font-size" or
-      "Decreasing font-size"
-    )
-    local info = pane:get_foreground_process_info()
     local is_alt_screen_mode = pane:is_alt_screen_active()
+    if is_alt_screen_mode then
+      wezterm.log_info(direction > 0 and
+        "Increasing font-size" or
+        "Decreasing font-size"
+      )
+    else
+      wezterm.log_info("Scrolling by current event wheel delta")
+    end
     if is_alt_screen_mode then
       window:perform_action(direction > 0 and
         action.IncreaseFontSize or action.DecreaseFontSize,
@@ -222,7 +225,7 @@ wezterm.on("gui-startup", function(cmd)
   if not exists(cache_dir) then
     os.execute("mkdir " .. cache_dir)
   end
-  local pane_exe = basename(cmd.args[1])
+  local pane_exe = basename(cmd and cmd.args[1] or "cmd.exe")
   local window_size_cache_file = io.open(
     get_window_size_cache_path(pane_exe),
     "r"
