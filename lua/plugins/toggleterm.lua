@@ -5,10 +5,10 @@ return {
   version = "*",
   keys = {
     -- Toggleterm without switching tabs if already open.
-    { "<Leader>t", toggle_term, mode = "n", { desc = "Toggle [ t]erm", silent = true } },
+    { "<Leader>t", toggle_term, mode = "n", { desc = "Toggle [ t]erm", expr = true, silent = true } },
     -- Toggleterm without switching tabs if already open, secondary mappings.
-    {"<C-Cr>", toggle_term, mode = "n", { desc = "Toggle term [<C-Cr>]", silent = true } },
-    {"<C-Cr>", toggle_term, mode = "t", { desc = "Toggle term [<C-Cr>]", silent = true } },
+    {"<C-Cr>", toggle_term, mode = "n", { desc = "Toggle term [<C-Cr>]", expr = true, silent = true } },
+    {"<C-Cr>", toggle_term, mode = "t", { desc = "Toggle term [<C-Cr>]", expr = true, silent = true } },
   },
   opts = {
     open_mapping = false,

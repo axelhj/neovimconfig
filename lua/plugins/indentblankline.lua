@@ -7,7 +7,7 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
   module = "ibl",
-  event = { "UIEnter", },
+  event = { "VeryLazy", },
   config = function(spec)
     require"plugins.hhcolortheme".custom_set_highlights()
     require"ibl".setup(spec.opts)
@@ -18,7 +18,7 @@ return {
     },
     indent = {
       highlight = highlights,
-      char = " ",
+      char = "•",
     },
     whitespace = {
       highlight = highlights,
