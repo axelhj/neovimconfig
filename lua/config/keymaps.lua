@@ -106,7 +106,7 @@ function M.set_keymaps()
     { expr = true, silent = true }
   )
 
-  -- Toggle terminal in current buffer.
+  -- Open terminal in current buffer.
   vim.keymap.set({ "n", "v" }, "<Leader>gtt", ":terminal<CR>",
     { silent = true, desc = "Open a terminal program in the current buffer" })
 
@@ -123,6 +123,14 @@ function M.set_keymaps()
   -- Copy/paste related keymaps - * register.
   vim.keymap.set({ "n", "v" }, "<C-v>", "\"*p",
     { silent = true, desc = "Desktop style paste shortcut at location" }
+  )
+
+  -- Replace C-v (block visual) mapping
+  vim.keymap.set({ "n" }, "<M-v>", "<C-v>", {
+      silent = true,
+      noremap = true,
+      desc = "Desktop style paste shortcut at location"
+    }
   )
 
   vim.keymap.set({ "n", "v" }, "<C-S-v>", "\"*P",
