@@ -47,7 +47,7 @@ function M.set_keymaps()
     desc = "Go to [p]revious quickfix list item (:cprev)"
   })
 
-  vim.keymap.set("n", "<Leader>qc", function()
+  vim.keymap.set("n", "<Leader>cx", function()
       if vim.bo.buftype == "quickfix" then
         replace_termcodes(":silent cclose<Cr>")
       else
@@ -55,7 +55,7 @@ function M.set_keymaps()
       end
     end,
     {
-      desc = "Close quickfix list [qc] (mZ:cclose´Z)"
+      desc = "Close quickfix list [ cx] (mZ:cclose´Z)"
     }
   )
 
