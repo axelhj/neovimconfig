@@ -8,10 +8,13 @@ local function read_tasks()
   return lines
 end
 
-local ok, commands = pcall(read_tasks)
-if not ok then
-  print"Could not read tasksfile from vim.fn.stdpath(\"config\")."
-  return {}
+local function try_read_tasks()
+  local ok, commands = pcall(read_tasks)
+  if not ok then
+    print"Could not read tasksfile from vim.fn.stdpath(\"config\")."
+    return nil
+  end
+  return commands
 end
 
 local function get_cmd(map, n)
@@ -21,6 +24,8 @@ local function get_cmd(map, n)
   -- Need to wrap in function since overseer is not available
   -- at "init" time (when spec is evaluated).
   local function run()
+    local commands = try_read_tasks()
+    if commands == nil then return end
     require"overseer".new_task({
       cmd = { "cmd.exe" },
       args = { "/c", commands[n] },
