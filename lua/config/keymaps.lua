@@ -87,12 +87,6 @@ function M.set_keymaps()
     { desc = "Close all current windows and discard changes [ q]" }
   )
 
-  -- Toggle trouble.
-  vim.keymap.set("n", "<Leader>dt",
-    function() require"trouble".toggle() end,
-    { desc = "Open/Close the Trouble sidebar" }
-  )
-
   -- Lsp management.
   vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
     { desc = "Run LspRestart", silent = true }
