@@ -27,9 +27,19 @@ local function get_cmd(map, n)
     if commands == nil then return end
     require"overseer".new_task({
       cmd = { "cmd.exe" },
+      name = "shell " .. n,
       args = { "/c", commands[n] },
-      components = { { "on_output_quickfix", open = true }, "default" },
-      strategy = "jobstart",
+      components = {
+        "on_exit_set_status",
+      },
+      strategy = {
+        "toggleterm",
+        auto_scroll = true,
+        cwd = vim.api.nvim_command"pwd",
+        on_create = function(term)
+          vim.api.nvim_buf_set_name(term.bufnr, "overseer_term_"..term.bufnr)
+        end,
+      },
     }):start()
   end
   return { map, run, mode = "n" }
