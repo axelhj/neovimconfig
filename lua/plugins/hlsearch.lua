@@ -1,5 +1,6 @@
 return {
   "nvimdev/hlsearch.nvim",
-  module = "hlsearch",
-  event = { "UIEnter", },
+  config = function()
+    require'hlsearch'.setup()
+  end,
 }
