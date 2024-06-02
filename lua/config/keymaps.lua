@@ -55,7 +55,15 @@ function M.set_keymaps()
     { desc = "[W]rite buffer content", silent = true }
   )
 
+  vim.keymap.set("n", "<M-w>", ":w<Cr>",
+    { desc = "[W]rite buffer content", silent = true }
+  )
+
   vim.keymap.set("v", "<C-S-w>", ":w<Cr>",
+    { desc = "[W]rite buffer content", silent = true }
+  )
+
+  vim.keymap.set("v", "<M-w>", ":w<Cr>",
     { desc = "[W]rite buffer content", silent = true }
   )
 
@@ -131,7 +139,15 @@ function M.set_keymaps()
     { silent = true, desc = "Desktop style paste shortcut after location" }
   )
 
+  vim.keymap.set({ "n", "v" }, "<M-v>", "\"*P",
+    { silent = true, desc = "Desktop style paste shortcut after location" }
+  )
+
   vim.keymap.set({ "i" }, "<C-S-v>", "<Esc>\"*pi",
+    { silent = true, desc = "Desktop style paste shortcut at location" }
+  )
+
+  vim.keymap.set({ "i" }, "<M-v>", "<Esc>\"*pi",
     { silent = true, desc = "Desktop style paste shortcut at location" }
   )
 
@@ -139,7 +155,15 @@ function M.set_keymaps()
     { silent = true, desc = "Desktop style copy/yank shortcut" }
   )
 
+  vim.keymap.set({ "n", "v" }, "<M-c>", "\"*y",
+    { silent = true, desc = "Desktop style copy/yank shortcut" }
+  )
+
   vim.keymap.set({ "n", "v" }, "<C-S-x>", "\"*d",
+    { silent = true, desc = "Desktop style cut/delete shortcut" }
+  )
+
+  vim.keymap.set({ "n", "v" }, "<M-x>", "\"*d",
     { silent = true, desc = "Desktop style cut/delete shortcut" }
   )
 
@@ -147,7 +171,15 @@ function M.set_keymaps()
     { silent = true, desc = "Scroll -5" }
   )
 
+  vim.keymap.set({ "n", "v", "i" }, "<M-1>", "5<C-y>",
+    { silent = true, desc = "Scroll -5" }
+  )
+
   vim.keymap.set({ "n", "v", "i" }, "<C-2>", "5<C-e>",
+    { silent = true, desc = "Scroll +5" }
+  )
+
+  vim.keymap.set({ "n", "v", "i" }, "<M-2>", "5<C-e>",
     { silent = true, desc = "Scroll +5" }
   )
 
@@ -155,7 +187,11 @@ function M.set_keymaps()
   -- to vim-rooter.
   local lua_init_location = vim.fn.stdpath("config") .. "/init.lua"
 
-  vim.keymap.set({ "n" }, "<C-S-i>", ":e " .. lua_init_location .. "<Cr>", {
+  vim.keymap.set({ "n" }, "<C-S-e>1", ":e " .. lua_init_location .. "<Cr>", {
+    silent = true, desc = "Edit init.lua"
+  })
+
+  vim.keymap.set({ "n" }, "<M-e>1", ":e " .. lua_init_location .. "<Cr>", {
     silent = true, desc = "Edit init.lua"
   })
 
@@ -182,7 +218,13 @@ function M.set_keymaps()
     bind_focus_next_buffer_for_direction(1),
     { desc = "Switch to next open buffer" }
   )
+
   vim.keymap.set("n", "<C-S-Tab>",
+    bind_focus_next_buffer_for_direction(-1),
+    { desc = "Switch to previous open buffer" }
+  )
+
+  vim.keymap.set("n", "<M-Tab>",
     bind_focus_next_buffer_for_direction(-1),
     { desc = "Switch to previous open buffer" }
   )
@@ -203,6 +245,11 @@ function M.set_keymaps()
   )
 
   vim.keymap.set( "i", "<S-C-Tab>",
+    bind_for_non_neotree_buffer("<Esc>:BufferLineCyclePrev<cr>"),
+    { desc = "Switch to previous open buffer" }
+  )
+
+  vim.keymap.set( "i", "<M-Tab>",
     bind_for_non_neotree_buffer("<Esc>:BufferLineCyclePrev<cr>"),
     { desc = "Switch to previous open buffer" }
   )

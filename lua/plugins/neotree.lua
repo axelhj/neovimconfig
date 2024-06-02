@@ -20,6 +20,7 @@ return {
       width = 50,
       mappings = {
         ["<C-S-h>"] = "close_node",
+        ["<M-h>"] = "close_node",
       },
     },
     filesystem = {
@@ -30,8 +31,11 @@ return {
         mappings = {
           -- Disable fuzzy finder
           ["<C-S-l>"] = "open",
+          ["<M-l>"] = "open",
           ["/"] = "noop",
-          ["?"] = "noop"
+          ["?"] = "noop",
+          ["<C-b>"] = "noop",
+          ["<C-f>"] = "noop",
         }
       },
       bind_to_cwd = true,
