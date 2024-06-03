@@ -1,0 +1,16 @@
+# Put at $APPDATA\alacritty\alacritty.toml
+
+shell = "cmd.exe"
+
+[font]
+normal = { family = "Inconsolata Nerd Font Mono" }
+
+[window]
+dimensions = { columns = 190, lines = 50 }
+position = { x = 120, y = 50 }
+
+[keyboard]
+bindings = [
+  { key = "Tab", mods = "Shift", chars = "\u001B[9;2u"  },
+  { key = "Return", mods = "Shift", chars = "\u001B[13;2u" }
+]
