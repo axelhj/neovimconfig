@@ -1,6 +1,7 @@
 return {
   "axelhj/theme-vim",
   name = "hardhacker",
+  enabled = false,
   event = { "UIEnter" },
   config = function()
     -- Colors does not get applied if loaded after hardhacker

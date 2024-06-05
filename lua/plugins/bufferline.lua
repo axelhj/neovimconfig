@@ -19,6 +19,7 @@ return {
   version = "*",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    'ribru17/bamboo.nvim',
   },
   event = { "VeryLazy" },
   opts =  {
@@ -57,6 +58,7 @@ return {
         },
       },
       separator_style = "slant",
+      style_preset = 2,
       sort_by = function(buffer_a, buffer_b)
         local cpp_ord = order_cpp_ext(buffer_a, buffer_b)
         if cpp_ord ~= nil then
