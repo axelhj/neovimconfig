@@ -49,6 +49,11 @@ return {
       mode = "v",
       desc = "Toggle line comment with Comment.nvim (visual)"
     },
+    {
+      "gb",
+      mode = "v",
+      desc = "Toggle block comment with Comment.nvim (visual)"
+    },
     -- Must be commented to not be interpreted as
     -- gc (comment toggle) followed by c<waiting for motion>
     --[[ {

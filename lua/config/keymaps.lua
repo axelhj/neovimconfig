@@ -80,11 +80,11 @@ function M.set_keymaps()
   )
 
   vim.keymap.set("n", "<Leader>w", ":Bunlink<Cr>",
-    { desc = "Close buffer, open next and keep window (Bd) [ w]" }
+    { desc = "Close buffer, open next and keep window (Bu) [ w]" }
   )
 
-  vim.keymap.set("n", "<Leader>W", ":bd!<Cr>",
-    { desc = "Write buffer and quit (bd!) [ W]" }
+  vim.keymap.set("n", "<Leader>W", ":Bunlink!<Cr>",
+    { desc = "Close  and discard buffer, open next and keep window (:Bu!) [ W]" }
   )
 
   vim.keymap.set("n", "<Leader>T", ":tabclose<Cr>",
