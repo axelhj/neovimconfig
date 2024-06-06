@@ -17,6 +17,7 @@ return {
   },
   cmd = { "Telescope", },
   keys = {
+    { "<Leader><Space>", mode = "n", },
     { "<Leader>fr", mode = "n", },
     { "<Leader>fb", mode = "n", },
     { "<Leader>/", mode = "n", },
@@ -67,15 +68,17 @@ return {
       })
     end, { desc = "Fuzzily search in current buffer [<Leader>/]" })
     vim.keymap.set("n", "<Leader>fig", require("telescope.builtin").git_files, { desc = "[f]ind in [g]it [f]iles" })
-    vim.keymap.set("n", "<Leader>ff", require("telescope.builtin").find_files, { desc = "[f]ind [f]iles" })
+    vim.keymap.set("n", "<Leader>ff", require("telescope.builtin").find_files, { desc = "[f]uzzy [f]ind files" })
+    vim.keymap.set("n", "<Leader><Space>", require("telescope.builtin").find_files, { desc = "[ ][ ] fuzzy find files" })
     vim.keymap.set("n", "<Leader>fh", require("telescope.builtin").help_tags, { desc = "[f]ind [h]elp" })
+    vim.keymap.set("n", "<Leader>fH", require("telescope.builtin").highlights, { desc = "[f]ind [H]highlights" })
     vim.keymap.set("n", "<Leader>fw", require("telescope.builtin").grep_string, { desc = "[f]ind current [w]ord" })
     vim.keymap.set("n", "<Leader>fs", require("telescope.builtin").live_grep, { desc = "[f]ind - [s]earch by grep" })
     vim.keymap.set("n", "<Leader>fg", require("telescope.builtin").live_grep, { desc = "[f]ind - search by [g]rep" })
     vim.keymap.set("n", "<Leader>fd", require("telescope.builtin").diagnostics, { desc = "[f]ind [d]iagnostics" })
     vim.keymap.set("n", "<Leader>r", require("telescope.builtin").resume, { desc = "search - [r]esume" })
     vim.keymap.set("n", "<Leader>sr", require("telescope.builtin").resume, { desc = "[s]earch - [r]esume" })
-    -- This does not actually appear to exist. grep_string is not really applicable here.
+    -- This does not actually appear to exist. grep_string is not really applicable here. Needs custom helper func.
     -- vim.keymap.set("v", "<Leader>fv", require("telescope.builtin").grep_string, { desc = "[f]ind content of [v]isual selection" })
   end
 }
