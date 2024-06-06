@@ -9,9 +9,9 @@ return {
   },
   -- Lazy-init
   keys = {
-    { "F5", mode = "n" },
-    { "F7", mode = "n" },
-    { "F9", mode = "n" },
+    { "<F5>", mode = "n" },
+    { "<F7>", mode = "n" },
+    { "<F9>", mode = "n" },
     { "<Leader>bb", mode = "n" },
     { "<Leader>B", mode = "n" },
   },

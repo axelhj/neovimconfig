@@ -3,10 +3,10 @@
 shell = "cmd.exe"
 
 [font]
-normal = { family = "Inconsolata Nerd Font Mono" }
+normal = { family = "IntoneMono NFM" }
 
 [window]
-dimensions = { columns = 190, lines = 50 }
+dimensions = { columns = 160, lines = 38 }
 position = { x = 120, y = 50 }
 
 [keyboard]

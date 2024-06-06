@@ -102,7 +102,7 @@ function M.set_options()
     vim.keymap.set({ "n", "v" }, "<C-ScrollWheelUp>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
     vim.keymap.set({ "n", "v" }, "<C-ScrollWheelDown>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
   else
-    vim.o.guifont = "Inconsolata Nerd Font Mono:h9"
+    vim.o.guifont = "IntoneMono NFM:h9"
   end
 
   -- Setting that is useful for sending proper path separators to netcoredbg.

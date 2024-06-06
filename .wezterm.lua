@@ -26,7 +26,7 @@ local config = wezterm.config_builder()
 -- config.color_scheme = "AdventureTime"
 
 -- Switching from default causes text and the dot of
--- i to appear sharper with Inconsolata Mono.
+-- i to appear sharper with IntoneMono NFM.
 config.freetype_load_flags = "FORCE_AUTOHINT"
 
 config.freetype_load_target = "Light"
@@ -39,7 +39,7 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.window_close_confirmation = "NeverPrompt"
 
-config.font = wezterm.font "Inconsolata Nerd Font Mono"
+config.font = wezterm.font "IntoneMono NFM"
 
 config.font_size = default_font_size
 
