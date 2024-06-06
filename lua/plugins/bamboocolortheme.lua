@@ -25,8 +25,11 @@ return {
     vim.api.nvim_set_hl(0, "SpecialText", {
       fg = "#dadac2",
     })
+    -- This applies to bufferline non-active tab aswell
+    -- as any source code comments. Contrast is improved slightly.
+    -- Apparently also used with object literals in lua.
     vim.api.nvim_set_hl(0, "Comment", {
-      fg = "#111111",
+      fg = "#6f4c05",
     })
   end,
 }

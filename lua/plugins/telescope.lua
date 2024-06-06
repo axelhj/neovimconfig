@@ -15,6 +15,7 @@ return {
       end,
     },
   },
+  cmd = { "Telescope", },
   keys = {
     { "<Leader>fr", mode = "n", },
     { "<Leader>fb", mode = "n", },
