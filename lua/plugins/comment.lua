@@ -14,7 +14,7 @@ return {
     }
     require("Comment").setup {
       toggler = {
-        line = "<C-,>",
+        line = "gc",
       },
       pre_hook =
         require("ts_context_commentstring.integrations.comment_nvim")
@@ -23,20 +23,38 @@ return {
   end,
   keys = {
     {
-      "<C-,>",
       "gc",
       mode = "n",
-      desc = "Toggle comment with Comment.nvim"
-    },
-    {
-      "gcc",
-      mode = "n",
-      desc = "Toggle comment with Comment.nvim"
+      desc = "Toggle comment (line) with Comment.nvim (motion)"
     },
     {
       "gc",
       mode = "v",
-      desc = "Toggle comment with Comment.nvim (visual)"
+      desc = "Toggle comment (line) with Comment.nvim (visual)"
+    },
+    {
+      "<C-,>",
+      "gc",
+      mode = "v",
+      desc = "Toggle comment (line) with Comment.nvim (visual)"
+    },
+    {
+      "<M-,>",
+      "gc",
+      mode = "v",
+      desc = "Toggle comment (line) with Comment.nvim (visual)"
+    },
+    {
+      "<C-,>",
+      "gcc",
+      mode = "n",
+      desc = "Toggle comment (line) with Comment.nvim"
+    },
+    {
+      "<M-,>",
+      "gcc",
+      mode = "n",
+      desc = "Toggle comment (line) with Comment.nvim"
     },
     {
       "gc",
@@ -46,7 +64,7 @@ return {
     {
       "gbc",
       mode = "n",
-      desc = "Toggle block comment with Comment.nvim (motions)"
+      desc = "Toggle block comment with Comment.nvim"
     },
     {
       "gb",
