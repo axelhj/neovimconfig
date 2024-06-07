@@ -81,7 +81,11 @@ return {
       local setupOptions = {
         on_attach = on_attach,
         capabilities = capabilities,
-        settings = setup.settings,
+        settings = setup.settings or {},
+        flags = {
+          -- Minimize LSP work
+          debounce_text_changes = 3500,
+        },
         filetypes = filetypes[lsp],
       }
       if setup.options then
