@@ -13,22 +13,15 @@ end
 
 function M.set_keymaps()
   local replace_termcodes = require"semiplugins.feedkeys".replace_termcodes
-  local replace_termcodes_async = require"semiplugins.feedkeys".replace_termcodes_async
 
   -- Vimgrep - Ripgrep
-  vim.keymap.set("v", "<Leader>sf", function()
+  vim.keymap.set("v", "<Leader>fv", function()
     local buf_name = vim.fn.expand("%"):gsub("%\\", "."):gsub("%/", ".")
     replace_termcodes("y:silent grep! <C-r>\"<Cr>:copen<Cr>/" .. buf_name .. "<Cr>", false)
     local yank_contents = vim.fn.getreg("\"")
     replace_termcodes("/" .. yank_contents .. "<Cr>", false)
   end, {
     desc = "Search in files with ripgrep in visual"
-  })
-
-  vim.keymap.set("n", "<Leader>sf", function()
-    replace_termcodes_async(":silent grep \"")
-  end, {
-    desc = "Search in files with ripgrep"
   })
 
   -- Quickfix list

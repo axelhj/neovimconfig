@@ -8,6 +8,19 @@ return {
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
     "folke/neodev.nvim",
   },
+  enabled = false,
+  keys= {
+    { "<Leader>fi", desc = "Telescope [f]ind lsp [i]mplementation", },
+    { "<Leader>fr", desc = "Telescope [f]ind lsp [r]eferences", },
+    { "<Leader>fs", desc = "Telescope [f]ind lsp document [s]ymbols", },
+    { "<Leader>fS", desc = "Telescope [f]ind lsp workspace [S]ymbols", },
+    { "gd", desc = "[g]oto [d]efinition" },
+    { "gD", desc = "[g]oto [D]eclaration" },
+    { "gDt", desc = "[g]oto [D]efinition of [t]ype" },
+    { "gi", desc = "Goto [i]mplementation" },
+    { "<leader>gd", "[g]oto [D]eclaration" },
+    { "<leader>gt", "[g]oto [t]ype-definition" },
+  },
   config = function()
     local on_attach = function(_, bufnr)
       local modemap = function(mode, keys, func, desc)
@@ -22,18 +35,16 @@ return {
 
       nmap("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
       nmap("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
-      nmap("gDt", vim.lsp.buf.type_definition, "[g]oto [D]efinition of [t]ype")
       nmap("gi", require("telescope.builtin").lsp_implementations, "Goto [i]mplementation")
 
-      nmap("<leader>gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-      nmap("<leader>gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
-      nmap("<leader>gDt", vim.lsp.buf.type_definition, "[g]oto [D]efinition of [t]ype")
-      nmap("<leader>gi", require("telescope.builtin").lsp_implementations, "Goto [i]mplementation")
-      nmap("<leader>vr", require("telescope.builtin").lsp_references, "[v]iew [r]eferences")
-      nmap("<leader>s", require("telescope.builtin").lsp_document_symbols, "Document [s]ymbols")
-      nmap("<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace [S]ymbols")
+      nmap("<leader>gd", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
+      nmap("<leader>gty", vim.lsp.buf.type_definition, "[g]oto [ty]pe-definition")
+      nmap("<leader>fi", require("telescope.builtin").lsp_implementations, "Find [i]mplementations")
+      nmap("<leader>fr", require("telescope.builtin").lsp_references, "[f]ind [r]eferences")
+      nmap("<leader>fs", require("telescope.builtin").lsp_document_symbols, "[f]ind document [s]ymbols")
+      nmap("<leader>fS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[f]ind workspace [S]ymbols")
 
-      nmap("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame float")
+      nmap("<leader>vr", vim.lsp.buf.rename, "[v]iew [r]ename float")
       nmap("<leader>va", vim.lsp.buf.code_action, "[v]iew code [a]ctions")
 
       nmap("K", vim.lsp.buf.hover, "[K] Hover Documentation")
