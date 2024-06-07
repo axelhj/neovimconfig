@@ -92,7 +92,16 @@ function M.set_keymaps()
   )
 
   vim.keymap.set("n", "<Leader>q", ":qa<Cr>",
-    { desc = "Close all current windows and discard changes [ q]" }
+    { desc = "Close all current windows (quit) [ q]" }
+  )
+
+  -- Emergency hatch; cancel shutdown within timeout by overriding
+  -- with escape- or q-key.
+  vim.keymap.set("n", "<Leader>q<Esc>", "<Cmd>silent echo <Cr>",
+    { desc = "Abort close all current windows (quit) [ q<Esc>]" }
+  )
+  vim.keymap.set("n", "<Leader>qq", "<Cmd>silent echo \"Do nothing\"<Cr>",
+    { desc = "Abort close all current windows (quit) [ q<Esc>]" }
   )
 
   -- Lsp management.
