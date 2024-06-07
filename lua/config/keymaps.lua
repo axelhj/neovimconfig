@@ -204,13 +204,17 @@ function M.set_keymaps()
     silent = true, desc = "Edit init.lua"
   })
 
-  -- Switch active windows by [C-h/j/k/l]. Wrap around the edges.
+  -- Switch active windows by [C-h/j/k/l or M-h/j/k/l]. Wrap around the edges.
   local opts = { silent = true, noremap = true, desc = "Switch window/split" }
 
   vim.keymap.set("n", "<C-h>", jump_window_with_wrap("h", "l"), opts)
+  vim.keymap.set("n", "<M-h>", jump_window_with_wrap("h", "l"), opts)
   vim.keymap.set("n", "<C-l>", jump_window_with_wrap("l", "h"), opts)
+  vim.keymap.set("n", "<M-l>", jump_window_with_wrap("l", "h"), opts)
   vim.keymap.set("n", "<C-j>", jump_window_with_wrap("j", "k"), opts)
+  vim.keymap.set("n", "<M-j>", jump_window_with_wrap("j", "k"), opts)
   vim.keymap.set("n", "<C-k>", jump_window_with_wrap("k", "j"), opts)
+  vim.keymap.set("n", "<M-k>", jump_window_with_wrap("k", "j"), opts)
 
   -- Switch buffers quickly
   vim.keymap.set("n", "<Tab>",
