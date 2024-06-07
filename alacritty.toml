@@ -4,6 +4,7 @@ shell = "cmd.exe"
 
 [font]
 normal = { family = "IntoneMono NFM" }
+size = 9.5
 
 [window]
 dimensions = { columns = 160, lines = 38 }
