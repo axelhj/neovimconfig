@@ -5,7 +5,7 @@ echo ########## build neovim for Windows ##########
 if "%~1" == "" (set neovim_root=%USERPROFILE%\code\neovim) else (set neovim_root=%1)
 if "%~2" == "" (set fetch_depth=10) else (set fetch_depth=%2)
 if "%~3" == "" (set msys2_loc=c:\msys64\mingw64\bin;c:\msys64\usr\bin) else (set msys2_loc=%3)
-if "%~4" == "" (set install_loc="C:\Program files\Neovim") else (set install_loc=%4)
+if "%~4" == "" (set install_loc="C:\Program Files\Neovim") else (set install_loc=%4)
 if "%~5" == "" (set clean_build=) else (set clean_build=%5)
 echo arg 1 neovim_root               %neovim_root%
 echo arg 2 fetch_depth               %fetch_depth%
@@ -34,7 +34,7 @@ echo ########## nvim BUILD               ##########
 cmake --build build
 echo.
 echo ########## install nvim UAC INSTALL ##########
-powershell -c Start-Process cmd.exe -Verb runAs -Wait -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%&ninja -C build install"'
+powershell -c Start-Process cmd.exe -Verb runAs -Wait -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%;%PATH%&ninja -C build install"'
 cd %oldcwd%
 echo.
 echo ########## BUILD ^& INSTALL COMPLETE ##########
