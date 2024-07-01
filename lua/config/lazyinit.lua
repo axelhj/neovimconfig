@@ -21,6 +21,9 @@ function M.init_lazy()
       enabled = false,
       notify = false,
     },
+    git = {
+      url_format = "git@github.com:%s.git",
+    },
     performance = {
       -- Supposedly the very fastest mode of operation (default):
       cache = { enabled = true, },
