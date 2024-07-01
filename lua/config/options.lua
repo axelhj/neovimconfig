@@ -9,8 +9,12 @@ function M.set_options()
   vim.o.hlsearch = true
   vim.o.incsearch = true
 
+  -- Switch to new split - left and right
+  vim.o.splitright = true
+  vim.o.splitbelow = true
+
   -- Make line numbers default
-  vim.wo.number = true
+  vim.o.number = true
 
   -- Enable mouse mode
   vim.o.mouse = "a"
