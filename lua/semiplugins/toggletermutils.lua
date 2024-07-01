@@ -12,7 +12,12 @@ function M.toggle_term()
   else
     vim.cmd(":ToggleTerm")
   end
-  if should_restore_mark then replace_termcodes(tabpagenr.."gt`T") end
+  if should_restore_mark then
+    replace_termcodes(tabpagenr.."gt`T")
+  else
+    -- Toggleterm was opened
+    replace_termcodes("<C-w>K")
+  end
 end
 
 return M
