@@ -52,6 +52,22 @@ function M.set_autocommands()
     callback = require"semiplugins.neotreeutils".neo_tree_popup_ftplugin,
     group = "neo_tree_popup",
   })
+
+  -- Autocommand to enable workaround so that terminal splits
+  -- don't grow when a window underneath (qf) is closed.
+  vim.api.nvim_create_augroup("toggleterm_resize", { clear = true })
+  vim.api.nvim_create_autocmd({ "WinClosed" }, {
+    pattern = "*",
+    callback = function()
+      local timer = vim.loop.new_timer()
+      timer:start(60, 0, vim.schedule_wrap(
+        function()
+          require"semiplugins.terminal".terminal_resize_horizontal(12)
+        end
+      ))
+    end,
+    group = "toggleterm_resize",
+  })
 end
 
 return M
