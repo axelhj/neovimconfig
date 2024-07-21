@@ -27,44 +27,44 @@ function M.set_keymaps()
   -- Quickfix list
   vim.keymap.set("n", "<Leader>c", function()
     local buf_name = vim.fn.expand("%"):gsub("%\\", "."):gsub("%/", ".")
-    replace_termcodes(":copen<Cr>/" .. buf_name .. "<Cr>")
+    replace_termcodes("<Cmd>copen<Cr>/" .. buf_name .. "<Cr>")
   end, {
     desc = "Open the quickfix list (:copen/bufname)"
   })
 
-  vim.keymap.set("n", "<Leader>j", ":cnext<Cr>",  {
+  vim.keymap.set("n", "<Leader>j", "<Cmd>cnext<Cr>",  {
     desc = "Go to [n]ext quickfix list item (:cnext)"
   })
 
-  vim.keymap.set("n", "<Leader>k", ":cprevious<Cr>", {
+  vim.keymap.set("n", "<Leader>k", "<Cmd>cprevious<Cr>", {
     desc = "Go to [p]revious quickfix list item (:cprev)"
   })
 
   vim.keymap.set("n", "<Leader>cx", function()
       if vim.bo.buftype == "quickfix" then
-        replace_termcodes(":silent cclose<Cr>")
+        replace_termcodes("<Cmd>silent cclose<Cr>")
       else
-        replace_termcodes("mZ:silent cclose<Cr>`Z")
+        replace_termcodes("mZ<Cmd>silent cclose<Cr>`Z")
       end
     end,
     {
-      desc = "Close quickfix list [ cx] (mZ:cclose´Z)"
+      desc = "Close quickfix list [ cx] (mZ<Cmd>cclose´Z)"
     }
   )
 
   -- Location list
   vim.keymap.set("n", "<Leader>l", function()
   local buf_name = vim.fn.expand("%"):gsub("%\\", "."):gsub("%/", ".")
-    replace_termcodes(":lopen<Cr>/" .. buf_name .. "<Cr>", false)
+    replace_termcodes("<Cmd>lopen<Cr>/" .. buf_name .. "<Cr>", false)
   end, {
     desc = "Open the [l]ocation list (:lopen/bufname)"
   })
 
-  vim.keymap.set("n", "<Leader>n", ":lnext<Cr>",  {
+  vim.keymap.set("n", "<Leader>n", "<Cmd>lnext<Cr>",  {
     desc = "Go to [n]ext location list item (:lnext)"
   })
 
-  vim.keymap.set("n", "<Leader>p", ":lprevious<Cr>", {
+  vim.keymap.set("n", "<Leader>p", "<Cmd>lprevious<Cr>", {
     desc = "Go to [p]revious location list item (:lprev)"
   })
 

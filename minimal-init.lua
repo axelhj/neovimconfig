@@ -45,7 +45,7 @@ require("lazy").setup({
     version = "*",
     keys = {
       -- Toggleterm auto-switches tabs if already open in another.
-      { "<Leader>t", ":ToggleTerm<Cr>", mode = "n", { desc = "Toggle [ t]erm", silent = true } },
+      { "<Leader>t", "<Cmd>ToggleTerm<Cr>", mode = "n", { desc = "Toggle [ t]erm", silent = true } },
       -- Toggleterm without switching tabs if already open in another.
       { "<C-Cr>", toggle_term, mode = "n", { desc = "Toggle term", silent = true } }
     },

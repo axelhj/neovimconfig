@@ -3,7 +3,7 @@ return {
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
-  build = ":TSUpdate",
+  build = "<Cmd>TSUpdate",
   event = { "VeryLazy", "BufWinEnter", },
   lazy = true,
   init = function(plugin)

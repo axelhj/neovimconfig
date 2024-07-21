@@ -12,7 +12,7 @@ function M.set_keymaps()
       if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
         replace_termcodes("<Cr>", false)
       else
-        replace_termcodes(":Neotree reveal<Cr>", false)
+        replace_termcodes("<Cmd>Neotree reveal<Cr>", false)
         local timer = vim.loop.new_timer()
         -- Timer is necessary because the maps are added after the popup is created
         timer:start(100, 0, vim.schedule_wrap(
@@ -34,7 +34,7 @@ function M.set_keymaps()
       if vim.bo.filetype == "qf" or vim.bo.filetype == "" then
         replace_termcodes("<S-Cr>", false)
       else
-        replace_termcodes(":Neotree reveal<Cr>", false)
+        replace_termcodes("<Cmd>Neotree reveal<Cr>", false)
         local timer = vim.loop.new_timer()
         -- Timer is necessary because the maps are added after the popup is created
         timer:start(100, 0, vim.schedule_wrap(
@@ -51,51 +51,55 @@ function M.set_keymaps()
   )
 
   -- Tab, buffer & window-management related shortcuts.
-  vim.keymap.set("n", "<C-S-w>", ":w<Cr>",
+  vim.keymap.set("n", "<C-S-w>", "<Cmd>w<Cr>",
     { desc = "[W]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("n", "<M-w>", ":w<Cr>",
+  vim.keymap.set("n", "<M-w>", "<Cmd>w<Cr>",
     { desc = "[W]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("v", "<C-S-w>", ":w<Cr>",
+  vim.keymap.set("v", "<C-S-w>", "<Cmd>w<Cr>",
     { desc = "[W]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("v", "<M-w>", ":w<Cr>",
+  vim.keymap.set("v", "<M-w>", "<Cmd>w<Cr>",
     { desc = "[W]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("n", "<Leader>gbn", ":enew<Cr>",
+  vim.keymap.set("i", "<M-w>", "<Cmd>w<Cr>",
+    { desc = "[W]rite buffer content", silent = true }
+  )
+
+  vim.keymap.set("n", "<Leader>gbn", "<Cmd>enew<Cr>",
     { desc = "Edit new buffer [ gbn]", silent = true }
   )
 
-  vim.keymap.set("n", "<Leader>gtn", ":tabnew<Cr>",
+  vim.keymap.set("n", "<Leader>gtn", "<Cmd>tabnew<Cr>",
     { desc = "Add tab [ gtn]", silent = true }
   )
 
-  vim.keymap.set("n", "<Leader>gtd", ":tabclose<Cr>",
+  vim.keymap.set("n", "<Leader>gtd", "<Cmd>tabclose<Cr>",
     { desc = "Close tab [ gtd]", silent = true }
   )
 
-  vim.keymap.set("n", "<Leader>w", ":Bunlink<Cr>",
+  vim.keymap.set("n", "<Leader>w", "<Cmd>Bunlink<Cr>",
     { desc = "Close buffer, open next and keep window (Bu) [ w]" }
   )
 
-  vim.keymap.set("n", "<Leader>W", ":Bunlink!<Cr>",
+  vim.keymap.set("n", "<Leader>W", "<Cmd>Bunlink!<Cr>",
     { desc = "Close  and discard buffer, open next and keep window (:Bu!) [ W]" }
   )
 
-  vim.keymap.set("n", "vx", ":Bunlink!<Cr>",
+  vim.keymap.set("n", "vx", "<Cmd>Bunlink!<Cr>",
     { desc = "Close  and discard buffer, open next and keep window (:Bu!) [ W]" }
   )
 
-  vim.keymap.set("n", "<Leader>T", ":tabclose<Cr>",
+  vim.keymap.set("n", "<Leader>T", "<Cmd>tabclose<Cr>",
     { desc = "Close current [ T]tab" }
   )
 
-  vim.keymap.set("n", "<Leader>q", ":qa<Cr>",
+  vim.keymap.set("n", "<Leader>q", "<Cmd>qa<Cr>",
     { desc = "Close all current windows (quit) [ q]" }
   )
 
@@ -109,7 +113,7 @@ function M.set_keymaps()
   )
 
   -- Lsp management.
-  vim.keymap.set("n", "<Leader>-", ":LspRestart<Cr>",
+  vim.keymap.set("n", "<Leader>-", "<Cmd>LspRestart<Cr>",
     { desc = "Run LspRestart", silent = true }
   )
 
@@ -122,7 +126,7 @@ function M.set_keymaps()
   )
 
   -- Open terminal in current buffer.
-  vim.keymap.set({ "n", "v" }, "<Leader>gtt", ":terminal<CR>",
+  vim.keymap.set({ "n", "v" }, "<Leader>gtt", "<Cmd>terminal<CR>",
     { silent = true, desc = "Open a terminal program in the current buffer" })
 
   -- Be able to leave input mode of terminal - applies with toggleterm too.
@@ -200,11 +204,11 @@ function M.set_keymaps()
   -- to vim-rooter.
   local lua_init_location = vim.fn.stdpath("config") .. "/init.lua"
 
-  vim.keymap.set({ "n" }, "<C-S-e>1", ":e " .. lua_init_location .. "<Cr>", {
+  vim.keymap.set({ "n" }, "<C-S-e>1", "<Cmd>e " .. lua_init_location .. "<Cr>", {
     silent = true, desc = "Edit init.lua"
   })
 
-  vim.keymap.set({ "n" }, "<M-e>1", ":e " .. lua_init_location .. "<Cr>", {
+  vim.keymap.set({ "n" }, "<M-e>1", "<Cmd>e " .. lua_init_location .. "<Cr>", {
     silent = true, desc = "Edit init.lua"
   })
 
@@ -257,17 +261,17 @@ function M.set_keymaps()
   )
 
   vim.keymap.set( "i", "<C-Tab>",
-    bind_for_non_neotree_buffer("<Esc>:BufferLineCycleNext<cr>"),
+    bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCycleNext<Cr>"),
     { desc = "Switch to next open buffer" }
   )
 
   vim.keymap.set( "i", "<S-C-Tab>",
-    bind_for_non_neotree_buffer("<Esc>:BufferLineCyclePrev<cr>"),
+    bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
     { desc = "Switch to previous open buffer" }
   )
 
   vim.keymap.set( "i", "<M-Tab>",
-    bind_for_non_neotree_buffer("<Esc>:BufferLineCyclePrev<cr>"),
+    bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
     { desc = "Switch to previous open buffer" }
   )
 end

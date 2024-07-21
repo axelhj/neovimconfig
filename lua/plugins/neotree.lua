@@ -9,7 +9,7 @@ return {
   keys = {
     {
       "\\",
-      ":Neotree reveal_force_cwd toggle<cr>",
+      "<Cmd>Neotree reveal_force_cwd toggle<Cr>",
       mode = "n",
       desc = "Toggle neotree (reveal cwd)"
     },
