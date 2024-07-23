@@ -99,8 +99,8 @@ function M.set_keymaps()
     { desc = "Close current [ T]tab" }
   )
 
-  vim.keymap.set("n", "<Leader>q", "<Cmd>qa<Cr>",
-    { desc = "Close all current windows (quit) [ q]" }
+  vim.keymap.set("n", "<Leader>q", "<Cmd>SaveSessionAndQuitNeovim<Cr>",
+    { desc = "Quit Neovim pending session-save (quit) [ q]" }
   )
 
   -- Emergency hatch; cancel shutdown within timeout by overriding
