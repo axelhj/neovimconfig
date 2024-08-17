@@ -57,12 +57,14 @@ function M.set_autocommands()
   -- don't grow when a window underneath (qf) is closed.
   vim.api.nvim_create_augroup("toggleterm_resize", { clear = true })
   vim.api.nvim_create_autocmd({ "WinClosed" }, {
-    pattern = "*",
-    callback = function()
+    callback = function(event)
+      if vim.bo[0].buftype ~= "quickfix" then
+        return
+      end
       local timer = vim.loop.new_timer()
-      timer:start(60, 0, vim.schedule_wrap(
+      timer:start(30, 0, vim.schedule_wrap(
         function()
-          require"semiplugins.terminal".terminal_resize_horizontal(12)
+          require"semiplugins.terminal".terminal_resize_horizontal(14)
         end
       ))
     end,
