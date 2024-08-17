@@ -67,7 +67,7 @@ function M.set_keymaps()
     { desc = "[W]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("i", "<M-w>", "<Cmd>w<Cr>",
+  vim.keymap.set("i", "<M-w>", "<Cmd>w<Cr><Esc>",
     { desc = "[W]rite buffer content", silent = true }
   )
 

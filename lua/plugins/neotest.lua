@@ -5,6 +5,9 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "Issafalcon/neotest-dotnet",
   },
+  cmd = {
+    "Neotest"
+  },
   keys = {
     {
       "<Leader>etd", function() require("neotest").run.run({strategy = "dap"}) end,
