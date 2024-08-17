@@ -3,17 +3,17 @@ local servers = require("config.lspservers").servers
 
 return {
   "neovim/nvim-lspconfig",
-  event = { "VeryLazy", },
+  event = { "VeryLazy" },
   dependencies = {
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
     "folke/neodev.nvim",
   },
   enabled = false,
   keys= {
-    { "<Leader>fi", desc = "Telescope [f]ind lsp [i]mplementation", },
-    { "<Leader>fr", desc = "Telescope [f]ind lsp [r]eferences", },
-    { "<Leader>fs", desc = "Telescope [f]ind lsp document [s]ymbols", },
-    { "<Leader>fS", desc = "Telescope [f]ind lsp workspace [S]ymbols", },
+    { "<Leader>fi", desc = "Telescope [f]ind lsp [i]mplementation" },
+    { "<Leader>fr", desc = "Telescope [f]ind lsp [r]eferences" },
+    { "<Leader>fs", desc = "Telescope [f]ind lsp document [s]ymbols" },
+    { "<Leader>fS", desc = "Telescope [f]ind lsp workspace [S]ymbols" },
     { "gd", desc = "[g]oto [d]efinition" },
     { "gD", desc = "[g]oto [D]eclaration" },
     { "gDt", desc = "[g]oto [D]efinition of [t]ype" },

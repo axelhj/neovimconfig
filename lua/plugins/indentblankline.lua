@@ -7,7 +7,7 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
   module = "ibl",
-  event = { "VeryLazy", },
+  event = { "VeryLazy" },
   config = function(spec)
     -- require"plugins.hhcolortheme".custom_set_highlights()
     require"plugins.bamboocolortheme".custom_set_highlights()

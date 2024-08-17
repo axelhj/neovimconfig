@@ -1,6 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
-  event = { "VeryLazy", },
+  event = { "VeryLazy" },
   opts = {
     options = {
       theme = "auto",
