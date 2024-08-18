@@ -6,10 +6,10 @@ args = [ "/C", "cd %USERPROFILE%&cmd.exe" ]
 
 [font]
 normal = { family = "IntoneMono NFM" }
-size = 9.8
+size = 8.1
 
 [window]
-dimensions = { columns = 160, lines = 38 }
+dimensions = { columns = 210, lines = 48 }
 position = { x = 120, y = 50 }
 
 [keyboard]
