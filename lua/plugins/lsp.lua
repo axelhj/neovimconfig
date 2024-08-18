@@ -8,7 +8,6 @@ return {
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
     "folke/neodev.nvim",
   },
-  enabled = false,
   keys= {
     { "<Leader>fi", desc = "Telescope [f]ind lsp [i]mplementation" },
     { "<Leader>fr", desc = "Telescope [f]ind lsp [r]eferences" },
