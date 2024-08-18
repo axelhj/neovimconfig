@@ -27,13 +27,20 @@ return {
     --    local luasnip = require "luasnip"
     --    require("luasnip.loaders.from_vscode").lazy_load()
     --    luasnip.config.setup {}
-
     cmp.setup {
       -- snippet = {
       --   expand = function(args)
       --     luasnip.lsp_expand(args.body)
       --   end,
       -- },
+      completion = {
+        completeopt = 'menu,menuone,noinsert,noselect',
+        autocomplete = {
+          cmp.TriggerEvent.TextChanged,
+          cmp.TriggerEvent.InsertEnter,
+        },
+        keyword_length = 0,
+      },
       mapping = cmp.mapping.preset.insert {
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ["<C-p>"] = cmp.mapping.select_prev_item(),
