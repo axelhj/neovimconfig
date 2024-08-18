@@ -1,14 +1,43 @@
+local ibl_hook_id = nil
+
+local function clear_ibl_hook()
+  local hooks = require "ibl.hooks"
+  if ibl_hook_id ~= nil then
+    hooks.clear(ibl_hook_id)
+    ibl_hook_id = nil
+  end
+end
+
+local function register_ibl_hook()
+  local hooks = require "ibl.hooks"
+  clear_ibl_hook()
+  ibl_hook_id = hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    require("plugins.bamboocolortheme").set_custom_highlights()
+    clear_ibl_hook()
+  end)
+end
+
 return {
   "ribru17/bamboo.nvim",
-  lazy = false,
-  priority = 1000,
   config = function()
-    local bamboo = require("bamboo")
-    bamboo.setup{ style = "light" }
-    bamboo.load()
+    require("bamboo").load()
+    require("bamboo").setup{ style = "light" }
+    vim.api.nvim_create_augroup("bamboo_colorscheme_augroup", { clear = true })
+    vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+      pattern = "bamboo-light",
+      callback = function()
+        register_ibl_hook()
+        require("plugins.bamboocolortheme").set_custom_highlights()
+        local ibl = require"plugins.indentblankline"
+        require"ibl".setup(ibl.opts)
+      end,
+      group = "bamboo_colorscheme_augroup"
+    })
+  end,
+  activate = function()
     vim.cmd"colorscheme bamboo-light"
   end,
-  custom_set_highlights = function()
+  set_custom_highlights = function()
     -- Customize indent guide colors.
     vim.api.nvim_set_hl(0, "IndentGuideBgAlt1", {
       bg = "#fafae0", -- Match Normal-bg

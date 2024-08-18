@@ -1,10 +1,26 @@
+local ibl_hook_id = nil
+
+local function clear_ibl_hook()
+  local hooks = require "ibl.hooks"
+  if ibl_hook_id ~= nil then
+    hooks.clear(ibl_hook_id)
+    ibl_hook_id = nil
+  end
+end
+
+local function register_ibl_hook()
+  local hooks = require "ibl.hooks"
+  clear_ibl_hook()
+  ibl_hook_id = hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    require("plugins.hhcolortheme").set_custom_highlights()
+    clear_ibl_hook()
+  end)
+end
+
 return {
-  "axelhj/theme-vim",
+  "hardhackerlabs/theme-vim",
   name = "hardhacker",
-  enabled = false,
-  event = { "UIEnter" },
   config = function()
-    -- Colors does not get applied if loaded after hardhacker
     vim.cmd[[
       " mask tilde and use italics
       let g:hardhacker_hide_tilde = 1
@@ -17,11 +33,25 @@ return {
       syntax      enable
       syntax      on
       set         t_Co=256
-      colorscheme hardhacker
     ]]
-    require"hardhacker"
+    vim.api.nvim_create_augroup("hh_colorschemeheme_augroup", { clear = true })
+    vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+      pattern = "hardhacker",
+      callback = function()
+        vim.cmd"HardHackerAfterHighlight"
+        register_ibl_hook()
+        require("plugins.hhcolortheme").set_custom_highlights()
+        local ibl = require"plugins.indentblankline"
+        require"ibl".setup(ibl.opts)
+        vim.cmd"highlight! link Comment HardHackerComment"
+      end,
+      group = "hh_colorschemeheme_augroup"
+    })
   end,
-  custom_set_highlights = function()
+  activate = function()
+    vim.cmd"colorscheme hardhacker"
+  end,
+  set_custom_highlights = function()
     -- Customize indent guide colors.
     vim.api.nvim_set_hl(0, "IndentGuideBgAlt1", {
       bg = "#282433", -- Match Normal-bg

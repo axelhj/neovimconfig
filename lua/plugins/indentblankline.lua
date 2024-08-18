@@ -8,11 +8,7 @@ return {
   main = "ibl",
   module = "ibl",
   event = { "VeryLazy" },
-  config = function(spec)
-    -- require"plugins.hhcolortheme".custom_set_highlights()
-    require"plugins.bamboocolortheme".custom_set_highlights()
-    require"ibl".setup(spec.opts)
-  end,
+  config = function() end,
   opts = {
     scope = {
       enabled = false,
