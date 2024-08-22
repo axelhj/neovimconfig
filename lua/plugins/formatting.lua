@@ -8,6 +8,7 @@ return {
     "typescriptreact",
     "typescript.jsx",
   },
+  enabled = false,
   opts = {
     -- Map of filetype to formatters
     formatters_by_ft = {
