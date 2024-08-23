@@ -260,17 +260,17 @@ function M.set_keymaps()
     { desc = "Switch to previous open buffer" }
   )
 
-  vim.keymap.set( "i", "<C-Tab>",
+  vim.keymap.set("i", "<C-Tab>",
     bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCycleNext<Cr>"),
     { desc = "Switch to next open buffer" }
   )
 
-  vim.keymap.set( "i", "<S-C-Tab>",
+  vim.keymap.set("i", "<S-C-Tab>",
     bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
     { desc = "Switch to previous open buffer" }
   )
 
-  vim.keymap.set( "i", "<M-Tab>",
+  vim.keymap.set("i", "<M-Tab>",
     bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
     { desc = "Switch to previous open buffer" }
   )
