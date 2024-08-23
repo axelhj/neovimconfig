@@ -274,6 +274,10 @@ function M.set_keymaps()
     bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
     { desc = "Switch to previous open buffer" }
   )
+
+  vim.keymap.set("n", "<Leader>gl", "<Cmd>tabnew<Cr><Cmd>terminal lazygit<Cr>i",
+    { desc = "Open lazyvim in new tab" }
+  )
 end
 
 return M
