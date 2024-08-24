@@ -28,18 +28,18 @@ return {
         local is_active = vim.fn.getbufinfo(bufnum)[1].loaded == 1
         local is_hidden = vim.fn.getbufinfo(bufnum)[1].hidden == 1
         if not is_active or is_hidden then
-          vim.api.nvim_command("<Cmd>bdelete " .. bufnum)
+          vim.api.nvim_command("bdelete " .. bufnum)
         else
-          vim.api.nvim_command("<Cmd>Bunlink")
+          vim.api.nvim_command("Bunlink")
         end
       end,
       right_mouse_command = function(bufnum)
         local is_active = vim.fn.getbufinfo(bufnum)[1].loaded == 1
         local is_hidden = vim.fn.getbufinfo(bufnum)[1].hidden == 1
         if not is_active or is_hidden then
-          vim.api.nvim_command("<Cmd>bdelete " .. bufnum)
+          vim.api.nvim_command("bdelete " .. bufnum)
         else
-          vim.api.nvim_command("<Cmd>Bunlink")
+          vim.api.nvim_command("Bunlink")
         end
       end,
       custom_filter = function(buf_number--[[, buf_numbers]])
