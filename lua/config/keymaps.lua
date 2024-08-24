@@ -149,28 +149,12 @@ function M.set_keymaps()
     { silent = true, desc = "Leave input mode of the open terminal" }
   )
 
-  -- Copy/paste related keymaps - * register.
-  vim.keymap.set({ "n", "v" }, "<C-v>", "\"*p",
-    { silent = true, desc = "Desktop style paste shortcut at location" }
-  )
-
-  -- Replace C-v (block visual) mapping
-  vim.keymap.set({ "n" }, "<M-v>", "<C-v>", {
-      silent = true,
-      noremap = true,
-      desc = "Desktop style paste shortcut at location"
-    }
-  )
-
-  vim.keymap.set({ "n", "v" }, "<C-S-v>", "\"*P",
-    { silent = true, desc = "Desktop style paste shortcut after location" }
-  )
-
+  -- Cut/copy/paste related keymaps - * register.
   vim.keymap.set({ "n", "v" }, "<M-v>", "\"*P",
     { silent = true, desc = "Desktop style paste shortcut after location" }
   )
 
-  vim.keymap.set({ "i" }, "<C-S-v>", "<Esc>\"*pi",
+  vim.keymap.set({ "n", "v" }, "<M-S-v>", "\"*p",
     { silent = true, desc = "Desktop style paste shortcut at location" }
   )
 
@@ -178,22 +162,15 @@ function M.set_keymaps()
     { silent = true, desc = "Desktop style paste shortcut at location" }
   )
 
-  vim.keymap.set({ "n", "v" }, "<C-S-c>", "\"*y",
-    { silent = true, desc = "Desktop style copy/yank shortcut" }
-  )
-
   vim.keymap.set({ "n", "v" }, "<M-c>", "\"*y",
-    { silent = true, desc = "Desktop style copy/yank shortcut" }
-  )
-
-  vim.keymap.set({ "n", "v" }, "<C-S-x>", "\"*d",
-    { silent = true, desc = "Desktop style cut/delete shortcut" }
+    { silent = true, desc = "Visual/motion yank/copy to clipboard shortcut" }
   )
 
   vim.keymap.set({ "n", "v" }, "<M-x>", "\"*d",
-    { silent = true, desc = "Desktop style cut/delete shortcut" }
+    { silent = true, desc = "Visual/motion delete/cut to clipboard shortcut" }
   )
 
+  -- Multi-line scroll mappings.
   vim.keymap.set({ "n", "v", "i" }, "<C-1>", "5<C-y>",
     { silent = true, desc = "Scroll -5" }
   )
