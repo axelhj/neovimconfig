@@ -103,13 +103,23 @@ function M.set_keymaps()
     { desc = "Quit Neovim pending session-save (quit) [ q]" }
   )
 
-  -- Emergency hatch; cancel shutdown within timeout by overriding
+  vim.keymap.set("n", "<Leader>Q", "<Cmd>qa<Cr>",
+    { desc = "Quit Neovim with NO session-save (quit) [ Q]" }
+  )
+
+  -- Escape hatch; cancel shutdown within timeout opt by overriding
   -- with escape- or q-key.
   vim.keymap.set("n", "<Leader>q<Esc>", "<Cmd>silent echo <Cr>",
     { desc = "Abort close all current windows (quit) [ q<Esc>]" }
   )
   vim.keymap.set("n", "<Leader>qq", "<Cmd>silent echo \"Do nothing\"<Cr>",
-    { desc = "Abort close all current windows (quit) [ q<Esc>]" }
+    { desc = "Abort close all current windows (quit) [ qq]" }
+  )
+  vim.keymap.set("n", "<Leader>Q<Esc>", "<Cmd>silent echo <Cr>",
+    { desc = "Abort close all current windows (quit) [ Q<Esc>]" }
+  )
+  vim.keymap.set("n", "<Leader>QQ", "<Cmd>silent echo \"Do nothing\"<Cr>",
+    { desc = "Abort close all current windows (quit) [ QQ]" }
   )
 
   -- Lsp management.
