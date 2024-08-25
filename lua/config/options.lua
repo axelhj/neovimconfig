@@ -152,7 +152,7 @@ function M.set_options()
 
   -- Display whitespace
   vim.o.list = true
-  vim.o.listchars="tab:→ |,space:•,nbsp:␣,trail:•,precedes:↯,extends:←"
+  vim.o.listchars="tab:→ |,space:•,nbsp:␣,trail:¬,precedes:↯,extends:←"
   vim.o.showbreak="←"
 end
 
