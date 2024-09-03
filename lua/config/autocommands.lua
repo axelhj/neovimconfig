@@ -1,5 +1,10 @@
 local M = {}
 
+local function check_at_diff_marker()
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("[<=>]")
+end
+
 function M.set_autocommands()
   -- Show diagnostics under the cursor when holding position.
   -- Does so by checking if a floating dialog exists and if not
@@ -13,6 +18,9 @@ function M.set_autocommands()
         if vim.api.nvim_win_get_config(winid).zindex then
           return
         end
+      end
+      if check_at_diff_marker() then
+        return
       end
       -- THIS IS FOR BUILTIN LSP
       vim.diagnostic.open_float(nil, {
