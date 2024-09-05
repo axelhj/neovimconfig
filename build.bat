@@ -25,13 +25,13 @@ echo ########## .deps GENERATE           ##########
 cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=RelWithDebInfo
 echo.
 echo ########## .deps BUILD              ##########
-cmake --build .deps
+cmake --build .deps --parallel
 echo.
 echo ########## nvim GENERATE            ##########
 cmake -B build -G Ninja -D CMAKE_INSTALL_PREFIX=%install_loc% -D CMAKE_BUILD_TYPE=RelWithDebInfo
 echo.
 echo ########## nvim BUILD               ##########
-cmake --build build
+cmake --build build --parallel
 echo.
 echo ########## install nvim UAC INSTALL ##########
 powershell -c Start-Process cmd.exe -Verb runAs -Wait -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%;%PATH%&ninja -C build install"'

@@ -1,7 +1,7 @@
 local M = {}
 
 M.filetypes = {
-  tsserver = {
+  ts_ls = {
     "javascript",
     "javascriptreact",
     "json",
@@ -43,7 +43,7 @@ M.servers = {
       end,
     },
   },
-  tsserver = {
+  ts_ls = {
     single_file_support = false
   },
   cmake =  {
