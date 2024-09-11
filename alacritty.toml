@@ -17,3 +17,10 @@ bindings = [
   { key = "Tab", mods = "Shift", chars = "\u001B[9;2u"  },
   { key = "Return", mods = "Shift", chars = "\u001B[13;2u" }
 ]
+
+# Adapt cursor color so it is not hidden during nvim search-highlight.
+[colors]
+  cursor.text = "0xffffff"
+  cursor.cursor = "0x33cc40"
+  # reserve_color = "0xff33ff"
+  # reserve_color = "0xcc3340"
