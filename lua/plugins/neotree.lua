@@ -36,6 +36,7 @@ return {
           ["?"] = "noop",
           ["<C-b>"] = "noop",
           ["<C-f>"] = "noop",
+          ["H"] = "noop",
         }
       },
       bind_to_cwd = true,
