@@ -189,14 +189,10 @@ function M.set_keymaps()
 
   -- Quickly open init.lua. Find more config with treesitter thanks
   -- to vim-rooter.
-  local lua_init_location = vim.fn.stdpath("config") .. "/init.lua"
-
-  vim.keymap.set({ "n" }, "<C-S-e>1", "<Cmd>e " .. lua_init_location .. "<Cr>", {
-    silent = true, desc = "Edit init.lua"
-  })
+  local lua_init_location = vim.fn.stdpath("config")
 
   vim.keymap.set({ "n" }, "<M-e>1", "<Cmd>e " .. lua_init_location .. "<Cr>", {
-    silent = true, desc = "Edit init.lua"
+    silent = true, desc = "Cd to location of init.lua"
   })
 
   -- Switch active windows by [C-h/j/k/l or M-h/j/k/l]. Wrap around the edges.
