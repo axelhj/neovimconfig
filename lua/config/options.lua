@@ -69,8 +69,9 @@ function M.set_options()
   -- Timeout after waiting for certain inputs.
   vim.o.timeoutlen = 1750
 
-  -- Set completeopt to have a better completion experience
-  vim.o.completeopt = "menuone,noselect"
+  -- Set completeopt to nothing to avoid completions popping up on screen.
+  -- Also disable <C-n> and <C-p> insert mappings to let nvim-cmp handle that.
+  vim.o.completeopt = ""
 
   -- NOTE: You should make sure your terminal supports this
   vim.o.termguicolors = true
