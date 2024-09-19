@@ -198,13 +198,9 @@ function M.set_keymaps()
   local opts = { silent = true, noremap = true, desc = "Switch window/split" }
 
   vim.keymap.set("n", "<C-h>", jump_window_with_wrap("h", "l"), opts)
-  vim.keymap.set("n", "<M-h>", jump_window_with_wrap("h", "l"), opts)
   vim.keymap.set("n", "<C-l>", jump_window_with_wrap("l", "h"), opts)
-  vim.keymap.set("n", "<M-l>", jump_window_with_wrap("l", "h"), opts)
   vim.keymap.set("n", "<C-j>", jump_window_with_wrap("j", "k"), opts)
-  vim.keymap.set("n", "<M-j>", jump_window_with_wrap("j", "k"), opts)
   vim.keymap.set("n", "<C-k>", jump_window_with_wrap("k", "j"), opts)
-  vim.keymap.set("n", "<M-k>", jump_window_with_wrap("k", "j"), opts)
 
   -- Switch buffers quickly
   vim.keymap.set("n", "<Tab>",
@@ -260,6 +256,10 @@ function M.set_keymaps()
   vim.keymap.set("n", "<Leader>gl", "<Cmd>tabnew<Cr><Cmd>terminal lazygit<Cr>i",
     { desc = "Open lazyvim in new tab" }
   )
+
+  vim.keymap.set("i", "<M-e>", "<C-o>e<C-o>l", { desc = "In insert mode, [M-e] jumps to location after next word (end) and resume insert mode." });
+
+  vim.keymap.set("i", "<M-b>", "<C-o>b", { desc = "In insert mode, [M-e] jumps to beginning of current word and resumes insert mode." });
 end
 
 return M

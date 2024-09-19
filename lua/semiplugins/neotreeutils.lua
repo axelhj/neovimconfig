@@ -77,7 +77,7 @@ end
 function M.neo_tree_popup_ftplugin()
   local timer = vim.loop.new_timer()
   -- Timer is necessary because the maps are added after the popup is created
-  timer:start(100, 0, vim.schedule_wrap(function()
+  timer:start(60, 0, vim.schedule_wrap(function()
     local esc_maps = vim.tbl_filter(function(m)
       return m.lhs == "<Esc>"
     end, vim.api.nvim_buf_get_keymap(0, "i"))
