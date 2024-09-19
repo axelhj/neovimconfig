@@ -187,11 +187,10 @@ function M.set_keymaps()
     { silent = true, desc = "Scroll +5" }
   )
 
-  -- Quickly open init.lua. Find more config with treesitter thanks
-  -- to vim-rooter.
+  -- Quickly open nvim config directory. Neotree will switch directory
+  -- thanks to vim-rooter.
   local lua_init_location = vim.fn.stdpath("config")
-
-  vim.keymap.set({ "n" }, "<M-e>1", "<Cmd>e " .. lua_init_location .. "<Cr>", {
+  vim.keymap.set({ "n" }, "<M-e>1", "<Cmd>cd " .. lua_init_location .. "<Cr>", {
     silent = true, desc = "Cd to location of init.lua"
   })
 
