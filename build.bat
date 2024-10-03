@@ -34,7 +34,7 @@ echo ########## nvim BUILD               ##########
 cmake --build build --parallel
 echo.
 echo ########## install nvim UAC INSTALL ##########
-powershell -c Start-Process cmd.exe -Verb runAs -Wait -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%;%PATH%&ninja -C build install"'
+powershell -c Start-Process cmd.exe -Verb runAs -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%;%PATH%&ninja -C build install"'
 cd %oldcwd%
 echo.
 echo ########## BUILD ^& INSTALL COMPLETE ##########
