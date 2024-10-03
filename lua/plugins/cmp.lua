@@ -5,6 +5,18 @@ return {
     "hrsh7th/cmp-path",
     "rafamadriz/friendly-snippets",
   },
+  event = { "InsertEnter", "CmdlineEnter" },
+  keys = {
+    {
+      "<C-n>",
+      mode = "i",
+      desc = "Show next completion [C-n]"
+    }, {
+      "<C-p>",
+      mode = "i",
+      desc = "Show previous completion [C-p]"
+    },
+  },
   config = function()
     local cmp = require "cmp"
     cmp.setup {
