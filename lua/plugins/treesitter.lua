@@ -33,12 +33,12 @@ return {
         -- "rust",
       },
       ts_context_commentstring = {
-        enabled = true,
+        enable = true,
         enable_autocmd = true,
       },
       auto_install = false,
-      highlight = { enabled = false },
-      indent = { enabled = false },
+      highlight = { enable = false },
+      indent = { enable = false },
     }
   end
 }
