@@ -260,12 +260,6 @@ function M.set_keymaps()
   vim.keymap.set("i", "<M-e>", "<C-o>e<C-o>l", { desc = "In insert mode, [M-e] jumps to location after next word (end) and resume insert mode." });
 
   vim.keymap.set("i", "<M-b>", "<C-o>b", { desc = "In insert mode, [M-e] jumps to beginning of current word and resumes insert mode." });
-
-  -- Unmap completeopt to avoid completions popping up on screen when nvim-cmp is not setup or WHILE
-  -- nvim-cmp is setup.
-  vim.keymap.set("i", "<C-n>", "<Nop>", { desc = "Disable built in [C-n] in favour of nvim-cmp" });
-
-  vim.keymap.set("i", "<C-p>", "<Nop>", { desc = "Disable built in [C-p] in favour of nvim-cmp" });
 end
 
 return M
