@@ -19,7 +19,7 @@ echo.
 echo ########## GIT FETCH                ##########
 git fetch --depth=%fetch_depth% origin master&&git reset --hard origin/master
 echo.
-if defined clean_build (echo ########## CLEAN BUILD              ##########&rmdir /s /q .\build) else (echo ########## NOT CLEAN BUILD          ##########)
+if defined clean_build (echo ########## CLEAN BUILD              ##########&rmdir /s /q .\.deps .\install .\build) else (echo ########## NOT CLEAN BUILD          ##########)
 echo.
 echo ########## .deps GENERATE           ##########
 cmake -S cmake.deps -B .deps -G Ninja -D CMAKE_BUILD_TYPE=RelWithDebInfo
