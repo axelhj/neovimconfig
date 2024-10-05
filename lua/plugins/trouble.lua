@@ -5,10 +5,10 @@ return {
     {
       "<Leader>dt",
       "<Cmd>lua require(\"trouble\").toggle("..
-        "{mode = \"diagnostics\""..
+        "{mode = \"diagnostics\"},"..
         "{position = \"right\"})<Cr>",
       mode = "n",
-      desc = "Toggle trouble diagnotstics [ dt]",
+      desc = "Toggle trouble diagnostics [ dt]",
     },
   },
   opts = {
