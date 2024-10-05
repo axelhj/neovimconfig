@@ -95,7 +95,7 @@ function M.set_options()
   -- A: Make the "file open in other session" warning
   --   less intrusive/frequent
   -- I: Eliminate vim startup wall of text
-  vim.o.shortmess="AI"
+  vim.o.shortmess="AIcFW"
 
   -- Useful font config - installed from nerdfonts.com
 

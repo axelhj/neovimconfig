@@ -55,15 +55,15 @@ function M.set_keymaps()
     { desc = "alt-[w]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("n", "<M-w>", "<Cmd>w<Cr>",
+  vim.keymap.set("n", "<M-w>", "<Cmd>silent w<Cr>",
     { desc = "alt-[w]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("v", "<C-S-w>", "<Cmd>w<Cr>",
+  vim.keymap.set("v", "<C-S-w>", "<Cmd>silent w<Cr>",
     { desc = "alt-[w]rite buffer content", silent = true }
   )
 
-  vim.keymap.set("v", "<M-w>", "<Cmd>w<Cr>",
+  vim.keymap.set("v", "<M-w>", "<Cmd>silent w<Cr>",
     { desc = "alt-[w]rite buffer content", silent = true }
   )
 
@@ -263,19 +263,34 @@ function M.set_keymaps()
   )
 
   vim.keymap.set("i", "<C-Tab>",
-    bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCycleNext<Cr>"),
-    { desc = "Switch to next open buffer" }
+    bind_for_non_neotree_buffer("<Esc><Cmd>bn<Cr>"),
+    { desc = "alt-[<Tab>]Switch to next open buffer" }
   )
 
   vim.keymap.set("i", "<S-C-Tab>",
-    bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
-    { desc = "Switch to previous open buffer" }
+    bind_for_non_neotree_buffer("<Esc><Cmd>bn<Cr>"),
+    { desc = "alt-[<Tab>]Switch to previous open buffer" }
   )
 
   vim.keymap.set("i", "<M-Tab>",
-    bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
-    { desc = "Switch to previous open buffer" }
+    bind_for_non_neotree_buffer("<Esc><Cmd>bn<Cr>"),
+    { desc = "alt-[<Tab>]Switch to previous open buffer" }
   )
+
+  -- vim.keymap.set("i", "<C-Tab>",
+  --   bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCycleNext<Cr>"),
+  --   { desc = "Switch to next open buffer" }
+  -- )
+  --
+  -- vim.keymap.set("i", "<S-C-Tab>",
+  --   bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
+  --   { desc = "Switch to previous open buffer" }
+  -- )
+  --
+  -- vim.keymap.set("i", "<M-Tab>",
+  --   bind_for_non_neotree_buffer("<Esc><Cmd>BufferLineCyclePrev<Cr>"),
+  --   { desc = "Switch to previous open buffer" }
+  -- )
 
   vim.keymap.set("n", "<Leader>gl", "<Cmd>tabnew<Cr><Cmd>terminal lazygit<Cr>i",
     { desc = "Open lazyvim in new tab" }

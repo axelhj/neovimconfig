@@ -29,9 +29,11 @@ function M.bind_focus_next_buffer_for_direction(direction)
     elseif is_empty and direction == -1 then
       vim.api.nvim_command("bprev!")
     elseif direction == 1 then
-      vim.api.nvim_command("BufferLineCycleNext")
+      vim.api.nvim_command("bn")
+      -- vim.api.nvim_command("BufferLineCycleNext")
     elseif direction == -1 then
-      vim.api.nvim_command("BufferLineCyclePrev")
+      vim.api.nvim_command("bp")
+      -- vim.api.nvim_command("BufferLineCyclePrev")
     end
   end
 end
