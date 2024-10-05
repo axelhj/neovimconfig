@@ -19,7 +19,7 @@ return {
     },
     whitespace = {
       highlight = highlights,
-      remove_blankline_trail = false,
+      remove_blankline_trail = true,
     },
   },
 }

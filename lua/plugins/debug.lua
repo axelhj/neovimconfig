@@ -1,9 +1,9 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    "rcarriga/nvim-dap-ui",
-    "mfussenegger/nvim-dap-python",
-    "nvim-neotest/nvim-nio",
+    { "rcarriga/nvim-dap-ui", lazy = true, },
+    { "mfussenegger/nvim-dap-python", lazy = true, },
+    { "nvim-neotest/nvim-nio", lazy = true, },
     -- Add your own debuggers here
     -- "leoluz/nvim-dap-go",
   },

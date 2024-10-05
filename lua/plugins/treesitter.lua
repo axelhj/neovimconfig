@@ -4,8 +4,7 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   build = ":TSUpdate",
-  event = { "VeryLazy", "BufEnter", "BufWinEnter", },
-  lazy = true,
+  event = { "VeryLazy", },
   init = function(plugin)
     -- LazyVim has the following fix from Folke:
     -- https://github.com/LazyVim/LazyVim/commit/1e1b68d633d4bd4faa912ba5f49ab6b8601dc0c9
@@ -37,8 +36,14 @@ return {
         enable_autocmd = true,
       },
       auto_install = false,
-      highlight = { enable = true },
-      indent = { enable = false },
+      highlight = {
+        enable = true;
+        enable_autocmd = true,
+      },
+      indent = {
+        enable = false,
+        enable_autocmd = true,
+      },
     }
   end
 }
