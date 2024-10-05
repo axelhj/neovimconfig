@@ -6,7 +6,7 @@ return {
     require"auto-session".setup(spec.opts)
     -- The plugin will normally restore at UIEnter
     -- but when lazy-loaded that has already happened.
-    vim.cmd("RestoreSession")
+    vim.cmd("RestoreSessionConditional")
   end,
   opts = {
     shada = '!,\'100'
