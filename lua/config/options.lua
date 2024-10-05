@@ -155,6 +155,11 @@ function M.set_options()
   vim.o.list = true
   vim.o.listchars="tab:→ |,space:•,nbsp:␣,trail:¬,precedes:↯,extends:←"
   vim.o.showbreak="←"
+
+  -- Make the vim UI a lot more minimalistic.
+  vim.o.laststatus = 0
+  vim.o.statusline = "-"
+  vim.o.cmdheight = 0
 end
 
 return M
