@@ -52,23 +52,47 @@ function M.set_keymaps()
 
   -- Tab, buffer & window-management related shortcuts.
   vim.keymap.set("n", "<C-S-w>", "<Cmd>w<Cr>",
-    { desc = "[W]rite buffer content", silent = true }
+    { desc = "alt-[w]rite buffer content", silent = true }
   )
 
   vim.keymap.set("n", "<M-w>", "<Cmd>w<Cr>",
-    { desc = "[W]rite buffer content", silent = true }
+    { desc = "alt-[w]rite buffer content", silent = true }
   )
 
   vim.keymap.set("v", "<C-S-w>", "<Cmd>w<Cr>",
-    { desc = "[W]rite buffer content", silent = true }
+    { desc = "alt-[w]rite buffer content", silent = true }
   )
 
   vim.keymap.set("v", "<M-w>", "<Cmd>w<Cr>",
-    { desc = "[W]rite buffer content", silent = true }
+    { desc = "alt-[w]rite buffer content", silent = true }
   )
 
   vim.keymap.set("i", "<M-w>", "<Cmd>w<Cr><Esc>",
-    { desc = "[W]rite buffer content", silent = true }
+    { desc = "alt-[w]rite buffer content", silent = true }
+  )
+
+  vim.keymap.set("n", "<M-q>", "<Cmd>bd<Cr>",
+    { desc = "alt-[q] to delete buffer & window", silent = true }
+  )
+
+  vim.keymap.set("v", "<M-q>", "<Cmd>bd<Cr>",
+    { desc = "alt-[q] to delete buffer & window", silent = true }
+  )
+
+  vim.keymap.set("i", "<M-q>", "<Cmd>bd<Cr><Esc>",
+    { desc = "alt-[q] to delete buffer & window", silent = true }
+  )
+
+  vim.keymap.set("n", "<M-S-q>", "<Cmd>bd!<Cr>",
+    { desc = "alt-[Q] to really! delete buffer & window", silent = true }
+  )
+
+  vim.keymap.set("v", "<M-S-q>", "<Cmd>bd!<Cr>",
+    { desc = "alt-[Q] to really! delete buffer & window", silent = true }
+  )
+
+  vim.keymap.set("i", "<M-S-q>", "<Cmd>bd!<Cr><Esc>",
+    { desc = "alt-[Q] to really! delete buffer & window", silent = true }
   )
 
   vim.keymap.set("n", "<Leader>gbn", "<Cmd>enew<Cr>",
