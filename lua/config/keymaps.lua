@@ -280,10 +280,6 @@ function M.set_keymaps()
   vim.keymap.set("n", "<Leader>gl", "<Cmd>tabnew<Cr><Cmd>terminal lazygit<Cr>i",
     { desc = "Open lazyvim in new tab" }
   )
-
-  vim.keymap.set("i", "<M-e>", "<C-o>e<C-o>l", { desc = "In insert mode, [M-e] jumps to location after next word (end) and resume insert mode." });
-
-  vim.keymap.set("i", "<M-b>", "<C-o>b", { desc = "In insert mode, [M-e] jumps to beginning of current word and resumes insert mode." });
 end
 
 return M
