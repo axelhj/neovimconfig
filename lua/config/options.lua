@@ -95,7 +95,16 @@ function M.set_options()
   -- A: Make the "file open in other session" warning
   --   less intrusive/frequent
   -- I: Eliminate vim startup wall of text
-  vim.o.shortmess="AIcFW"
+  -- c: Remove/omit messages about completion matches in the
+  --    commandbar/win.
+  -- F: Skip annoying fileinfo when files are open. Display
+  --    similar info by pressing <C-g> in normal mode instead.
+  -- W: Skip "written"/[w] notice when file was written.
+  -- s: Skip message about "search hit bottom"/top.
+  -- t: Truncate messages as start (not at middle like T) so
+  --    that the "Press return"-prompt will go away and never
+  --    come back.
+  vim.o.shortmess="AIcFWst"
 
   -- Useful font config - installed from nerdfonts.com
 
