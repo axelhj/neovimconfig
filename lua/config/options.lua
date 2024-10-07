@@ -167,7 +167,7 @@ function M.set_options()
 
   -- Make the vim UI a lot more minimalistic.
   vim.o.laststatus = 0
-  vim.o.statusline = "-"
+  vim.o.statusline = " "
   vim.o.cmdheight = 0
 end
 
