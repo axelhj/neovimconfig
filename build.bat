@@ -1,4 +1,8 @@
 @echo OFF 2> NUL
+
+REM To invoke with Alacritty and update plugins from a batch[.bat]-file:
+REM START alacritty --command cmd /c ^"%LOCALAPPDATA%\nvim\build.bat^" ^& ^"nvim --headless \"+Lazy! update\" +qa^"
+
 echo.
 echo ########## build neovim for Windows ##########
 :pacman -S mingw-w64-x86_64-{gcc,cmake,make,ninja,diffutils} &: On MSYS2 console, for reference
@@ -34,7 +38,7 @@ echo ########## nvim BUILD               ##########
 cmake --build build --parallel
 echo.
 echo ########## install nvim UAC INSTALL ##########
-powershell -c Start-Process cmd.exe -Verb runAs -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%;%PATH%&ninja -C build install"'
+powershell -c Start-Process cmd.exe -Verb runAs -Wait -ArgumentList '/C','"cd %neovim_root%&set PATH=%msys2_loc%;%PATH%&ninja -C build install"'
 cd %oldcwd%
 echo.
 echo ########## BUILD ^& INSTALL COMPLETE ##########
