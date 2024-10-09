@@ -100,11 +100,15 @@ function M.set_options()
   -- F: Skip annoying fileinfo when files are open. Display
   --    similar info by pressing <C-g> in normal mode instead.
   -- W: Skip "written"/[w] notice when file was written.
-  -- s: Skip message about "search hit bottom"/top.
+  -- s: Supposed to skip message about "search hit bottom"/top
+  --    but it does not work (does not remove E385/E385 is displayed).
+  --    seems to interact with cmdheight=0 or laststatus=0.
+  -- S: Supposed to skip search I/J number message during search
+  --    which it does. Does not remove E385.
   -- t: Truncate messages as start (not at middle like T) so
   --    that the "Press return"-prompt will go away and never
   --    come back.
-  vim.o.shortmess="AIcFWst"
+  vim.o.shortmess="AIcFWSst"
 
   -- Useful font config - installed from nerdfonts.com
 
@@ -167,6 +171,9 @@ function M.set_options()
 
   -- Make the vim UI a lot more minimalistic.
   vim.o.laststatus = 0
+
+  -- Setting this as set statusline=" " causes a default statusline.
+  -- Using vim.o.statusline = " " hides the status line content.
   vim.o.statusline = " "
   vim.o.cmdheight = 0
 end
