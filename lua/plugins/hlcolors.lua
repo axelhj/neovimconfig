@@ -11,7 +11,7 @@ local options = {
   -- CSS "function features"
   css_fn = true;
 }
-]]--
+]]
 
 return {
   "brenoprata10/nvim-highlight-colors",

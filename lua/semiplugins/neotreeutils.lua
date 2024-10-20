@@ -100,5 +100,5 @@ end
  - bind_for_non_neotree_buffer(cmd) - call replace_termcodes and feedkey if the current buffer is not neotree.
  - is_neotree_focused() - whether the active buffer is the neotree.
  - resize() - reset the neotree window width as configured without switching.
-]]--
+]]
 return M

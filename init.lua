@@ -3,7 +3,7 @@
 I hope you enjoy your Neovim journey,
 - TJ
 
-]]--
+]]
 
 require"config.options".set_options()
 require"config.quickfix".set_options()
