@@ -195,19 +195,11 @@ function M.set_keymaps()
   )
 
   -- Multi-line scroll mappings.
-  vim.keymap.set({ "n", "v", "i" }, "<C-1>", "5<C-y>",
+  vim.keymap.set({ "n", "v", "i" }, "<M-u>", "5<C-y>",
     { silent = true, desc = "Scroll -5" }
   )
 
-  vim.keymap.set({ "n", "v", "i" }, "<M-1>", "5<C-y>",
-    { silent = true, desc = "Scroll -5" }
-  )
-
-  vim.keymap.set({ "n", "v", "i" }, "<C-2>", "5<C-e>",
-    { silent = true, desc = "Scroll +5" }
-  )
-
-  vim.keymap.set({ "n", "v", "i" }, "<M-2>", "5<C-e>",
+  vim.keymap.set({ "n", "v", "i" }, "<M-d>", "5<C-e>",
     { silent = true, desc = "Scroll +5" }
   )
 
