@@ -70,7 +70,8 @@ M.servers = {
           -- Get the language server to recognize the `vim` global
           globals = {
             "vim",
-            "require"
+            "require",
+            "love"
           },
           disable = {
             "required_fields",

@@ -5,7 +5,6 @@ return {
   dependencies = {
     {
       "tpope/vim-rhubarb",
-      cmd = { "GBrowse" },
     },
     {
       "lewis6991/gitsigns.nvim",

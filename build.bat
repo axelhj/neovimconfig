@@ -6,8 +6,9 @@ REM START alacritty --command cmd /c ^"%LOCALAPPDATA%\nvim\build.bat^" ^& ^"nvim
 echo.
 echo ########## build neovim for Windows ##########
 :Compiler & build-tool install on MSYS2 console, for reference
-:pacman -S mingw-w64-ucrt-x86_64-gcc
-:pacman -S mingw-w64-x86_64-{cmake,make,ninja,diffutils}
+:pacman -S \
+    mingw-w64-ucrt-x86_64-gcc \
+    mingw-w64-x86_64-{cmake,make,ninja,diffutils}
 if "%~1" == "" (set neovim_root=%USERPROFILE%\code\neovim) else (set neovim_root=%1)
 if "%~2" == "" (set fetch_depth=10) else (set fetch_depth=%2)
 if "%~3" == "" (set msys2_loc=c:\msys64\ucrt64\bin;c:\msys64\usr\bin) else (set msys2_loc=%3)
