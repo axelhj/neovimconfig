@@ -63,7 +63,8 @@ function M.resize()
     -- Did not find window for neo-tree, could not reset size.
     return
   end
-  local configured_width = require("neo-tree").config.filesystem.window.width or 40
+  local nt_config = require("neo-tree").config
+  local configured_width = nt_config and nt_config.filesystem.window.width or 40
   if vim.api.nvim_win_get_width(tree_win_handle) > configured_width then
     -- Reset neo-tree window size to proper value.
     vim.api.nvim_win_set_width(tree_win_handle, configured_width)
