@@ -102,6 +102,7 @@ M.servers = {
       },
     },
   },
+  ocamllsp = {},
   -- gopls = {},
   -- rust_analyzer = {},
   -- eslint = {},

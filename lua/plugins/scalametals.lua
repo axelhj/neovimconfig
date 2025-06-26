@@ -6,6 +6,7 @@ return {
     "mfussenegger/nvim-dap",
   },
   ft = { "scala", "sbt", "java" },
+  enabled = false,
   config = function()
     ----------------------------------
     -- LSP Setup ---------------------
@@ -63,11 +64,11 @@ return {
       -- something like nvim-jdtls which also works on a java filetype autocmd.
       pattern = { "scala", "sbt", "java" },
       callback = function()
-        require("metals").initialize_or_attach(metals_config)
+        -- require("metals").initialize_or_attach(metals_config)
       end,
       group = nvim_metals_group,
     })
-    require("metals").initialize_or_attach(metals_config)
+    -- require("metals").initialize_or_attach(metals_config)
   end
 }
 
