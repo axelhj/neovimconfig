@@ -119,6 +119,7 @@ function M.set_options()
     vim.cmd"nnoremap <M-Cr> <Cmd>let g:neovide_fullscreen = g:neovide_fullscreen == v:false<Cr>"
     vim.keymap.set({ "n", "v" }, "<C-ScrollWheelUp>", "<Cmd>lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
     vim.keymap.set({ "n", "v" }, "<C-ScrollWheelDown>", "<Cmd>lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
+    vim.o.guifont = "IntoneMono NFM:h7"
   elseif vim.g.nvy then
     vim.o.guifont = "IntoneMono NFM:h7"
   else
