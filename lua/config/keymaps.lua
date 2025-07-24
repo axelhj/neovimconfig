@@ -147,8 +147,20 @@ function M.set_keymaps()
   )
 
   -- Lsp management.
-  vim.keymap.set("n", "<Leader>-", "<Cmd>LspRestart<Cr>",
-    { desc = "Run LspRestart", silent = true }
+  vim.keymap.set("n", "<Leader>-", function()
+      local current_buffer_nr = vim.api.nvim_get_current_buf()
+      local clients = vim.lsp.get_clients({ bufnr = current_buffer_nr })
+      if #clients == 0 then
+        print("Zero buffers to restart")
+        vim.cmd(":LspStart")
+        return
+      end
+      print("Found "..#clients.." buffers to restart")
+      for _, client in pairs(clients) do
+        vim.cmd(":LspRestart "..client.name)
+      end
+    end,
+    { desc = "Run LspRestart for all current buffer LSP:s", silent = true }
   )
 
   -- Remaps for dealing with word wrap - kickstart.nvim.
