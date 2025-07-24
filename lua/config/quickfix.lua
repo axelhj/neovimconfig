@@ -68,6 +68,7 @@ function M.set_keymaps()
     desc = "Go to [p]revious location list item (:lprev)"
   })
 
+  -- Todo: This will not work when the cursor is in the loc-list.
   vim.keymap.set("n", "<Leader>ql", "mZ:silent lclose<Cr>`Z", {
     desc = "Close location list [ql] (mZ:lclose´Z)"
   })

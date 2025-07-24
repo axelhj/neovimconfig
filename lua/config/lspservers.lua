@@ -76,7 +76,8 @@ M.servers = {
           disable = {
             "required_fields",
             "missing-fields",
-            "incomplete-signature-doc"
+            "incomplete-signature-doc",
+            "lowercase-global"
           },
         },
         runtime = {
