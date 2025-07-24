@@ -6,7 +6,9 @@ function M.is_neotree_focused()
     -- Get our current buffer number
     local bufnr = vim.api.nvim_get_current_buf and vim.api.nvim_get_current_buf() or vim.fn.bufnr()
     -- Get all the available sources in neo-tree
-    for _, source in ipairs(require("neo-tree").config.sources) do
+    local neo_tree = require("neo-tree")
+    local neo_tree_config_sources = (neo_tree and neo_tree.config and neo_tree.config.sources) or {}
+    for _, source in ipairs(neo_tree_config_sources) do
         -- Get each sources state
         local state = require("neo-tree.sources.manager").get_state(source)
         -- Check if the source has a state, if the state has a buffer and if the buffer is our current buffer

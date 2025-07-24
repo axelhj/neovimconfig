@@ -7,6 +7,6 @@ return {
   },
   opts = {
     use_default_keymaps = false,
-    max_join_length = 350
+    max_join_length = 350,
   },
 }
