@@ -299,6 +299,19 @@ function M.set_keymaps()
   vim.keymap.set("n", "<Leader>gl", "<Cmd>tabnew<Cr><Cmd>terminal lazygit<Cr>i",
     { desc = "Open lazyvim in new tab" }
   )
+
+  -- Neovim does insert <F12> randomly when mistyping a number
+  -- on extra sensitive keyboards. It takes <Esc>dF<i to get back
+  -- which is a lot of keystokes. Unmap keys to avoid.
+  for _, map in ipairs({ "i", "c" }) do
+    for x = 1,12 do
+      vim.keymap.set(map, "<F"..x..">", "<Nop>")
+      vim.keymap.set(map, "<S-F"..x..">", "<Nop>")
+      vim.keymap.set(map, "<C-F"..x..">", "<Nop>")
+      vim.keymap.set(map, "<S-C-F"..x..">", "<Nop>")
+      vim.keymap.set(map, "<M-F"..x..">", "<Nop>")
+    end
+  end
 end
 
 return M
