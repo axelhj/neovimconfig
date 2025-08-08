@@ -49,6 +49,11 @@ config.swallow_mouse_click_on_window_focus = true
 
 config.bypass_mouse_reporting_modifiers = "CTRL"
 
+-- Don't start wsl on Windows.
+config.wsl_domain = {}
+config.unix_domain = {}
+config.ssh_domain = {}
+
 --- Set necessary value to restore window size initially.
 config.adjust_window_size_when_changing_font_size = true
 
