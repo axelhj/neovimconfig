@@ -1,8 +1,8 @@
 # Put at $APPDATA\alacritty\alacritty.toml
 
-[terminal]
-shell.program = "cmd.exe"
-shell.args = [ "/C", "cd %USERPROFILE%&cmd.exe" ]
+[terminal.shell]
+program = "cmd.exe"
+args = [ "/C", "cd %USERPROFILE%&cmd.exe" ]
 
 [font]
 normal = { family = "IntoneMono NFM" }
