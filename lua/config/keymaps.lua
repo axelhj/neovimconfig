@@ -218,9 +218,15 @@ function M.set_keymaps()
   -- Quickly open nvim config directory. Neotree will switch directory
   -- thanks to vim-rooter.
   local lua_init_location = vim.fn.stdpath("config")
-  vim.keymap.set({ "n" }, "<M-e>1", "<Cmd>cd " .. lua_init_location .. "<Cr>", {
-    silent = true, desc = "Cd to location of init.lua"
-  })
+  local projects_location = vim.fn.expand("$HOME/code")
+
+  for _, map in ipairs({ "<M-e>", "<C-S-e>" }) do
+    for i, location in ipairs({ lua_init_location, projects_location }) do
+      vim.keymap.set({ "n" }, map..i, "<Cmd>cd " .. location .. "<Cr>", {
+        silent = true, desc = "Cd to location of init.lua, projects (M/C-S mapping)"
+      })
+    end
+  end
 
   -- Switch active windows by [C-h/j/k/l or M-h/j/k/l]. Wrap around the edges.
   local opts = { silent = true, noremap = true, desc = "Switch window/split" }
