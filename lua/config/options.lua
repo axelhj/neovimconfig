@@ -1,5 +1,7 @@
 M = {}
 
+local is_win = require("semiplugins.iswin").is_win()
+
 function M.set_options()
   -- Setup leader key. Invoke before plugins are loaded.
   vim.g.mapleader = " "
@@ -127,7 +129,9 @@ function M.set_options()
   end
 
   -- Setting that is useful for sending proper path separators to netcoredbg.
-  vim.o.shellslash = false
+  if is_win then
+    vim.o.shellslash = false
+  end
 
   -- Keep some context visible at top and bottom. Absolute linecount,
   -- context visible for j/k scrolling.

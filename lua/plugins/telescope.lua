@@ -1,3 +1,9 @@
+local is_win = require("semiplugins.iswin").is_win()
+local shell_sep = is_win and "&" or ";"
+local clean_fzf_build_cmd = is_win and
+  "rmdir /s /q build" or
+  "rm -rf ./build"
+
 return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
@@ -5,10 +11,11 @@ return {
     "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      build =
-        "rmdir /s /q build&"..
-        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release&"..
-        "cmake --build build --config Release&"..
+      build = clean_fzf_build_cmd..shell_sep..
+        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release "..
+        -- Compatibility with cmake 4.x+.
+        "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"..shell_sep..
+        "cmake --build build --config Release"..shell_sep..
         "cmake --install build --prefix build",
       cond = function()
         return vim.fn.executable "cmake" == 1

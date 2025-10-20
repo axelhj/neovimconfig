@@ -1,3 +1,5 @@
+local is_win = require("semiplugins.iswin").is_win()
+
 local function read_tasks()
   local iter_lines =  io.lines(vim.fn.stdpath("config") .. "/tasksfile.txt")
   local lines = {}
@@ -25,10 +27,16 @@ local function get_cmd(map, n)
   local function run()
     local commands = try_read_tasks()
     if commands == nil then return end
+    if commands[n] == nil then
+      print"Items missing in tasksfile.txt from vim.fn.stdpath(\"config\")."
+      return
+    end
     require"overseer".new_task({
-      cmd = { "cmd.exe" },
+      cmd = { is_win and "cmd.exe" or "bash" },
       name = "shell " .. n,
-      args = { "/c", commands[n] },
+      args = is_win and
+        { "/c", commands[n] } or
+        { "-c", "\""..commands[n].."\"" },
       components = {
         "on_exit_set_status",
       },
@@ -49,6 +57,7 @@ end
 
 return {
   'stevearc/overseer.nvim',
+  tag="v1.6.0",
   keys = {
     get_cmd("<C-1>", 1),
     get_cmd("<C-2>", 2),
@@ -59,7 +68,7 @@ return {
     get_cmd("<C-7>", 7),
     get_cmd("<C-8>", 8),
     get_cmd("<C-9>", 9),
-    get_cmd("<C-0>", 0),
+    get_cmd("<C-0>", 10),
     get_cmd("<M-1>", 1),
     get_cmd("<M-2>", 2),
     get_cmd("<M-3>", 3),
