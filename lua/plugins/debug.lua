@@ -2,7 +2,6 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     { "rcarriga/nvim-dap-ui", lazy = true, },
-    { "mfussenegger/nvim-dap-python", lazy = true, },
     { "nvim-neotest/nvim-nio", lazy = true, },
     -- Add your own debuggers here
     -- "leoluz/nvim-dap-go",
@@ -18,11 +17,6 @@ return {
   config = function()
     local dap = require "dap"
     local dapui = require "dapui"
-
-    require("dap-python").setup("python")
-    require("dap-python").resolve_python = function()
-      return "C:/msys64/usr/bin/python.exe"
-    end
 
     -- Basic debugging keymaps.
     vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
