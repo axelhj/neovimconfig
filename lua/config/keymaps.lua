@@ -207,13 +207,17 @@ function M.set_keymaps()
   )
 
   -- Multi-line scroll mappings.
-  vim.keymap.set({ "n", "v", "i" }, "<M-u>", "5<C-y>",
-    { silent = true, desc = "Scroll -5" }
-  )
+  for _, map in ipairs({ "<M-u>", "<C-S-u>" }) do
+    vim.keymap.set({ "n", "v", "i" },map, "5<C-y>",
+      { silent = true, desc = "Scroll -5" }
+    )
+  end
 
-  vim.keymap.set({ "n", "v", "i" }, "<M-d>", "5<C-e>",
-    { silent = true, desc = "Scroll +5" }
-  )
+  for _, map in ipairs({ "<M-d>", "<C-S-d>" }) do
+    vim.keymap.set({ "n", "v", "i" }, map, "5<C-e>",
+      { silent = true, desc = "Scroll +5" }
+    )
+  end
 
   -- Quickly open nvim config directory. Neotree will switch directory
   -- thanks to vim-rooter.
