@@ -63,6 +63,10 @@ return {
           ["<C-d>"] = false,
         },
       },
+      layout_config = {
+        width = { padding = 3 },
+        height = { padding = 1 }
+      }
     },
   },
   config = function(spec)
@@ -82,7 +86,9 @@ return {
     vim.keymap.set("n", "<Leader><Space>", require("telescope.builtin").find_files, { desc = "[ ][ ] fuzzy find files" })
     vim.keymap.set("n", "<Leader>fh", require("telescope.builtin").help_tags, { desc = "[f]ind [h]elp" })
     vim.keymap.set("n", "<Leader>fH", require("telescope.builtin").highlights, { desc = "[f]ind [H]highlights" })
-    vim.keymap.set("n", "<Leader>fw", require("telescope.builtin").grep_string, { desc = "[f]ind current [w]ord" })
+    vim.keymap.set("n", "<Leader>fw", function()
+      require("telescope.builtin").grep_string{ word_match = "-w" }
+    end, { desc = "[f]ind current [w]ord" })
     -- Needs different search options to accept grep/re syntax:
     vim.keymap.set("n", "<Leader>fg", require("telescope.builtin").live_grep, { desc = "[f]ind - search by [g]rep" })
     vim.keymap.set("n", "<Leader>fd", require("telescope.builtin").diagnostics, { desc = "[f]ind [d]iagnostics" })
@@ -92,5 +98,15 @@ return {
     -- vim.keymap.set("v", "<Leader>fv", require("telescope.builtin").grep_string, { desc = "[f]ind content of [v]isual selection" })
     -- (Mapped to vim-grep/rg and qf/:copen instead in the quickfix.lua config).
     -- "<Leader>fr" is mapped to find LSP references in telescope.
+
+    -- Enable line-wrap in search preview since
+    -- the convenience is otherwise diminished.
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "TelescopePreviewerLoaded",
+      callback = function()
+        vim.wo.number = true
+        vim.wo.wrap = true
+      end,
+    })
   end
 }

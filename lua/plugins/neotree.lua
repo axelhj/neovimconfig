@@ -17,7 +17,7 @@ return {
   opts = {
     window = {
       position = "left",
-      width = 50,
+      width = 65,
       mappings = {
         ["<C-S-h>"] = "close_node",
         ["<M-h>"] = "close_node",

@@ -164,11 +164,22 @@ function M.set_keymaps()
   )
 
   -- Remaps for dealing with word wrap - kickstart.nvim.
-  vim.keymap.set("n", "k", "v:count == 0 ? \"gk\" : \"k\"",
-    { expr = true, silent = true }
-  )
-  vim.keymap.set("n", "j", "v:count == 0 ? \"gj\" : \"j'\"",
-    { expr = true, silent = true }
+  -- Disable until being missed
+  -- vim.keymap.set("n", "k", "v:count == 0 ? \"gk\" : \"k\"",
+  --   { expr = true, silent = true }
+  -- )
+  -- vim.keymap.set("n", "j", "v:count == 0 ? \"gj\" : \"j'\"",
+  --   { expr = true, silent = true }
+  -- )
+
+  -- Clear diagnotics if it is stale or otherwise not useful.
+  vim.keymap.set("n", "<Leader>_", function()
+      vim.diagnostic.reset(nil, vim.api.nvim_get_current_buf())
+    end,
+    {
+      desc = "Clear (mainly LSP) diagnostics the current buffer",
+      silent = true,
+    }
   )
 
   -- Open terminal in current buffer.
@@ -236,6 +247,9 @@ function M.set_keymaps()
   local opts = { silent = true, noremap = true, desc = "Switch window/split" }
 
   vim.keymap.set("n", "<C-h>", jump_window_with_wrap("h", "l"), opts)
+  -- After version 12, C-h is now interpreted as backspace differently than
+  -- in versions 11.x. <C-h> cannot be mapped in a terminal (apparently).
+  vim.keymap.set("n", "<Bs>", jump_window_with_wrap("h", "l"), opts)
   vim.keymap.set("n", "<C-l>", jump_window_with_wrap("l", "h"), opts)
   vim.keymap.set("n", "<C-j>", jump_window_with_wrap("j", "k"), opts)
   vim.keymap.set("n", "<C-k>", jump_window_with_wrap("k", "j"), opts)
@@ -322,6 +336,28 @@ function M.set_keymaps()
       vim.keymap.set(map, "<M-F"..x..">", "<Nop>")
     end
   end
+
+  -- Make F1 into N-op to avoid accidentally opening help-splits.
+  vim.keymap.set("n", "<F1>", "<Nop>", { desc = "Block F1 opening a help article as split." })
+  vim.keymap.set("n", "<C-F1>", "<Nop>", { desc = "Block F1 opening a help article as split." })
+
+  -- Allow scrolling left or right when wrap is turned off.
+  vim.cmd"nnoremap zl 20zl|nnoremap zh 20zh"
+
+  -- Close terminal windows with x
+  vim.keymap.set("n", "x", function()
+      if vim.bo.buftype == "terminal" then
+        replace_termcodes("<Cmd>wincmd c<Cr>")
+      else
+        replace_termcodes("x")
+      end
+    end,
+    {
+      desc = "Close the current terminal window [x]",
+      noremap = true,
+    }
+  )
+
 end
 
 return M

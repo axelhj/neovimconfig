@@ -7,7 +7,7 @@ return {
   event = { "VeryLazy", },
   dependencies = {
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
-    "folke/neodev.nvim",
+    { "folke/neodev.nvim", }
   },
   keys= {
     { "<Leader>fi", desc = "Telescope [f]ind lsp [i]mplementation" },

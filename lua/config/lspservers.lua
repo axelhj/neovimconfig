@@ -55,11 +55,11 @@ M.servers = {
   csharp_ls = {
     options = {
       root_dir = function(startpath)
-        local lspconfig = require"lspconfig"
-        return lspconfig.util.root_pattern("*.sln")(startpath)
-          or lspconfig.util.root_pattern("*.csproj")(startpath)
-          or lspconfig.util.root_pattern("*.fsproj")(startpath)
-          or lspconfig.util.root_pattern(".git")(startpath)
+        local config_util = require("lspconfig").util
+        return config_util.root_pattern("*.sln")(startpath)
+          or config_util.root_pattern("*.csproj")(startpath)
+          or config_util.root_pattern("*.fsproj")(startpath)
+          or config_util.root_pattern(".git")(startpath)
       end,
     },
   },
@@ -67,7 +67,7 @@ M.servers = {
     settings = {
       Lua = {
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
+          -- Get the language server to recognize the `vim` & other globals
           globals = {
             "vim",
             "require",
