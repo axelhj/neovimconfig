@@ -348,6 +348,8 @@ function M.set_keymaps()
   vim.keymap.set("n", "x", function()
       if vim.bo.buftype == "terminal" then
         replace_termcodes("<Cmd>wincmd c<Cr>")
+      elseif vim.v.count > 0 then
+        replace_termcodes(vim.v.count.."x")
       else
         replace_termcodes("x")
       end

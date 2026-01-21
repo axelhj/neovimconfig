@@ -22,6 +22,7 @@ return {
     { "<leader>gt", "[g]oto [t]ype-definition" },
   },
   config = function()
+    vim.keymap.set("n", "gd", "<Nop>", { desc = "Lsp: Disable go to definition when LSP is missing" })
     local on_attach = function(_, bufnr)
       local modemap = function(mode, keys, func, desc)
         if desc then
