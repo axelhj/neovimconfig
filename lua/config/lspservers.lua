@@ -8,7 +8,8 @@ M.filetypes = {
     "jsonc",
     "typescript",
     "typescriptreact",
-    "typescript.tsx"
+    "typescripttsx",
+    "typescriptjsx"
   },
   cmake = { "txt", "cmake" },
 }
