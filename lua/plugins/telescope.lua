@@ -6,7 +6,6 @@ local clean_fzf_build_cmd = is_win and
 
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
