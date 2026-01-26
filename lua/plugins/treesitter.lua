@@ -1,41 +1,51 @@
+local augroup = vim.api.nvim_create_augroup("nvim-treesitter", { clear = true })
+local enabled_parsers = {
+  "c",
+  "cpp",
+  "lua",
+  "python",
+  "scala",
+  "tsx",
+  "javascript",
+  "typescript",
+  "c_sharp",
+  "vimdoc",
+  "vim",
+  "lua",
+  "go",
+  "rust",
+}
+local supported_filetypes = {
+  "c",
+  "cpp",
+  "lua",
+  "python",
+  "scala",
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+  "cs",
+  "vimdoc",
+  "vim",
+  "lua",
+  "go",
+  "rust",
+}
+
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-  },
   build = ":TSUpdate",
-  event = { "VeryLazy", },
   config = function()
-    require("nvim-treesitter.config").setup {
-      ensure_installed = {
-        "c",
-        "cpp",
-        "lua",
-        "python",
-        "scala",
-        "tsx",
-        "javascript",
-        "typescript",
-        "c_sharp",
-        "vimdoc",
-        "vim",
-        "lua",
-        -- "go",
-        -- "rust",
-      },
-      ts_context_commentstring = {
-        enable = true,
-        enable_autocmd = true,
-      },
-      auto_install = false,
-      highlight = {
-        enable = true;
-        enable_autocmd = true,
-      },
-      indent = {
-        enable = false,
-        enable_autocmd = true,
-      },
-    }
-  end
+    nvim_treesitter = require("nvim-treesitter")
+    nvim_treesitter.install(enabled_parsers)
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = supported_filetypes,
+      callback = function()
+        vim.treesitter.start()
+        vim.bo.indentexpr = "v:lua.require\"nvim-treesitter\".indentexpr()"
+      end,
+      group = augroup
+    })
+  end,
 }
