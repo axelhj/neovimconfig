@@ -1,3 +1,5 @@
+: W\ clink: clink set clink.autostart "..."
+
 doskey g=git $*
 doskey ga=git add $*
 doskey galias=git config --global --list ^| sed -ne 's/^^alias.//p' ^| sed -e 's/=/ = /'
@@ -14,7 +16,7 @@ doskey gd=git diff $*
 doskey gdc=git diff --cached $*
 doskey gf=git fetch $*
 doskey gfo=git fetch origin $*
-doskey gfocm=git fetch origin^&^&git checkout origin/main
+doskey gfocm=git fetch origin^&^&git checkout origin/main $*
 doskey gform=git fetch origin^&^&git rebase origin/main $*
 doskey gl=git log $*
 doskey glg=git log --graph $*
@@ -25,7 +27,8 @@ doskey gpl=git pull $*
 doskey gr=git rebase $*
 doskey gre=git reset $*
 doskey grp=git remote prune $*
-doskey grpo=git fetch origin&&git remote prune origin $*
+doskey grpo=git fetch origin^&^&git remote prune origin $*
+doskey gre=git reset $*
 doskey gs=git status $*
 doskey gsh=git show $*
 doskey gsst=git status --short $*
