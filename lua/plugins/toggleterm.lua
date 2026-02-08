@@ -18,5 +18,6 @@ return {
     auto_scroll = false,
     autochdir = true,
     direction = "horizontal",
+    shell = vim.o.shell,
   }
 }
