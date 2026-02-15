@@ -1,4 +1,6 @@
+doskey g=git $*
 doskey ga=git add $*
+doskey galias=git config --global --list ^| sed -ne 's/^^alias.//p' ^| sed -e 's/=/ = /'
 doskey gap=git add -p $*
 doskey gb=git branch $*
 doskey gbd=git branch -D $*
@@ -10,9 +12,10 @@ doskey gcm=git commit -m $*
 doskey gco=git checkout $*
 doskey gd=git diff $*
 doskey gdc=git diff --cached $*
+doskey gf=git fetch $*
 doskey gfo=git fetch origin $*
-doskey gfocm=git fetch origin^&^&git checkout origin/main $*
-doskey gform=git fetch origin^&^&git rebase origin/main
+doskey gfocm=git fetch origin^&^&git checkout origin/main
+doskey gform=git fetch origin^&^&git rebase origin/main $*
 doskey gl=git log $*
 doskey glg=git log --graph $*
 doskey glgp=git diff --graph -p $*
@@ -20,9 +23,11 @@ doskey glp=git log -p $*
 doskey gp=git push $*
 doskey gpl=git pull $*
 doskey gr=git rebase $*
-doskey grs=git reset $*
+doskey gre=git reset $*
+doskey grp=git remote prune $*
+doskey grpo=git fetch origin&&git remote prune origin $*
 doskey gs=git status $*
 doskey gsh=git show $*
 doskey gsst=git status --short $*
 doskey gst=git stash $*
-doskey galias=git config --global --list ^| sed -ne 's/^^alias.//p' ^| sed -e 's/=/ = /'
+doskey gun=git reset HEAD -- .

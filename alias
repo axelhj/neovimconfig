@@ -1,8 +1,8 @@
-alias nvim="~//nvim/nvim-macos-arm64/bin/nvim"
+alias g=git
 alias ga="git add"
-alias ga.="git add ."
-alias gap="git add -p"
+alias galias="git config --global --list | sed -ne 's/^alias.//p' | sed -e 's/=/ = /'"
 alias gap.="git add -p ."
+alias gap="git add -p"
 alias gb="git branch"
 alias gbd="git branch -D"
 alias gc="git commit"
@@ -25,42 +25,46 @@ alias gp="git push"
 alias gpl="git pull"
 alias gr="git rebase"
 alias gre="git reset"
-alias grpo="git fetch origin&&git remote prune origin"
 alias grp="git remote prune"
+alias grpo="git fetch origin&&git remote prune origin"
 alias gs="git status"
 alias gsh="git show"
 alias gsst="git status --short"
 alias gst="git stash"
-alias galias="git config --global --list | sed -ne 's/^alias.//p' | sed -e 's/=/ = /'"
+alias gun="git reset HEAD -- ."
+alias nvim="~/nvim/nvim-macos-arm64/bin/nvim"
 
 # For "$HOME/.gitconfig"
 # [alias]
-#	a="add"
-#	ap="add -p"
+#	a=add
+#	alias=!git config --global --list | sed -ne 's/^alias.//p' | sed -e 's/=/ = /'
+#	ap=add -p
 #	b=branch
 #	bd=branch -D
-#	c="commit"
-#	ca="commit --amend"
-#	can="commit --amend --no-edit"
-#	ch="cherry-pick"
-#	cm="commit -m"
-#	co="checkout"
-#	d="diff"
-#	dc="diff --cached"
-#	fo="fetch origin"
-#	focm="!git fetch origin&&git checkout origin/main"
-#	form="!git fetch origin&&git rebase origin/main"
-#	l="log"
+#	c=commit
+#	ca=commit --amend
+#	can=commit --amend --no-edit
+#	ch=cherry-pick
+#	cm=commit -m
+#	co=checkout
+#	d=diff
+#	dc=diff --cached
+#	f=fetch
+#	fo=fetch origin
+#	focm=!git fetch origin&&git checkout origin/main
+#	form=!git fetch origin&&git rebase origin/main
+#	l=log
 #	lg=log --graph
 #	lgp=diff --graph -p
-#	lp="log -p"
-#	p="push"
-#	pl="pull"
-#	r="rebase"
-#	rs="reset"
-#	rpo="!git fetch origin&&git remote prune origin"
-#	s="status"
-#	sh="show"
-#	sst="status --short"
-#	st="stash"
-#	alias="!git config --global --list | sed -ne 's/^alias.//p' | sed -e 's/=/ = /'"
+#	lp=log -p
+#	p=push
+#	pl=pull
+#	r=rebase
+#	re=reset
+#	rp=git remote prune
+#	rpo=!git fetch origin&&git remote prune origin
+#	s=status
+#	sh=show
+#	sst=status --short
+#	st=stash
+#	un=reset HEAD -- .
