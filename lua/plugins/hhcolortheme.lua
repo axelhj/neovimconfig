@@ -1,22 +1,3 @@
-local ibl_hook_id = nil
-
-local function clear_ibl_hook()
-  local hooks = require "ibl.hooks"
-  if ibl_hook_id ~= nil then
-    hooks.clear(ibl_hook_id)
-    ibl_hook_id = nil
-  end
-end
-
-local function register_ibl_hook()
-  local hooks = require "ibl.hooks"
-  clear_ibl_hook()
-  ibl_hook_id = hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    require("plugins.hhcolortheme").set_custom_highlights()
-    clear_ibl_hook()
-  end)
-end
-
 return {
   "hardhackerlabs/theme-vim",
   name = "hardhacker",
@@ -39,7 +20,6 @@ return {
       pattern = "hardhacker",
       callback = function()
         vim.cmd"HardHackerAfterHighlight"
-        register_ibl_hook()
         require("plugins.hhcolortheme").set_custom_highlights()
         local ibl = require"plugins.indentblankline"
         require"ibl".setup(ibl.opts)
