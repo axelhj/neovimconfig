@@ -3,8 +3,7 @@ local servers = require("config.lspservers").servers
 
 return {
   "neovim/nvim-lspconfig",
-  tag="v2.5.0",
-  event = { "VeryLazy", },
+  lazy = false,
   dependencies = {
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
     { "folke/neodev.nvim", }
@@ -75,9 +74,7 @@ return {
     -- Capabilities required for the visualstudio lsps (css, html, etc)
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    -- Add nvim-lspconfig plugin
-    local lspconfig = require "lspconfig"
-
+    -- Use nvim-lspconfig plugin
     for lsp, setup in pairs(servers) do
       local setupOptions = {
         on_attach = on_attach,
@@ -85,7 +82,7 @@ return {
         settings = setup.settings or {},
         flags = {
           -- Minimize LSP work
-          debounce_text_changes = 3500,
+          debounce_text_changes = 1500,
         },
         filetypes = filetypes[lsp],
       }
@@ -104,7 +101,8 @@ return {
           end
         end
       end
-      lspconfig[lsp].setup(setupOptions)
+      vim.lsp.config(lsp, setupOptions)
+      vim.lsp.enable(lsp)
     end
   end
 }

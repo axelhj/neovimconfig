@@ -152,12 +152,13 @@ function M.set_keymaps()
       local clients = vim.lsp.get_clients({ bufnr = current_buffer_nr })
       if #clients == 0 then
         print("Zero buffers to restart")
-        vim.cmd(":LspStart")
+        vim.cmd(":lsp enable")
         return
       end
       print("Found "..#clients.." buffers to restart")
       for _, client in pairs(clients) do
-        vim.cmd(":LspRestart "..client.name)
+        vim.cmd(":lsp restart "..client.name)
+        vim.cmd(":lsp enable "..client.name)
       end
     end,
     { desc = "Run LspRestart for all current buffer LSP:s", silent = true }
