@@ -1,9 +1,11 @@
-: W\ clink: clink set clink.autostart "..."
+: clink set clink.autostart "..."
 
 doskey g=git $*
 doskey ga=git add $*
+doskey ga.=git add . $*
 doskey galias=git config --global --list ^| sed -ne 's/^^alias.//p' ^| sed -e 's/=/ = /'
 doskey gap=git add -p $*
+doskey gap.=git add -p $*
 doskey gb=git branch $*
 doskey gbd=git branch -D $*
 doskey gc=git commit $*
@@ -12,6 +14,8 @@ doskey gcan=git commit --amend --no-edit $*
 doskey gch=git cherry-pick $*
 doskey gcm=git commit -m $*
 doskey gco=git checkout $*
+doskey gcop=git checkout -p $*
+doskey gcop.=git checkout -p . $*
 doskey gd=git diff $*
 doskey gdc=git diff --cached $*
 doskey gf=git fetch $*
@@ -33,4 +37,6 @@ doskey gs=git status $*
 doskey gsh=git show $*
 doskey gsst=git status --short $*
 doskey gst=git stash $*
-doskey gun=git reset HEAD -- .
+doskey gun=git reset HEAD -- $*
+doskey gun.=git reset HEAD -- . $*
+doskey gup.=git reset -p HEAD -- . $*
