@@ -54,7 +54,9 @@ return {
         "--with-filename",
         "--line-number",
         "--column",
-        "--case-sensitive"
+        "--case-sensitive",
+        "--hidden",
+        "--no-ignore-vcs",
       },
       mappings = {
         i = {

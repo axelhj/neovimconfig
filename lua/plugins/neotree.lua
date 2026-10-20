@@ -17,7 +17,7 @@ return {
   opts = {
     window = {
       position = "left",
-      width = 65,
+      width = 40,
       mappings = {
         ["<C-S-h>"] = "close_node",
         ["<M-h>"] = "close_node",
@@ -34,6 +34,8 @@ return {
           ["<M-l>"] = "open",
           ["/"] = "noop",
           ["?"] = "noop",
+          ["<"] = "noop",
+          [">"] = "noop",
           ["<C-b>"] = "noop",
           ["<C-f>"] = "noop",
           ["H"] = "noop",

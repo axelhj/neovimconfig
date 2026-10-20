@@ -161,12 +161,39 @@ function M.set_options()
   vim.o.listchars="tab:→ |,space:•,nbsp:␣,trail:¬,precedes:↯,extends:←"
   vim.o.showbreak="←"
 
-  -- Make the vim UI a lot more minimalistic.
-  vim.o.laststatus = 0
+  -- vim.o.laststatus = 0 makes the vim UI a lot more minimalistic,
+  -- vim.o.laststatus = 2 makes sure that windows that touch the commandline/are full height also gets the statusline displayed.
+  vim.o.laststatus = 2
 
-  -- Setting this as set statusline=" " causes a default statusline.
-  -- Using vim.o.statusline = " " hides the status line content.
-  vim.o.statusline = " "
+  -- Setting this as set statusline=" " causes a default statusline while
+  -- using vim.o.statusline = " " hides its content.
+  -- Prune the path prefix for any file in home for UI ergonomics,
+  -- screen space economics and general tidyness. This makes the
+  -- status line a lot more consistent along with vim-rooter, since
+  -- the statusline doesn't change when moving between windows (which
+  -- occassionally changes the cwd). Append a long narrow line
+  -- between vertical splits. It makes the UI more readable:
+  vim.cmd [[
+    function! PrunedPath()
+      let home_escaped = escape(tr($HOME, '/', '\'), '\')
+      let prefix_escape_pattern = '^\(~\|' . home_escaped . '\)'
+      " Prune $HOME if matched and always substitute for ellipsis
+      return substitute(
+        \tr(expand('%:p'), '/', '\'),
+        \prefix_escape_pattern,
+        \'...',
+        \''
+      \)
+    endfunction
+  ]]
+  vim.o.statusline = '%{winwidth(0)?PrunedPath().\' \'.repeat(\'─\',max([0,winwidth(0)-strlen(PrunedPath())-1])):\' \'}'
+  -- In some statusline configurations a file position/size is displayed
+  -- to the side of the status which is hidden with noruler. Dynamic
+  -- fullwidth statusline makes this option redundant.
+  vim.o.ruler = false
+
+  -- Set cmdheight as zero to hide it when it is not in use. Laststatus=2 makes it show the
+  -- statusline in place of the commandline when command-mode is not used.
   vim.o.cmdheight = 0
 end
 
