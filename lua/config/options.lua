@@ -195,6 +195,10 @@ function M.set_options()
   -- Set cmdheight as zero to hide it when it is not in use. Laststatus=2 makes it show the
   -- statusline in place of the commandline when command-mode is not used.
   vim.o.cmdheight = 0
+
+  -- Adjust the cursor so it is mostly/always a narrow cursor
+  -- when typing.
+  vim.o.guicursor='n-v:block,i-c-ci-sm-r-t:ver25'
 end
 
 return M
