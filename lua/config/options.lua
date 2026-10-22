@@ -186,7 +186,7 @@ function M.set_options()
       \)
     endfunction
   ]]
-  vim.o.statusline = '%{winwidth(0)?PrunedPath().\' \'.repeat(\'─\',max([0,winwidth(0)-strlen(PrunedPath())-1])):\' \'}'
+  vim.o.statusline = '%{&buftype==\'terminal\'?\'\':winwidth(0)?PrunedPath().\' \'.repeat(\'─\',max([0,winwidth(0)-strlen(PrunedPath())-1])):\' \'}'
   -- In some statusline configurations a file position/size is displayed
   -- to the side of the status which is hidden with noruler. Dynamic
   -- fullwidth statusline makes this option redundant.
@@ -198,7 +198,7 @@ function M.set_options()
 
   -- Adjust the cursor so it is mostly/always a narrow cursor
   -- when typing.
-  vim.o.guicursor='n-v:block,i-c-ci-sm-r-t:ver25'
+  vim.o.guicursor = 'n-v-sm:block,c-i-ci-t:ver25,r-cr:hor20'
 end
 
 return M

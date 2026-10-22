@@ -342,6 +342,9 @@ function M.set_keymaps()
   vim.keymap.set("n", "<F1>", "<Nop>", { desc = "Block F1 opening a help article as split." })
   vim.keymap.set("n", "<C-F1>", "<Nop>", { desc = "Block F1 opening a help article as split." })
 
+  -- Make ctrl+c into N-op to avoid displaying needless notice.
+  vim.keymap.set("n", "<C-c>", ":silent echo 'Blocked C-c'<Cr>",  { desc = "Block ctrl+c displaying exit instruction." })
+
   -- Allow scrolling left or right when wrap is turned off.
   vim.cmd"nnoremap zl 20zl|nnoremap zh 20zh"
 
