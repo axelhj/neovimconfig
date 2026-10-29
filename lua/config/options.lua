@@ -176,7 +176,7 @@ function M.set_options()
   vim.cmd [[
     function! PrunedPath()
       let home_escaped = escape(tr($HOME, '/', '\'), '\')
-      let prefix_escape_pattern = '^\(~\|' . home_escaped . '\)'
+      let prefix_escape_pattern = '^\(\~\|' . home_escaped . '\)'
       " Prune $HOME if matched and always substitute for ellipsis
       return substitute(
         \tr(expand('%:p'), '/', '\'),
